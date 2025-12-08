@@ -148,7 +148,7 @@
         .blog-scroll-container {
             display: flex; 
             overflow-x: auto; 
-            gap: 16px; /* 모바일 간격 좁힘 */
+            gap: 16px; 
             padding: 10px 24px 40px 24px;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
@@ -156,10 +156,10 @@
         .blog-scroll-container::-webkit-scrollbar { display: none; }
 
         .blog-item {
-            /* [중요] 모바일 최적화: 화면 너비의 85%만 차지하여 다음 카드가 보이게 함 */
-            min-width: 280px; 
-            width: 85vw; /* 뷰포트 너비의 85% */
-            max-width: 380px; /* PC에서는 너무 커지지 않게 제한 */
+            /* [수정됨] 카드 너비를 줄여서 옆 카드가 보이게 설정 */
+            min-width: 260px; /* 더 작은 화면 대응 */
+            width: 70vw;      /* 화면의 70%만 차지 -> 옆 카드가 보임 */
+            max-width: 340px; /* 너무 커지지 않게 제한 */
             
             flex: 0 0 auto;
             scroll-snap-align: center; /* 스크롤 시 중앙 정렬 */
@@ -206,7 +206,7 @@
             display: inline-flex; align-items: center;
             font-size: 0.85rem; font-weight: 600; color: #333;
             cursor: pointer; opacity: 0.8; transition: opacity 0.3s;
-            margin-top: auto; /* 카드 하단에 버튼 고정 */
+            margin-top: auto;
         }
         .blog-link:hover { opacity: 1; color: var(--naver-green); }
         

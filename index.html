@@ -1,228 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>songshop - 오로지 자연스러움에만 집중합니다</title>
-
+    
     <!-- 폰트 & 아이콘 -->
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* -----------------------------
-            0. 종이 텍스처 + 노이즈 배경 추가
-        ----------------------------- */
-        body {
-            background-color: #FDFBF9;
-            background-image:
-                url("https://www.transparenttextures.com/patterns/paper-2.png"),
-                url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMu..."); 
-            /* 위는 미세 노이즈 SVG (용량적음) */
-            background-repeat: repeat, repeat;
-            background-size: auto, 200px;
+        /* [디자인 시스템] */
+        :root {
+            --primary-color: #8E7C68; 
+            --primary-dark: #6D5E4D;
+            --bg-color: #FDFBF9;
+            --white: #FFFFFF;
+            --text-main: #2C2C2C;
+            --text-sub: #555555;
+            --naver-green: #03C75A;
         }
 
-        /* 기존 body 스타일 유지 */
-        body {
-            font-family: 'Pretendard', sans-serif;
-            color: var(--text-main);
-            line-height: 1.7;
-            word-break: keep-all;
-            overflow-x: hidden;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            color: var(--text-main); 
+            line-height: 1.7; 
+            background-color: var(--bg-color); 
+            word-break: keep-all; 
+            overflow-x: hidden; 
             position: relative;
         }
 
-        /* -----------------------------
-            1. 잉크 스며들기 효과 (텍스트)
-        ----------------------------- */
-        .ink-appear {
-            opacity: 0;
-            filter: blur(6px);
-            transform: translateY(20px);
-            transition: all 1.2s ease-out;
+        /* [1] 배경 텍스처: 노이즈 & 종이 질감 */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9998; /* 가장 상위, 플로팅 바 아래 */
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            animation: noiseMove 0.4s infinite steps(10);
+        }
+        @keyframes noiseMove {
+            0% { transform: translate(0, 0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+            100% { transform: translate(0, 0); }
         }
 
-        .ink-appear.active {
+        h1, h2, h3, .serif-font {
+            font-family: 'Gowun Batang', serif;
+            letter-spacing: -0.03em;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        .section-padding { padding: 120px 0; position: relative; z-index: 2; }
+        .text-center { text-align: center; }
+        
+        /* [9] Ambient Blob: 숨쉬는 효과(Macaron Breathing) + JS 이동 */
+        .ambient-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.6;
+            pointer-events: none;
+            /* transform은 JS로 제어, 여기선 animation으로 scale만 조절 */
+            animation: breathing 6s ease-in-out infinite alternate;
+        }
+        @keyframes breathing {
+            0% { transform: scale(0.95); }
+            100% { transform: scale(1.05); }
+        }
+        
+        /* JS에서 translate를 제어하기 위해 wrapper 사용 권장되나, 
+           간단히 transform 합성을 위해 JS 코드를 수정할 예정 */
+        
+        .shape-1 {
+            top: -10%; left: -10%;
+            width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(142, 124, 104, 0.15) 0%, rgba(255,255,255,0) 70%);
+        }
+        .shape-2 {
+            bottom: 10%; right: -10%;
+            width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(200, 180, 160, 0.12) 0%, rgba(255,255,255,0) 70%);
+            animation-delay: -3s;
+        }
+
+        .section-title { 
+            font-size: 2.2rem; margin-bottom: 10px; 
+            font-weight: 700; color: #1a1a1a;
+            display: inline-block; position: relative;
+        }
+        
+        .title-line {
+            display: block; width: 0; height: 1px; 
+            background: var(--primary-color);
+            margin: 0 auto 10px auto;
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            opacity: 0.6;
+        }
+        .reveal.active .title-line { width: 60px; }
+
+        .section-desc { 
+            color: var(--text-sub); margin-bottom: 50px; 
+            font-size: 1rem; font-weight: 300;
+        }
+
+        /* [2] & [7] Lazy Fade-in & Focus Reveal: 미세 진동 없는 Blur 처리 */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            filter: blur(10px); /* 흐림 효과 시작 */
+            transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.2s ease-out;
+            will-change: opacity, transform, filter;
+        }
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+            filter: blur(0); /* 선명해짐 */
+        }
+
+        /* Stagger for grid items */
+        .stagger-wrap .stagger-item {
+            opacity: 0; transform: translateY(30px); filter: blur(5px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .stagger-wrap.active .stagger-item {
+            opacity: 1; transform: translateY(0); filter: blur(0);
+        }
+        .stagger-wrap.active .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-wrap.active .stagger-item:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-wrap.active .stagger-item:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-wrap.active .stagger-item:nth-child(4) { transition-delay: 0.4s; }
+
+        /* [1. 히어로 섹션] */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1620331317312-74b88bf40907?q=80&w=2072&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; padding: 20px;
+            overflow: hidden; background-attachment: fixed;
+        }
+        .hero-content { 
+            border: 1px solid rgba(255,255,255,0.3); 
+            padding: 60px 30px;
+            backdrop-filter: blur(2px);
+            max-width: 600px; z-index: 10;
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+        }
+        .hero h1 { font-size: 2.4rem; line-height: 1.4; margin-bottom: 20px; font-weight: 400; }
+        .hero p { opacity: 0.9; font-weight: 300; font-size: 1rem; }
+
+        /* [2. 철학 - [3] 잉크 스며드는 애니메이션 적용] */
+        .philosophy { background-color: transparent; }
+        .quote-wrap {
+            padding: 50px; background-color: rgba(253, 251, 249, 0.85);
+            margin: 0 auto; max-width: 800px; position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        }
+        .quote-wrap::before {
+            content: "“"; position: absolute; top: -20px; left: 30px;
+            font-size: 5rem; color: var(--primary-color); opacity: 0.3; font-family: serif;
+        }
+        .quote-text { 
+            font-family: 'Gowun Batang', serif; font-size: 1.25rem; 
+            color: #333; margin-bottom: 25px; line-height: 1.8; 
+            min-height: 150px; /* 레이아웃 떨림 방지 */
+        }
+        /* 잉크 효과를 위한 클래스 */
+        .ink-char {
+            opacity: 0;
+            filter: blur(8px);
+            display: inline-block;
+            transform: scale(1.1);
+            transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease;
+        }
+        .ink-char.visible {
             opacity: 1;
             filter: blur(0);
-            transform: translateY(0);
-        }
-
-        /* -----------------------------
-            2. Lazy Focus-in (이미지)
-        ----------------------------- */
-        .focus-in {
-            opacity: 0;
-            filter: blur(6px);
-            transform: scale(1.02);
-            transition: all 1.2s ease;
-        }
-
-        .focus-in.active {
-            opacity: 1;
-            filter: blur(0px);
             transform: scale(1);
         }
+        .quote-author { text-align: right; font-size: 1rem; color: var(--primary-color); font-weight: 700; opacity: 0; transition: opacity 1s 2s; }
+        .quote-author.visible { opacity: 1; }
 
-        /* -----------------------------
-            3. Before/After 3D 회전
-        ----------------------------- */
-        .interact-card {
-            transition: transform 0.35s ease;
-        }
-
-        .interact-card:active {
-            transform: rotateY(8deg) scale(0.98);
-        }
-
-        .interact-card.showing-before:active {
-            transform: rotateY(-8deg) scale(0.98);
-        }
-
-        /* -----------------------------
-            4. 가로 스크롤 카드 패럴랙스
-        ----------------------------- */
-        .blog-scroll-container,
+        /* [3. 포트폴리오 - [4] 3D 카드 틸트 효과] */
         .portfolio-scroll-container {
-            perspective: 1000px;
+            display: flex; overflow-x: auto; gap: 20px;
+            padding: 20px 24px 60px 24px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            perspective: 1200px; /* 3D 효과를 위한 원근감 */
+        }
+        .portfolio-scroll-container::-webkit-scrollbar { display: none; }
+        
+        .portfolio-card-wrap {
+            min-width: 300px; height: 400px; flex: 0 0 auto;
+            scroll-snap-align: center;
+            position: relative;
+            transform-style: preserve-3d; /* 3D 유지 */
         }
 
-        .blog-item,
         .portfolio-card {
+            width: 100%; height: 100%;
+            border-radius: 8px; overflow: hidden; 
+            background-color: #eee;
+            cursor: pointer;
+            position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.35s ease-out;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* 탄성 있는 전환 */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* 클릭 시 3D 회전 효과 */
+        .portfolio-card.is-flipped {
+            transform: rotateY(15deg) scale(0.96); /* 살짝 돌고 눌리는 느낌 */
         }
 
-        /* 스크롤 시 JS에서 transformX 적용할 예정 */
+        .ba-image { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            transition: opacity 0.4s ease-in-out; pointer-events: none; 
+            backface-visibility: hidden; /* 뒷면 숨김 처리 */
+        }
+        .img-before { z-index: 1; }
+        .img-after { z-index: 2; opacity: 1; } 
+        /* 카드 플립 상태일 때 이미지 전환 */
+        .portfolio-card.showing-before .img-after { opacity: 0; }
+        
+        .ba-label {
+            position: absolute; top: 20px; left: 20px;
+            background: rgba(0,0,0,0.6); color: white; padding: 4px 12px; 
+            font-size: 0.8rem; border-radius: 20px; z-index: 10; 
+            pointer-events: none; transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+        .guide-overlay {
+            position: absolute; bottom: 20px; right: 20px;
+            color: rgba(255,255,255,0.9); z-index: 10;
+            font-size: 0.85rem; pointer-events: none;
+            display: flex; align-items: center; gap: 6px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .guide-overlay i { animation: touchAni 2s infinite; }
 
-        /* -----------------------------
-            5. FAQ 부드러운 오픈 모션
-        ----------------------------- */
-        .faq-answer {
+        .more-card {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background-color: #222; color: white; text-align: center; border: 1px solid #444;
+            min-width: 300px; height: 400px; border-radius: 8px;
+        }
+
+        /* [4. 블로그 - [5] UX 부드러움 강조] */
+        .blog-section { background-color: var(--white); }
+        .blog-scroll-container {
+            display: flex; overflow-x: auto; gap: 20px; 
+            padding: 10px 24px 50px 24px;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth; /* 부드러운 스크롤 */
+        }
+        .blog-scroll-container::-webkit-scrollbar { display: none; }
+
+        .blog-item {
+            min-width: 280px; width: 80vw; max-width: 340px; 
+            flex: 0 0 auto; scroll-snap-align: center; 
+            display: flex; flex-direction: column;
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            border: 1px solid rgba(0,0,0,0.03); 
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .blog-item:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        
+        .blog-thumb { width: 100%; height: 200px; overflow: hidden; border-bottom: 1px solid #eee; position: relative; }
+        .blog-thumb img { 
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); 
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        /* [5] 카드 호버 시 이미지가 천천히 확대되는 고급스러운 연출 */
+        .blog-item:hover .blog-thumb img { transform: scale(1.08); }
+        
+        .blog-content { padding: 24px; display: flex; flex-direction: column; height: 100%; }
+        .blog-meta { font-size: 0.75rem; color: var(--primary-color); font-weight: 700; margin-bottom: 10px; letter-spacing: 0.05em; }
+        .blog-title { font-family: 'Gowun Batang', serif; font-size: 1.2rem; font-weight: 700; line-height: 1.4; margin-bottom: 12px; color: #222; }
+        .blog-desc { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .blog-link { display: inline-flex; align-items: center; font-size: 0.85rem; font-weight: 600; color: #333; margin-top: auto; transition: color 0.3s; }
+        .blog-link:hover { color: var(--naver-green); }
+        .naver-icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background-color: var(--naver-green); color: white; font-weight: 800; font-size: 10px; border-radius: 2px; margin-right: 8px; }
+
+        /* [5. Why 2 Hours] */
+        .process-section { background-color: transparent; }
+        .process-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;
+        }
+        .process-item {
+            position: relative; height: 450px;
+            border-radius: 6px; overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            background-color: #ddd;
+        }
+        .process-bg { width: 100%; height: 100%; transition: transform 0.7s ease; }
+        .process-item:hover .process-bg { transform: scale(1.05); }
+        .process-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.5) 50%, rgba(0,0,0,0)); 
+            padding: 80px 30px 40px 30px; color: white;
+            display: flex; flex-direction: column; justify-content: flex-end;
+        }
+        .step-num { font-family: 'Gowun Batang', serif; font-size: 3rem; opacity: 0.4; margin-bottom: -10px; line-height: 1; }
+        .step-title { font-family: 'Gowun Batang', serif; font-size: 1.5rem; margin-bottom: 12px; font-weight: 400; }
+        .step-desc { font-size: 0.95rem; opacity: 0.95; line-height: 1.6; font-weight: 300; }
+
+        /* [6. FAQ - [6] 부드러운 펼침] */
+        .faq-item { border-bottom: 1px solid #eee; }
+        .faq-question { 
+            padding: 24px 0; cursor: pointer; display: flex; justify-content: space-between; 
+            font-weight: 600; font-size: 1.05rem; color: #333; transition: color 0.3s;
+        }
+        .faq-question:hover { color: var(--primary-color); }
+        .faq-question i { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: var(--primary-color); }
+        
+        .faq-answer { 
+            max-height: 0; overflow: hidden; 
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease; 
             opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.4s ease;
+            color: var(--text-sub); font-size: 0.95rem; 
         }
+        /* 활성화 시 클래스 */
+        .faq-item.active .faq-answer { opacity: 1; }
+        .faq-item.active .faq-question i { transform: rotate(45deg); /* +가 x로 부드럽게 */ }
 
-        .faq-answer.open {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        footer { padding: 60px 0 120px 0; background: white; border-top: 1px solid #f0f0f0; text-align: center; color: #aaa; font-size: 0.8rem; }
 
-        .faq-question i {
-            transition: transform 0.3s ease;
-        }
-
-        /* -----------------------------
-            6. Floating bar 부드러운 등장
-        ----------------------------- */
+        /* [8] Floating Bar - [8] 위로 톡 올라오는 효과 */
         .floating-bar {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: var(--white); height: 65px;
+            display: flex; z-index: 9999;
+            box-shadow: 0 -4px 30px rgba(0,0,0,0.06);
+            /* 초기 상태: 숨김 */
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+        .floating-bar.visible { transform: translateY(0); }
 
-        .floating-bar.active {
-            opacity: 1;
-            transform: translateY(0);
+        .float-btn { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 600; cursor: pointer; }
+        .btn-insta { background: var(--white); color: #222; }
+        .btn-insta i { margin-right: 8px; font-size: 1.2rem; background: -webkit-linear-gradient(#f09433, #dc2743, #bc1888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-inquiry { background: var(--primary-color); color: white; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; letter-spacing: -1px; }
+            .section-padding { padding: 90px 0; }
+            .quote-wrap { padding: 40px 24px; }
+            .quote-wrap::before { font-size: 3.5rem; top: -10px; left: 15px; }
+            .quote-text { font-size: 1.1rem; text-align: justify; }
+            .process-item { height: 380px; }
+            .process-overlay { padding: 30px 24px; }
         }
-
-        /* -----------------------------
-            7. ambient blob 숨쉬기 애니메이션
-        ----------------------------- */
-        @keyframes breathe {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.06); }
-            100% { transform: scale(1); }
-        }
-
-        .ambient-shape {
-            animation: breathe 6s ease-in-out infinite;
-        }
-
-        /* 기존 스타일은 그대로 유지 (생략) */
     </style>
 </head>
 <body>
 
-    <!-- ambient blobs (숨쉬기 + 패럴랙스) -->
-    <div class="ambient-shape shape-1" id="shape1"></div>
-    <div class="ambient-shape shape-2" id="shape2"></div>
+    <!-- [1] 노이즈 텍스처 오버레이 -->
+    <div class="noise-overlay"></div>
+
+    <!-- 배경 무빙 블롭 요소 (wrapper로 감쌈) -->
+    <div id="blob-container">
+        <div class="ambient-shape shape-1" id="shape1"></div>
+        <div class="ambient-shape shape-2" id="shape2"></div>
+    </div>
 
     <!-- Hero Section -->
     <header class="hero">
-        <div class="hero-content ink-appear" id="heroText">
+        <div class="hero-content" id="heroText">
             <h1>화려한 걸 원하신다면<br>저에게 받지 않으셔도<br>좋습니다.</h1>
             <div style="width: 40px; height: 1px; background: white; margin: 25px auto; opacity: 0.5;"></div>
             <p>오로지 자연스러움에만 집중합니다.<br>songshop</p>
         </div>
     </header>
 
-    <!-- Philosophy -->
-    <section class="section-padding philosophy ink-appear">
+    <!-- Philosophy [3] 잉크 스며드는 텍스트 효과 -->
+    <section class="section-padding philosophy">
         <div class="container reveal">
             <div class="text-center">
                 <h2 class="section-title">songshop Philosophy</h2>
                 <span class="title-line"></span>
                 <p class="section-desc">타협하지 않는 자연스러움</p>
             </div>
-            <div class="quote-wrap focus-in">
-                <p class="quote-text">
-                    "눈썹은 얼굴의 지붕입니다. 1mm의 두께, 미세한 각도 차이가 인상을 완전히 바꿉니다.<br><br>
-                    그렇기에 저는 고객님의 골격, 근육의 움직임, 평소 화장 스타일을 모두 파악하기 전에는 바늘을 들지 않습니다.
-                    조금 느리더라도, 진짜 내 것 같은 결을 원하시는 분만 예약해주세요."
+            <div class="quote-wrap">
+                <!-- 텍스트는 JS에서 처리 -->
+                <p class="quote-text" id="inkQuote">
+                    "눈썹은 얼굴의 지붕입니다. 1mm의 두께, 미세한 각도 차이가 인상을 완전히 바꿉니다. 그렇기에 저는 고객님의 골격, 근육의 움직임, 평소 화장 스타일을 모두 파악하기 전에는 바늘을 들지 않습니다. 조금 느리더라도, 진짜 내 것 같은 결을 원하시는 분만 예약해주세요."
                 </p>
                 <div class="quote-author">songshop 원장 드림</div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio -->
-    <section class="section-padding reveal">
+    <!-- Portfolio [4] 3D 카드 터치 효과 -->
+    <section class="section-padding reveal blur-trigger">
         <div class="container" style="padding: 0;">
-            <div class="text-center ink-appear" style="padding: 0 24px;">
+            <div class="text-center" style="padding: 0 24px;">
                 <h2 class="section-title">Real Portfolio</h2>
                 <span class="title-line"></span>
-                <p class="section-desc">사진을 터치할 때마다 <br>Before & After가 바뀝니다.</p>
+                <p class="section-desc">사진을 터치하면 <br>자연스러운 변화를 확인하실 수 있습니다.</p>
             </div>
-
+            
             <div class="portfolio-scroll-container">
                 <!-- Case 1 -->
-                <div class="portfolio-card interact-card focus-in">
-                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=800&auto=format&fit=crop"
-                        class="ba-image img-before">
-                    <img src="https://images.unsplash.com/photo-1588510099684-25a814cb207c?q=80&w=800&auto=format&fit=crop"
-                        class="ba-image img-after">
-                    <div class="ba-label">After</div>
-                    <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                <div class="portfolio-card-wrap">
+                    <div class="portfolio-card interact-card">
+                        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=800&auto=format&fit=crop" class="ba-image img-before" alt="Before">
+                        <img src="https://images.unsplash.com/photo-1588510099684-25a814cb207c?q=80&w=800&auto=format&fit=crop" class="ba-image img-after" alt="After">
+                        <div class="ba-label">After</div>
+                        <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                    </div>
                 </div>
 
                 <!-- Case 2 -->
-                <div class="portfolio-card interact-card focus-in">
-                    <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=800&auto=format&fit=crop"
-                        class="ba-image img-before">
-                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop"
-                        class="ba-image img-after">
-                    <div class="ba-label">After</div>
-                    <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                <div class="portfolio-card-wrap">
+                    <div class="portfolio-card interact-card">
+                        <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=800&auto=format&fit=crop" class="ba-image img-before" alt="Before">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop" class="ba-image img-after" alt="After">
+                        <div class="ba-label">After</div>
+                        <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                    </div>
                 </div>
 
                 <!-- Case 3 -->
-                <div class="portfolio-card interact-card focus-in">
-                    <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=800&auto=format&fit=crop"
-                        class="ba-image img-before">
-                    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop"
-                        class="ba-image img-after">
-                    <div class="ba-label">After</div>
-                    <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                <div class="portfolio-card-wrap">
+                    <div class="portfolio-card interact-card">
+                        <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=800&auto=format&fit=crop" class="ba-image img-before" alt="Before">
+                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop" class="ba-image img-after" alt="After">
+                        <div class="ba-label">After</div>
+                        <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                    </div>
                 </div>
 
-                <!-- More -->
-                <a href="https://instagram.com/본인아이디" target="_blank" class="portfolio-card more-card focus-in">
-                    <i class="fab fa-instagram"></i>
+                <a href="#" class="more-card">
+                    <i class="fab fa-instagram" style="font-size:3rem; margin-bottom:15px; background: -webkit-linear-gradient(#f09433, #e6683c, #dc2743, #cc2366, #bc1888, #231557); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                     <span class="more-text">더 많은 시술 사진<br>보러가기</span>
                 </a>
             </div>
@@ -232,7 +461,7 @@
     <!-- Blog Reviews -->
     <section class="section-padding blog-section">
         <div class="container reveal" style="padding: 0;">
-            <div class="text-center ink-appear" style="padding: 0 24px;">
+            <div class="text-center" style="padding: 0 24px;">
                 <h2 class="section-title">Real Reviews</h2>
                 <span class="title-line"></span>
                 <p class="section-desc">광고 없는 100% 고객님들의 솔직한 후기</p>
@@ -240,47 +469,41 @@
 
             <div class="blog-scroll-container">
                 <!-- Review 1 -->
-                <a href="https://blog.naver.com/본인링크" target="_blank" class="blog-item focus-in">
+                <a href="#" class="blog-item">
                     <div class="blog-thumb">
-                        <img src="https://images.unsplash.com/photo-1519699047748-40baea614fda?q=80&w=800&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1519699047748-40baea614fda?q=80&w=800&auto=format&fit=crop" alt="후기 썸네일">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">#자연결눈썹 #내돈내산</div>
                         <h3 class="blog-title">"화장 시간 20분 줄었어요. 눈썹 유목민 드디어 정착!"</h3>
-                        <p class="blog-desc">매번 아침마다 짝짝이 눈썹을 그리느라 스트레스였는데…</p>
-                        <div class="blog-link">
-                            <span class="naver-icon">N</span> 자세히 보기 <i class="fas fa-arrow-right arrow-icon"></i>
-                        </div>
+                        <p class="blog-desc">매번 아침마다 짝짝이 눈썹 그리느라 스트레스였는데, 원장님이 제 얼굴 골격에 딱 맞춰주셨어요...</p>
+                        <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                     </div>
                 </a>
 
                 <!-- Review 2 -->
-                <a href="https://blog.naver.com/본인링크" target="_blank" class="blog-item focus-in">
+                <a href="#" class="blog-item">
                     <div class="blog-thumb">
-                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop" alt="후기 썸네일">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">#콤보눈썹 #통증제로</div>
-                        <h3 class="blog-title">겁 많은 쫄보의 첫 눈썹 문신 후기</h3>
-                        <p class="blog-desc">아프다는 얘기를 많이 들었지만 전혀…</p>
-                        <div class="blog-link">
-                            <span class="naver-icon">N</span> 자세히 보기 <i class="fas fa-arrow-right arrow-icon"></i>
-                        </div>
+                        <h3 class="blog-title">겁 많은 쫄보의 첫 눈썹 문신 후기 (진짜 하나도 안 아픔)</h3>
+                        <p class="blog-desc">주변에서 아프다는 소리를 많이 들어서 걱정했는데, 마취 크림 바르고 잠들 뻔했어요. 위생도...</p>
+                        <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                     </div>
                 </a>
 
                 <!-- Review 3 -->
-                <a href="https://blog.naver.com/본인링크" target="_blank" class="blog-item focus-in">
+                <a href="#" class="blog-item">
                     <div class="blog-thumb">
-                        <img src="https://images.unsplash.com/photo-1600609842388-3e4b7ea28b49?q=80&w=800&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1600609842388-3e4b7ea28b49?q=80&w=800&auto=format&fit=crop" alt="후기 썸네일">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">#엄마눈썹 #효도선물</div>
-                        <h3 class="blog-title">엄마가 10년은 어려 보인다고…</h3>
-                        <p class="blog-desc">파란 문신 잔흔이 있었는데 감쪽같이 커버…</p>
-                        <div class="blog-link">
-                            <span class="naver-icon">N</span> 자세히 보기 <i class="fas fa-arrow-right arrow-icon"></i>
-                        </div>
+                        <h3 class="blog-title">엄마 모시고 갔는데 10년은 젊어 보이신대요 ♥</h3>
+                        <p class="blog-desc">옛날 파란 문신 잔흔이 있어서 걱정했는데, 감쪽같이 커버해주셨어요. 엄마가 거울 보시더니...</p>
+                        <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                     </div>
                 </a>
             </div>
@@ -290,80 +513,60 @@
     <!-- Why 2 Hours -->
     <section class="section-padding process-section">
         <div class="container">
-            <div class="text-center ink-appear">
+            <div class="text-center reveal">
                 <h2 class="section-title">Why 2 Hours?</h2>
                 <span class="title-line"></span>
                 <p class="section-desc">상담과 디자인에 시술 시간의 절반을 투자합니다.</p>
             </div>
-
             <div class="process-grid reveal stagger-wrap">
-                <div class="process-item stagger-item focus-in">
-                    <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=800&auto=format&fit=crop"
-                        class="process-bg">
+                <div class="process-item stagger-item">
+                    <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=800&auto=format&fit=crop" class="process-bg" alt="상담">
                     <div class="process-overlay">
                         <div class="step-num">01</div>
                         <h3 class="step-title">정밀 상담 & 분석</h3>
-                        <p class="step-desc">골격, 비대칭, 잔흔 확인</p>
+                        <p class="step-desc">고객님의 골격, 안면 비대칭, 기존 잔흔 유무를 꼼꼼히 체크합니다.</p>
                     </div>
                 </div>
-
-                <div class="process-item stagger-item focus-in">
-                    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=800&auto=format&fit=crop"
-                        class="process-bg">
+                <div class="process-item stagger-item">
+                    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=800&auto=format&fit=crop" class="process-bg" alt="디자인">
                     <div class="process-overlay">
                         <div class="step-num">02</div>
                         <h3 class="step-title">퍼스널 디자인</h3>
-                        <p class="step-desc">표정/자세에 따른 최적 라인</p>
+                        <p class="step-desc">앉아서, 누워서, 눈을 떴을 때와 감았을 때를 모두 체크하여 최적의 라인을 찾습니다.</p>
                     </div>
                 </div>
-
-                <div class="process-item stagger-item focus-in">
-                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=800&auto=format&fit=crop"
-                        class="process-bg">
+                <div class="process-item stagger-item">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=800&auto=format&fit=crop" class="process-bg" alt="시술">
                     <div class="process-overlay">
                         <div class="step-num">03</div>
                         <h3 class="step-title">섬세한 터치</h3>
-                        <p class="step-desc">피부 데미지 최소화</p>
+                        <p class="step-desc">피부 데미지를 최소화하는 songshop만의 터치로 한 올 한 올 결을 심습니다.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ [6] 부드러운 펼침/닫힘 -->
     <section class="section-padding" style="background: white;">
         <div class="container reveal stagger-wrap" style="max-width: 800px;">
-            <div class="text-center ink-appear">
+            <div class="text-center">
                 <h2 class="section-title">Q&A</h2>
                 <span class="title-line"></span>
             </div>
-
             <div class="faq-list">
-
                 <div class="faq-item stagger-item">
-                    <div class="faq-question">
-                        Q. 시술 직후 짱구처럼 진해지나요?
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer"><p>직후에도 자연스러울 정도로만 농도를 조절합니다.</p></div>
+                    <div class="faq-question">Q. 시술 직후 짱구처럼 진해지나요? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer"><p style="padding-bottom:24px;">아니요. songshop은 시술 직후에도 일상생활이 가능할 정도의 자연스러운 농도를 맞춰드립니다. 딱지가 두껍게 앉지 않아 더욱 자연스럽습니다.</p></div>
                 </div>
-
                 <div class="faq-item stagger-item">
-                    <div class="faq-question">
-                        Q. 기존 문신 잔흔이 있는데 가능한가요?
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer"><p>사진 상담 후 정확한 안내가 가능합니다.</p></div>
+                    <div class="faq-question">Q. 기존 문신 잔흔이 있는데 가능한가요? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer"><p style="padding-bottom:24px;">잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 '포트폴리오 확인하기'를 통해 DM으로 사진을 보내주시면 정확한 상담이 가능합니다.</p></div>
                 </div>
-
                 <div class="faq-item stagger-item">
-                    <div class="faq-question">
-                        Q. 리터치는 언제 받아야 하나요?
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer"><p>4~8주 사이 보완 리터치를 권장합니다.</p></div>
+                    <div class="faq-question">Q. 리터치는 언제 받아야 하나요? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer"><p style="padding-bottom:24px;">피부 재생 주기를 고려하여 첫 시술 후 4주~8주 사이에 받으시는 것을 권장드립니다. 이때 부족한 부분을 보완하여 완성도를 높입니다.</p></div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -374,148 +577,151 @@
         </div>
     </footer>
 
-    <!-- Floating CTA -->
+    <!-- [8] Floating Bar: 스크롤 시 등장 -->
     <div class="floating-bar" id="floatingBar">
-        <a href="https://instagram.com/본인아이디" target="_blank" class="float-btn btn-insta">
-            <i class="fab fa-instagram"></i> 포트폴리오 확인하기
+        <a href="#" class="float-btn btn-insta">
+            <i class="fab fa-instagram"></i> 포트폴리오
         </a>
-        <a href="https://open.kakao.com/본인링크" target="_blank" class="float-btn btn-inquiry">
-            <i class="fas fa-comment"></i> 상담 문의하기
+        <a href="#" class="float-btn btn-inquiry">
+            <i class="fas fa-comment"></i> 상담 문의
         </a>
     </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // [6] FAQ Logic (Refined Smoothness)
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    const answer = item.querySelector('.faq-answer');
+                    
+                    // Close all
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+
+                    // Toggle current
+                    if (!isActive) {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // [3] Ink Spreading Effect Logic
+            const quoteEl = document.getElementById('inkQuote');
+            const quoteText = quoteEl.innerText;
+            quoteEl.innerHTML = ''; // Clear text
+            
+            // Split by characters (preserving spaces)
+            [...quoteText].forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.classList.add('ink-char');
+                if(char === ' ') span.style.marginRight = '0.25em'; // 띄어쓰기 보정
+                quoteEl.appendChild(span);
+            });
+
+            const authorEl = document.querySelector('.quote-author');
+
+            // [2], [3], [7] Intersection Observer for Scroll Animations
+            if ('IntersectionObserver' in window) {
+                const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+                
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            
+                            // [3] Trigger Ink Animation specifically
+                            if(entry.target.contains(quoteEl)) {
+                                const chars = quoteEl.querySelectorAll('.ink-char');
+                                chars.forEach((char, index) => {
+                                    setTimeout(() => {
+                                        char.classList.add('visible');
+                                    }, index * 25); // Speed of ink spread
+                                });
+                                authorEl.classList.add('visible');
+                            }
+
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            }
+
+            // [4] Portfolio 3D Flip Interaction
+            const cards = document.querySelectorAll('.interact-card');
+            cards.forEach(card => {
+                const label = card.querySelector('.ba-label');
+                card.addEventListener('click', () => {
+                    // 1. Add class for 3D flip animation
+                    card.classList.add('is-flipped');
+                    
+                    // 2. Wait for half the flip (0.25s) to swap content
+                    setTimeout(() => {
+                        card.classList.toggle('showing-before');
+                        const isShowingBefore = card.classList.contains('showing-before');
+                        
+                        if (isShowingBefore) {
+                            label.textContent = "Before";
+                            label.style.background = "#8E7C68"; 
+                        } else {
+                            label.textContent = "After";
+                            label.style.background = "rgba(0,0,0,0.6)"; 
+                        }
+                    }, 200); // Trigger content change slightly before full flip
+
+                    // 3. Remove flip class to return to flat (with new content)
+                    setTimeout(() => {
+                        card.classList.remove('is-flipped');
+                    }, 500);
+                });
+            });
+
+            // [8] Floating Bar Trigger
+            const floatingBar = document.getElementById('floatingBar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    floatingBar.classList.add('visible');
+                } else {
+                    floatingBar.classList.remove('visible');
+                }
+            });
+
+            // [9] Parallax Blob Movement + [2] Blur Focus Logic
+            const shape1 = document.getElementById('shape1');
+            const shape2 = document.getElementById('shape2');
+            const heroText = document.getElementById('heroText');
+            
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                
+                // Blob Parallax
+                // (CSS Animation handles scale breathing, JS handles position)
+                shape1.style.transform = `translate(${scrollY * 0.1}px, ${scrollY * 0.15}px) scale(${1 + Math.sin(Date.now()/1000)*0.05})`; 
+                // Note: Manually adding scale here might conflict with CSS animation. 
+                // Let's rely on CSS for scale (breathing) and use top/left or a wrapper for parallax in future.
+                // But for now, let's keep it simple: Just Translate.
+                shape1.style.transform = `translate(${scrollY * 0.08}px, ${scrollY * 0.15}px)`;
+                shape2.style.transform = `translate(${-scrollY * 0.08}px, ${-scrollY * 0.1}px)`;
+
+                // Hero Fade
+                if(scrollY < 700) {
+                    heroText.style.transform = `translateY(${scrollY * 0.3}px)`;
+                    heroText.style.opacity = 1 - (scrollY / 500);
+                    heroText.style.filter = `blur(${scrollY / 50}px)`; // Add blur to hero text on scroll
+                }
+            });
+        });
+    </script>
 </body>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* -----------------------------------------------------
-        1) Intersection Observer – ink-appear / focus-in
-    ----------------------------------------------------- */
-    const revealTargets = document.querySelectorAll(".ink-appear, .focus-in");
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-                io.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.2 });
-
-    revealTargets.forEach(el => io.observe(el));
-
-
-
-    /* -----------------------------------------------------
-        2) Before / After 카드 토글 + 3D 회전
-    ----------------------------------------------------- */
-    const cards = document.querySelectorAll(".interact-card");
-    cards.forEach(card => {
-        const label = card.querySelector(".ba-label");
-
-        card.addEventListener("click", () => {
-            card.classList.toggle("showing-before");
-
-            if (card.classList.contains("showing-before")) {
-                label.textContent = "Before";
-                label.style.background = "#8E7C68";
-            } else {
-                label.textContent = "After";
-                label.style.background = "rgba(0,0,0,0.6)";
-            }
-        });
-
-        card.addEventListener("contextmenu", e => e.preventDefault());
-    });
-
-
-
-    /* -----------------------------------------------------
-        3) FAQ 열기 부드럽게
-    ----------------------------------------------------- */
-    const faqQs = document.querySelectorAll(".faq-question");
-
-    faqQs.forEach(q => {
-        q.addEventListener("click", () => {
-            const answer = q.nextElementSibling;
-            const icon = q.querySelector("i");
-
-            // 전체 FAQ 닫기
-            document.querySelectorAll(".faq-answer").forEach(a => {
-                a.style.maxHeight = null;
-                a.classList.remove("open");
-            });
-            document.querySelectorAll(".faq-question i").forEach(i => {
-                i.style.transform = "rotate(0deg)";
-            });
-
-            if (!answer.style.maxHeight) {
-                answer.style.maxHeight = answer.scrollHeight + "px";
-                answer.classList.add("open");
-                icon.style.transform = "rotate(45deg)";
-            }
-        });
-    });
-
-
-
-    /* -----------------------------------------------------
-        4) 가로 스크롤 패럴랙스 (Blog & Portfolio)
-    ----------------------------------------------------- */
-    const blogScroll = document.querySelector(".blog-scroll-container");
-    const portfolioScroll = document.querySelector(".portfolio-scroll-container");
-
-    function applyHorizontalParallax(container) {
-        if (!container) return;
-
-        container.addEventListener("scroll", () => {
-            const children = container.querySelectorAll(".blog-item, .portfolio-card");
-
-            children.forEach((item, idx) => {
-                const offset = (container.scrollLeft / 20) * (idx % 3 === 0 ? -1 : 1);
-                item.style.transform = `translateZ(0) translateY(${offset}px)`;
-            });
-        });
-    }
-
-    applyHorizontalParallax(blogScroll);
-    applyHorizontalParallax(portfolioScroll);
-
-
-
-    /* -----------------------------------------------------
-        5) Floating Bar – 자연스럽게 등장
-    ----------------------------------------------------- */
-    const floatingBar = document.getElementById("floatingBar");
-    let floatingShown = false;
-
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 300 && !floatingShown) {
-            floatingBar.classList.add("active");
-            floatingShown = true;
-        }
-    });
-
-
-
-    /* -----------------------------------------------------
-        6) Ambient Blob – 추가 패럴랙스
-    ----------------------------------------------------- */
-    const shape1 = document.getElementById("shape1");
-    const shape2 = document.getElementById("shape2");
-    const heroText = document.getElementById("heroText");
-
-    window.addEventListener("scroll", () => {
-        const y = window.scrollY;
-
-        // blob 이동
-        shape1.style.transform = `translate(${y * 0.05}px, ${y * 0.1}px)`;
-        shape2.style.transform = `translate(${-y * 0.07}px, ${-y * 0.05}px)`;
-
-        // hero 텍스트 페럴랙스 + 페이드
-        if (y < 600) {
-            heroText.style.transform = `translateY(${y * 0.35}px)`;
-            heroText.style.opacity = 1 - (y / 500);
-        }
-    });
-
-});
-</script>
+</html>

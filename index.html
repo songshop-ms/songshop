@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>songshop - 오로지 자연스러움에만 집중합니다</title>
     
     <!-- 폰트 & 아이콘 -->
@@ -22,293 +22,266 @@
             --naver-green: #03C75A;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body { 
             font-family: 'Pretendard', sans-serif; 
             color: var(--text-main); 
-            line-height: 1.7; 
+            line-height: 1.6; 
             background-color: var(--bg-color); 
             word-break: keep-all; 
             overflow-x: hidden; 
-            position: relative; /* 배경 요소를 위해 */
+            position: relative;
         }
 
-        h1, h2, h3, .serif-font {
-            font-family: 'Gowun Batang', serif;
-            letter-spacing: -0.03em;
+        /* [1] 배경 텍스처 */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9998; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
+        h1, h2, h3, .serif-font { font-family: 'Gowun Batang', serif; letter-spacing: -0.03em; }
         a { text-decoration: none; color: inherit; }
         img { display: block; width: 100%; height: 100%; object-fit: cover; }
         
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: 100px 0; position: relative; z-index: 2; } /* z-index 추가 */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .section-padding { padding: 100px 0; position: relative; z-index: 2; }
         .text-center { text-align: center; }
         
-        /* [★ 인터랙션: 배경 무빙 블롭] */
+        /* [9] Ambient Blob - 모바일 최적화 */
+        #blob-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         .ambient-shape {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            opacity: 0.6;
-            pointer-events: none;
-            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.5;
+            animation: breathing 6s ease-in-out infinite alternate;
         }
-        .shape-1 {
-            top: -10%; left: -10%;
-            width: 50vw; height: 50vw;
-            background: radial-gradient(circle, rgba(142, 124, 104, 0.15) 0%, rgba(255,255,255,0) 70%);
-        }
-        .shape-2 {
-            bottom: 10%; right: -10%;
-            width: 60vw; height: 60vw;
-            background: radial-gradient(circle, rgba(200, 180, 160, 0.12) 0%, rgba(255,255,255,0) 70%);
-        }
+        @keyframes breathing { 0% { transform: scale(0.95); } 100% { transform: scale(1.05); } }
+        
+        .shape-1 { top: -10%; left: -20%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(142, 124, 104, 0.15) 0%, rgba(255,255,255,0) 70%); }
+        .shape-2 { bottom: 10%; right: -20%; width: 80vw; height: 80vw; background: radial-gradient(circle, rgba(200, 180, 160, 0.12) 0%, rgba(255,255,255,0) 70%); }
 
         .section-title { 
-            font-size: 2.2rem; margin-bottom: 10px; 
-            font-weight: 700; color: #1a1a1a;
-            display: inline-block;
-            position: relative;
+            font-size: 2rem; margin-bottom: 10px; font-weight: 700; color: #1a1a1a;
+            display: inline-block; position: relative;
         }
         
-        /* [★ 인터랙션: 제목 밑줄 애니메이션] */
         .title-line {
-            display: block;
-            width: 0; 
-            height: 1px; 
-            background: var(--primary-color);
-            margin: 0 auto 10px auto;
-            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-            opacity: 0.6;
+            display: block; width: 0; height: 1px; background: var(--primary-color);
+            margin: 0 auto 10px auto; transition: width 1.2s; opacity: 0.6;
         }
-        .reveal.active .title-line { width: 60px; }
+        .reveal.active .title-line { width: 50px; }
+        .section-desc { color: var(--text-sub); margin-bottom: 40px; font-size: 1rem; font-weight: 300; }
 
-        .section-desc { 
-            color: var(--text-sub); margin-bottom: 50px; 
-            font-size: 1rem; font-weight: 300;
-        }
-
-        /* [기본 Reveal Animation] */
-        .reveal { opacity: 1; transform: translateY(0); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
-        .js-loaded .reveal { opacity: 0; transform: translateY(40px); }
-        .js-loaded .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* [★ 인터랙션: 순차 등장 (Stagger)] */
-        .stagger-wrap .stagger-item {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .stagger-wrap.active .stagger-item {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* 딜레이 설정 (최대 5개까지) */
+        /* [Animation] */
+        .reveal { opacity: 0; transform: translateY(30px); filter: blur(5px); transition: 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); filter: blur(0); }
+        
+        .stagger-wrap .stagger-item { opacity: 0; transform: translateY(20px); transition: 0.8s ease; }
+        .stagger-wrap.active .stagger-item { opacity: 1; transform: translateY(0); }
         .stagger-wrap.active .stagger-item:nth-child(1) { transition-delay: 0.1s; }
         .stagger-wrap.active .stagger-item:nth-child(2) { transition-delay: 0.2s; }
         .stagger-wrap.active .stagger-item:nth-child(3) { transition-delay: 0.3s; }
-        .stagger-wrap.active .stagger-item:nth-child(4) { transition-delay: 0.4s; }
 
-        /* [1. 히어로 섹션] */
+        /* [1. Hero] */
         .hero {
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1620331317312-74b88bf40907?q=80&w=2072&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1620331317312-74b88bf40907?q=80&w=2072&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            height: 100vh; /* 모바일 브라우저 주소창 대응 */
+            height: 100dvh; 
             display: flex; align-items: center; justify-content: center;
             text-align: center; color: white; padding: 20px;
-            overflow: hidden;
-            background-attachment: fixed; /* 간단한 배경 고정 효과 */
         }
         .hero-content { 
-            border: 1px solid rgba(255,255,255,0.4); 
-            padding: 60px 30px;
-            backdrop-filter: blur(3px);
-            max-width: 600px;
-            z-index: 10;
-            /* 패럴랙스를 위해 transition 설정 */
-            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
-            will-change: transform, opacity;
+            border: 1px solid rgba(255,255,255,0.3); padding: 40px 20px;
+            backdrop-filter: blur(3px); width: 100%; max-width: 500px; z-index: 10;
         }
-        .hero h1 { font-size: 2.4rem; line-height: 1.4; margin-bottom: 20px; font-weight: 400; }
-        .hero p { opacity: 0.9; font-weight: 300; font-size: 1rem; }
+        .hero h1 { font-size: 1.8rem; line-height: 1.45; margin-bottom: 20px; font-weight: 400; }
+        .hero p { opacity: 0.9; font-weight: 300; font-size: 0.95rem; }
 
-        /* [2. 철학] */
-        .philosophy { background-color: transparent; } /* 배경 투명하게 하여 ambient shape 보이게 */
+        /* [2. Philosophy] */
         .quote-wrap {
-            padding: 50px; background-color: rgba(249, 247, 245, 0.9); /* 약간 투명도 */
+            padding: 40px 24px; background-color: rgba(253, 251, 249, 0.85);
             margin: 0 auto; max-width: 800px; position: relative;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
         }
         .quote-wrap::before {
-            content: "“"; position: absolute; top: -20px; left: 30px;
-            font-size: 5rem; color: var(--primary-color); opacity: 0.3; font-family: serif;
+            content: "“"; position: absolute; top: -15px; left: 20px;
+            font-size: 4rem; color: var(--primary-color); opacity: 0.3; font-family: serif;
         }
-        .quote-text { font-family: 'Gowun Batang', serif; font-size: 1.25rem; color: #333; margin-bottom: 25px; line-height: 1.8; }
-        .quote-author { text-align: right; font-size: 1rem; color: var(--primary-color); font-weight: 700; }
+        .quote-text { 
+            font-family: 'Gowun Batang', serif; font-size: 1.1rem; 
+            color: #333; margin-bottom: 20px; line-height: 1.7; text-align: justify;
+        }
+        .ink-char { opacity: 0; filter: blur(5px); display: inline-block; transition: 0.5s; }
+        .ink-char.visible { opacity: 1; filter: blur(0); }
+        .quote-author { text-align: right; font-size: 0.9rem; color: var(--primary-color); font-weight: 700; opacity: 0; transition: 1s; }
+        .quote-author.visible { opacity: 1; }
 
-        /* [3. 포트폴리오] */
+        /* [3. Portfolio] */
         .portfolio-scroll-container {
-            display: flex; overflow-x: auto; gap: 16px;
-            padding: 0 24px 40px 24px;
+            display: flex; overflow-x: auto; gap: 15px;
+            padding: 10px 20px 50px 20px;
             scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
         }
         .portfolio-scroll-container::-webkit-scrollbar { display: none; }
         
+        .portfolio-card-wrap {
+            min-width: 85vw; /* 모바일에서 화면 꽉 차게 */
+            aspect-ratio: 3/4; /* 비율 유지 */
+            height: auto;
+            flex: 0 0 auto; scroll-snap-align: center;
+            position: relative; perspective: 1000px;
+        }
+        @media (min-width: 768px) {
+            .portfolio-card-wrap { min-width: 300px; height: 400px; }
+        }
+
         .portfolio-card {
-            min-width: 300px; height: 400px; flex: 0 0 auto;
-            scroll-snap-align: center; position: relative;
+            width: 100%; height: 100%;
             border-radius: 8px; overflow: hidden; background-color: #eee;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none; user-select: none;
+            position: relative; transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
-        .ba-image { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            transition: opacity 0.4s ease; pointer-events: none; 
-        }
+        .portfolio-card.is-flipped { transform: rotateY(180deg); } /* 완전히 뒤집지 않고 클래스로 제어하되, 여기선 JS 로직 따름 */
+        /* JS에서 15도만 기울이므로 CSS는 기본 유지 */
+        .portfolio-card.is-flipped-ani { transform: rotateY(10deg) scale(0.98); }
+
+        .ba-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: opacity 0.4s; pointer-events: none; }
         .img-before { z-index: 1; }
         .img-after { z-index: 2; opacity: 1; } 
         .portfolio-card.showing-before .img-after { opacity: 0; }
         
         .ba-label {
-            position: absolute; top: 20px; left: 20px;
-            background: rgba(0,0,0,0.6); color: white; padding: 4px 12px; 
-            font-size: 0.8rem; border-radius: 20px; z-index: 10; 
-            pointer-events: none; transition: all 0.3s;
+            position: absolute; top: 15px; left: 15px;
+            background: rgba(0,0,0,0.6); color: white; padding: 3px 10px; 
+            font-size: 0.75rem; border-radius: 20px; z-index: 10; 
+            backdrop-filter: blur(4px);
         }
         .guide-overlay {
-            position: absolute; bottom: 20px; right: 20px;
-            color: rgba(255,255,255,0.8); z-index: 10;
-            font-size: 0.85rem; pointer-events: none;
-            display: flex; align-items: center; gap: 6px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            position: absolute; bottom: 15px; right: 15px;
+            color: rgba(255,255,255,0.9); z-index: 10;
+            font-size: 0.8rem; pointer-events: none;
+            display: flex; align-items: center; gap: 5px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
         .guide-overlay i { animation: touchAni 2s infinite; }
-        @keyframes touchAni {
-            0%, 100% { transform: translateY(0); opacity: 0.9; }
-            50% { transform: translateY(-3px); opacity: 0.5; }
-        }
+        @keyframes touchAni { 0%, 100% { transform: translateY(0); opacity: 0.9; } 50% { transform: translateY(-3px); opacity: 0.5; } }
 
         .more-card {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background-color: #333; color: white; text-align: center; border: 1px solid #444;
+            background-color: #222; color: white; border-radius: 8px;
+            min-width: 85vw; aspect-ratio: 3/4; height: auto;
         }
-        .more-card i { font-size: 3rem; margin-bottom: 15px; background: -webkit-linear-gradient(#f09433, #e6683c, #dc2743, #cc2366, #bc1888, #231557); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .more-text { font-family: 'Gowun Batang', serif; font-size: 1.2rem; }
+        @media (min-width: 768px) { .more-card { min-width: 300px; height: 400px; } }
 
-        /* [4. 블로그 리뷰 섹션] */
+        /* [4. Blog] */
         .blog-section { background-color: var(--white); }
-        
         .blog-scroll-container {
-            display: flex; 
-            overflow-x: auto; 
-            gap: 16px; 
-            padding: 10px 24px 40px 24px;
+            display: flex; overflow-x: auto; gap: 15px; 
+            padding: 10px 20px 40px 20px;
             scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
         }
         .blog-scroll-container::-webkit-scrollbar { display: none; }
 
         .blog-item {
-            min-width: 260px; 
-            width: 70vw; 
-            max-width: 340px; 
-            flex: 0 0 auto;
-            scroll-snap-align: center; 
+            min-width: 80vw; flex: 0 0 auto; scroll-snap-align: center; 
             display: flex; flex-direction: column;
-            background: white; border-radius: 8px; overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
-            border: 1px solid #f0f0f0; 
-            transition: transform 0.3s ease;
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06); border: 1px solid #f5f5f5;
         }
-        @media (min-width: 768px) { .blog-item { width: 320px; max-width: none; } }
-        .blog-item:hover { transform: translateY(-5px); }
-        .blog-thumb { width: 100%; height: 200px; overflow: hidden; border-bottom: 1px solid #eee; }
-        .blog-thumb img { transition: transform 0.5s ease; }
-        .blog-item:hover .blog-thumb img { transform: scale(1.05); }
-        .blog-content { padding: 24px; display: flex; flex-direction: column; height: 100%; }
-        .blog-meta { font-size: 0.75rem; color: var(--primary-color); font-weight: 700; margin-bottom: 10px; letter-spacing: 0.05em; }
-        .blog-title { font-family: 'Gowun Batang', serif; font-size: 1.2rem; font-weight: 700; line-height: 1.4; margin-bottom: 12px; color: #222; word-break: keep-all; }
-        .blog-desc { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .blog-link { display: inline-flex; align-items: center; font-size: 0.85rem; font-weight: 600; color: #333; cursor: pointer; opacity: 0.8; transition: opacity 0.3s; margin-top: auto; }
-        .blog-link:hover { opacity: 1; color: var(--naver-green); }
-        .naver-icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background-color: var(--naver-green); color: white; font-weight: 800; font-size: 10px; border-radius: 2px; margin-right: 8px; font-family: sans-serif; }
-        .arrow-icon { margin-left: 5px; font-size: 0.8rem; color: #ccc; transition: margin-left 0.3s; }
-        .blog-link:hover .arrow-icon { margin-left: 10px; color: var(--naver-green); }
+        @media (min-width: 768px) { .blog-item { min-width: 300px; max-width: 320px; width: auto; } }
+        
+        .blog-thumb { width: 100%; height: 180px; overflow: hidden; border-bottom: 1px solid #eee; }
+        .blog-content { padding: 20px; display: flex; flex-direction: column; height: 100%; }
+        .blog-meta { font-size: 0.7rem; color: var(--primary-color); font-weight: 700; margin-bottom: 8px; }
+        .blog-title { font-size: 1.1rem; font-weight: 700; line-height: 1.4; margin-bottom: 10px; color: #222; word-break: keep-all; }
+        .blog-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .blog-link { font-size: 0.8rem; font-weight: 600; color: #333; margin-top: auto; display: flex; align-items: center; }
+        .naver-icon { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; background-color: var(--naver-green); color: white; font-weight: 800; font-size: 9px; border-radius: 2px; margin-right: 6px; }
 
-        /* [5. Why 2 Hours (Stagger 적용)] */
+        /* [5. Why 2 Hours] */
         .process-section { background-color: transparent; }
         .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            display: grid; grid-template-columns: 1fr; gap: 20px; /* 모바일: 1열 */
         }
+        @media (min-width: 768px) { .process-grid { grid-template-columns: repeat(3, 1fr); } }
+        
         .process-item {
-            position: relative; height: 450px;
-            border-radius: 4px; overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            background-color: #ddd;
+            position: relative; height: 320px; /* 모바일 높이 축소 */
+            border-radius: 8px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); background-color: #ddd;
         }
-        .process-bg { width: 100%; height: 100%; transition: transform 0.5s; }
-        .process-item:hover .process-bg { transform: scale(1.03); }
+        @media (min-width: 768px) { .process-item { height: 450px; } }
+
+        .process-bg { width: 100%; height: 100%; transition: transform 0.7s ease; }
         .process-overlay {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6) 40%, rgba(0,0,0,0)); 
-            padding: 80px 30px 40px 30px; color: white;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4) 60%, rgba(0,0,0,0)); 
+            padding: 60px 24px 30px 24px; color: white;
             display: flex; flex-direction: column; justify-content: flex-end;
         }
-        .step-num { font-family: 'Gowun Batang', serif; font-size: 3rem; opacity: 0.3; margin-bottom: -10px; line-height: 1; }
-        .step-title { font-family: 'Gowun Batang', serif; font-size: 1.5rem; margin-bottom: 10px; font-weight: 400; }
-        .step-desc { font-size: 0.95rem; opacity: 0.9; line-height: 1.5; font-weight: 300; }
+        .step-num { font-family: 'Gowun Batang', serif; font-size: 2.5rem; opacity: 0.4; margin-bottom: -5px; line-height: 1; }
+        .step-title { font-family: 'Gowun Batang', serif; font-size: 1.3rem; margin-bottom: 8px; font-weight: 400; }
+        .step-desc { font-size: 0.9rem; opacity: 0.95; line-height: 1.5; font-weight: 300; }
 
-        /* [6. FAQ (Stagger 적용)] */
+        /* [6. FAQ] */
         .faq-item { border-bottom: 1px solid #eee; }
-        .faq-question { padding: 22px 0; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; font-size: 1.05rem;}
-        .faq-answer { max-height: 0; overflow: hidden; transition: 0.4s; color: var(--text-sub); font-size: 0.95rem; }
-        
-        footer { padding: 50px 0 100px 0; background: white; border-top: 1px solid #eee; text-align: center; color: #aaa; font-size: 0.8rem; }
+        .faq-question { 
+            padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            font-weight: 600; font-size: 1rem; color: #333;
+        }
+        .faq-question i { color: var(--primary-color); margin-left: 10px; font-size: 0.9rem; transition: 0.4s; }
+        .faq-answer { 
+            max-height: 0; overflow: hidden; 
+            transition: max-height 0.4s ease, opacity 0.4s; opacity: 0;
+            color: var(--text-sub); font-size: 0.9rem; line-height: 1.6;
+        }
+        .faq-item.active .faq-answer { opacity: 1; }
+        .faq-item.active .faq-question i { transform: rotate(45deg); }
 
-        /* [플로팅 버튼] */
+        footer { padding: 50px 0 100px 0; background: white; border-top: 1px solid #f0f0f0; text-align: center; color: #aaa; font-size: 0.75rem; }
+
+        /* [8] Floating Bar */
         .floating-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: var(--white); height: 60px;
             display: flex; z-index: 9999;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+            transform: translateY(100%); transition: transform 0.5s ease;
         }
-        .float-btn { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 600; cursor: pointer; }
-        .btn-insta { background: var(--white); color: #222; }
-        .btn-insta i { margin-right: 6px; font-size: 1.2rem; background: -webkit-linear-gradient(#f09433, #dc2743, #bc1888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .floating-bar.visible { transform: translateY(0); }
+        .float-btn { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+        .btn-insta i { margin-right: 6px; font-size: 1.1rem; background: -webkit-linear-gradient(#f09433, #dc2743, #bc1888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .btn-inquiry { background: var(--primary-color); color: white; }
 
+        /* [Media Queries for Mobile Finetuning] */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; letter-spacing: -1px; }
-            .section-padding { padding: 80px 0; }
-            .quote-wrap { padding: 40px 24px; }
-            .quote-wrap::before { font-size: 3.5rem; top: -10px; left: 15px; }
-            .quote-text { font-size: 1.1rem; text-align: justify; }
-            .process-item { height: 380px; }
-            .process-overlay { padding: 30px 24px; }
+            .section-padding { padding: 70px 0; }
+            .section-title { font-size: 1.6rem; }
+            .hero-content { margin: 0 15px; }
+            .process-overlay { padding: 40px 20px 25px 20px; }
+            .shape-1, .shape-2 { opacity: 0.4; } /* 모바일에서 배경 너무 진하지 않게 */
         }
     </style>
 </head>
 <body>
 
-    <!-- [★ 인터랙션: 배경 무빙 블롭 요소] -->
-    <div class="ambient-shape shape-1" id="shape1"></div>
-    <div class="ambient-shape shape-2" id="shape2"></div>
+    <!-- [1] 노이즈 텍스처 오버레이 -->
+    <div class="noise-overlay"></div>
+
+    <!-- 배경 무빙 블롭 요소 -->
+    <div id="blob-container">
+        <div class="ambient-shape shape-1" id="shape1"></div>
+        <div class="ambient-shape shape-2" id="shape2"></div>
+    </div>
 
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-content" id="heroText">
             <h1>화려한 걸 원하신다면<br>저에게 받지 않으셔도<br>좋습니다.</h1>
-            <div style="width: 40px; height: 1px; background: white; margin: 25px auto; opacity: 0.5;"></div>
+            <div style="width: 30px; height: 1px; background: white; margin: 20px auto; opacity: 0.5;"></div>
             <p>오로지 자연스러움에만 집중합니다.<br>songshop</p>
         </div>
     </header>
@@ -322,53 +295,57 @@
                 <p class="section-desc">타협하지 않는 자연스러움</p>
             </div>
             <div class="quote-wrap">
-                <p class="quote-text">
-                    "눈썹은 얼굴의 지붕입니다. 1mm의 두께, 미세한 각도 차이가 인상을 완전히 바꿉니다.<br><br>
-                    그렇기에 저는 고객님의 골격, 근육의 움직임, 평소 화장 스타일을 모두 파악하기 전에는 바늘을 들지 않습니다.
-                    조금 느리더라도, 진짜 내 것 같은 결을 원하시는 분만 예약해주세요."
+                <p class="quote-text" id="inkQuote">
+                    "눈썹은 얼굴의 지붕입니다. 1mm의 두께, 미세한 각도 차이가 인상을 완전히 바꿉니다. 그렇기에 저는 고객님의 골격, 근육의 움직임, 평소 화장 스타일을 모두 파악하기 전에는 바늘을 들지 않습니다. 조금 느리더라도, 진짜 내 것 같은 결을 원하시는 분만 예약해주세요."
                 </p>
                 <div class="quote-author">songshop 원장 드림</div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio (Tap to Toggle) -->
-    <section class="section-padding reveal">
+    <!-- Portfolio -->
+    <section class="section-padding reveal blur-trigger">
         <div class="container" style="padding: 0;">
-            <div class="text-center" style="padding: 0 24px;">
+            <div class="text-center" style="padding: 0 20px;">
                 <h2 class="section-title">Real Portfolio</h2>
                 <span class="title-line"></span>
-                <p class="section-desc">사진을 터치할 때마다 <br>Before & After가 바뀝니다.</p>
+                <p class="section-desc">사진을 터치하면 <br>자연스러운 변화를 확인하실 수 있습니다.</p>
             </div>
             
             <div class="portfolio-scroll-container">
                 <!-- Case 1 -->
-                <div class="portfolio-card interact-card">
-                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=800&auto=format&fit=crop" class="ba-image img-before" alt="Before">
-                    <img src="https://images.unsplash.com/photo-1588510099684-25a814cb207c?q=80&w=800&auto=format&fit=crop" class="ba-image img-after" alt="After">
-                    <div class="ba-label">After</div>
-                    <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                <div class="portfolio-card-wrap">
+                    <div class="portfolio-card interact-card">
+                        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=800&auto=format&fit=crop" class="ba-image img-before" alt="Before">
+                        <img src="https://images.unsplash.com/photo-1588510099684-25a814cb207c?q=80&w=800&auto=format&fit=crop" class="ba-image img-after" alt="After">
+                        <div class="ba-label">After</div>
+                        <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                    </div>
                 </div>
 
                 <!-- Case 2 -->
-                <div class="portfolio-card interact-card">
-                    <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=800&auto=format&fit=crop" class="ba-image img-before" alt="Before">
-                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop" class="ba-image img-after" alt="After">
-                    <div class="ba-label">After</div>
-                    <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                <div class="portfolio-card-wrap">
+                    <div class="portfolio-card interact-card">
+                        <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=800&auto=format&fit=crop" class="ba-image img-before" alt="Before">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop" class="ba-image img-after" alt="After">
+                        <div class="ba-label">After</div>
+                        <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                    </div>
                 </div>
 
                 <!-- Case 3 -->
-                <div class="portfolio-card interact-card">
-                    <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=800&auto=format&fit=crop" class="ba-image img-before" alt="Before">
-                    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop" class="ba-image img-after" alt="After">
-                    <div class="ba-label">After</div>
-                    <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                <div class="portfolio-card-wrap">
+                    <div class="portfolio-card interact-card">
+                        <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=800&auto=format&fit=crop" class="ba-image img-before" alt="Before">
+                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop" class="ba-image img-after" alt="After">
+                        <div class="ba-label">After</div>
+                        <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
+                    </div>
                 </div>
 
-                <a href="https://instagram.com/본인아이디" target="_blank" class="portfolio-card more-card">
-                    <i class="fab fa-instagram"></i>
-                    <span class="more-text">더 많은 시술 사진<br>보러가기</span>
+                <a href="#" class="more-card">
+                    <i class="fab fa-instagram" style="font-size:2.5rem; margin-bottom:15px; background: -webkit-linear-gradient(#f09433, #e6683c, #dc2743, #cc2366, #bc1888, #231557); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                    <span class="more-text" style="font-family: 'Gowun Batang', serif; font-size:1.1rem;">더 많은 시술 사진<br>보러가기</span>
                 </a>
             </div>
         </div>
@@ -377,7 +354,7 @@
     <!-- Blog Reviews -->
     <section class="section-padding blog-section">
         <div class="container reveal" style="padding: 0;">
-            <div class="text-center" style="padding: 0 24px;">
+            <div class="text-center" style="padding: 0 20px;">
                 <h2 class="section-title">Real Reviews</h2>
                 <span class="title-line"></span>
                 <p class="section-desc">광고 없는 100% 고객님들의 솔직한 후기</p>
@@ -385,69 +362,48 @@
 
             <div class="blog-scroll-container">
                 <!-- Review 1 -->
-                <a href="https://blog.naver.com/본인링크" target="_blank" class="blog-item">
+                <a href="#" class="blog-item">
                     <div class="blog-thumb">
                         <img src="https://images.unsplash.com/photo-1519699047748-40baea614fda?q=80&w=800&auto=format&fit=crop" alt="후기 썸네일">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">#자연결눈썹 #내돈내산</div>
                         <h3 class="blog-title">"화장 시간 20분 줄었어요. 눈썹 유목민 드디어 정착!"</h3>
-                        <p class="blog-desc">매번 아침마다 짝짝이 눈썹 그리느라 스트레스였는데, 원장님이 제 얼굴 골격에 딱 맞춰주셨어요. 직후에도 너무 자연스러워서...</p>
-                        <div class="blog-link">
-                            <span class="naver-icon">N</span> 자세히 보기 <i class="fas fa-arrow-right arrow-icon"></i>
-                        </div>
+                        <p class="blog-desc">매번 아침마다 짝짝이 눈썹 그리느라 스트레스였는데, 원장님이 제 얼굴 골격에 딱 맞춰주셨어요...</p>
+                        <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                     </div>
                 </a>
 
                 <!-- Review 2 -->
-                <a href="https://blog.naver.com/본인링크" target="_blank" class="blog-item">
+                <a href="#" class="blog-item">
                     <div class="blog-thumb">
                         <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop" alt="후기 썸네일">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">#콤보눈썹 #통증제로</div>
                         <h3 class="blog-title">겁 많은 쫄보의 첫 눈썹 문신 후기 (진짜 하나도 안 아픔)</h3>
-                        <p class="blog-desc">주변에서 아프다는 소리를 많이 들어서 걱정했는데, 마취 크림 바르고 잠들 뻔했어요. 위생도 너무 깔끔하고 상담도 꼼꼼해서...</p>
-                        <div class="blog-link">
-                            <span class="naver-icon">N</span> 자세히 보기 <i class="fas fa-arrow-right arrow-icon"></i>
-                        </div>
+                        <p class="blog-desc">주변에서 아프다는 소리를 많이 들어서 걱정했는데, 마취 크림 바르고 잠들 뻔했어요. 위생도...</p>
+                        <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                     </div>
                 </a>
 
                 <!-- Review 3 -->
-                <a href="https://blog.naver.com/본인링크" target="_blank" class="blog-item">
+                <a href="#" class="blog-item">
                     <div class="blog-thumb">
                         <img src="https://images.unsplash.com/photo-1600609842388-3e4b7ea28b49?q=80&w=800&auto=format&fit=crop" alt="후기 썸네일">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">#엄마눈썹 #효도선물</div>
                         <h3 class="blog-title">엄마 모시고 갔는데 10년은 젊어 보이신대요 ♥</h3>
-                        <p class="blog-desc">옛날 파란 문신 잔흔이 있어서 걱정했는데, 감쪽같이 커버해주셨어요. 엄마가 거울 보시더니 소녀처럼 좋아하시네요. 감사합니다!</p>
-                        <div class="blog-link">
-                            <span class="naver-icon">N</span> 자세히 보기 <i class="fas fa-arrow-right arrow-icon"></i>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Review 4 -->
-                <a href="https://blog.naver.com/본인링크" target="_blank" class="blog-item">
-                    <div class="blog-thumb">
-                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop" alt="후기 썸네일">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">#남자눈썹 #이미지변신</div>
-                        <h3 class="blog-title">남자는 눈썹이 생명이라더니, 인상이 확 달라졌습니다.</h3>
-                        <p class="blog-desc">눈썹 숱이 없어서 흐릿해 보였는데, 시술받고 나니 이목구비가 또렷해졌다는 말을 많이 듣습니다. 너무 진하지 않아서 좋습니다.</p>
-                        <div class="blog-link">
-                            <span class="naver-icon">N</span> 자세히 보기 <i class="fas fa-arrow-right arrow-icon"></i>
-                        </div>
+                        <p class="blog-desc">옛날 파란 문신 잔흔이 있어서 걱정했는데, 감쪽같이 커버해주셨어요. 엄마가 거울 보시더니...</p>
+                        <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Why 2 Hours (순차 등장 적용) -->
+    <!-- Why 2 Hours -->
     <section class="section-padding process-section">
         <div class="container">
             <div class="text-center reveal">
@@ -455,9 +411,7 @@
                 <span class="title-line"></span>
                 <p class="section-desc">상담과 디자인에 시술 시간의 절반을 투자합니다.</p>
             </div>
-            <!-- stagger-wrap 클래스 추가 -->
             <div class="process-grid reveal stagger-wrap">
-                <!-- stagger-item 클래스 추가 -->
                 <div class="process-item stagger-item">
                     <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=800&auto=format&fit=crop" class="process-bg" alt="상담">
                     <div class="process-overlay">
@@ -486,7 +440,7 @@
         </div>
     </section>
 
-    <!-- FAQ (순차 등장 적용) -->
+    <!-- FAQ -->
     <section class="section-padding" style="background: white;">
         <div class="container reveal stagger-wrap" style="max-width: 800px;">
             <div class="text-center">
@@ -494,18 +448,17 @@
                 <span class="title-line"></span>
             </div>
             <div class="faq-list">
-                <!-- stagger-item 클래스 추가 -->
                 <div class="faq-item stagger-item">
-                    <div class="faq-question">Q. 시술 직후 짱구처럼 진해지나요? <i class="fas fa-plus" style="color:#8E7C68;"></i></div>
-                    <div class="faq-answer"><p style="padding-bottom:20px;">아니요. songshop은 시술 직후에도 일상생활이 가능할 정도의 자연스러운 농도를 맞춰드립니다.</p></div>
+                    <div class="faq-question">Q. 시술 직후 짱구처럼 진해지나요? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer"><p style="padding-bottom:24px;">아니요. songshop은 시술 직후에도 일상생활이 가능할 정도의 자연스러운 농도를 맞춰드립니다.</p></div>
                 </div>
                 <div class="faq-item stagger-item">
-                    <div class="faq-question">Q. 기존 문신 잔흔이 있는데 가능한가요? <i class="fas fa-plus" style="color:#8E7C68;"></i></div>
-                    <div class="faq-answer"><p style="padding-bottom:20px;">잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 '포트폴리오 확인하기'를 통해 DM으로 사진을 보내주시면 정확한 상담이 가능합니다.</p></div>
+                    <div class="faq-question">Q. 기존 문신 잔흔이 있는데 가능한가요? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer"><p style="padding-bottom:24px;">잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 '포트폴리오 확인하기'를 통해 DM으로 사진을 보내주시면 정확한 상담이 가능합니다.</p></div>
                 </div>
                 <div class="faq-item stagger-item">
-                    <div class="faq-question">Q. 리터치는 언제 받아야 하나요? <i class="fas fa-plus" style="color:#8E7C68;"></i></div>
-                    <div class="faq-answer"><p style="padding-bottom:20px;">피부 재생 주기를 고려하여 첫 시술 후 4주~8주 사이에 받으시는 것을 권장드립니다. 이때 부족한 부분을 보완하여 완성도를 높입니다.</p></div>
+                    <div class="faq-question">Q. 리터치는 언제 받아야 하나요? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer"><p style="padding-bottom:24px;">피부 재생 주기를 고려하여 첫 시술 후 4주~8주 사이에 받으시는 것을 권장드립니다.</p></div>
                 </div>
             </div>
         </div>
@@ -517,97 +470,112 @@
         </div>
     </footer>
 
-    <div class="floating-bar">
-        <a href="https://instagram.com/본인아이디" target="_blank" class="float-btn btn-insta">
-            <i class="fab fa-instagram"></i> 포트폴리오 확인하기
+    <!-- Floating Bar -->
+    <div class="floating-bar" id="floatingBar">
+        <a href="#" class="float-btn btn-insta">
+            <i class="fab fa-instagram"></i> 포트폴리오
         </a>
-        <a href="https://open.kakao.com/본인링크" target="_blank" class="float-btn btn-inquiry">
-            <i class="fas fa-comment"></i> 상담 문의하기
+        <a href="#" class="float-btn btn-inquiry">
+            <i class="fas fa-comment"></i> 상담 문의
         </a>
     </div>
 
     <!-- Scripts -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.body.classList.add('js-loaded');
-
-            // [1. FAQ Logic]
-            const faqs = document.querySelectorAll('.faq-question');
-            faqs.forEach(faq => {
-                faq.addEventListener('click', () => {
-                    const answer = faq.nextElementSibling;
-                    const icon = faq.querySelector('i');
-                    const isOpen = answer.style.maxHeight;
-
-                    document.querySelectorAll('.faq-answer').forEach(el => el.style.maxHeight = null);
-                    document.querySelectorAll('.faq-question i').forEach(el => {
-                        el.classList.remove('fa-minus');
-                        el.classList.add('fa-plus');
+            
+            // 1. FAQ Logic
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    const answer = item.querySelector('.faq-answer');
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').style.maxHeight = null;
                     });
-
-                    if (!isOpen) {
+                    if (!isActive) {
+                        item.classList.add('active');
                         answer.style.maxHeight = answer.scrollHeight + "px";
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
                     }
                 });
             });
 
-            // [2. Scroll Reveal & Stagger Animation]
+            // 2. Ink Spreading Effect
+            const quoteEl = document.getElementById('inkQuote');
+            const quoteText = quoteEl.innerText;
+            quoteEl.innerHTML = ''; 
+            [...quoteText].forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.classList.add('ink-char');
+                if(char === ' ') span.style.marginRight = '0.2em';
+                quoteEl.appendChild(span);
+            });
+            const authorEl = document.querySelector('.quote-author');
+
+            // 3. Observer (Scroll Reveal)
             if ('IntersectionObserver' in window) {
-                const observerOptions = { threshold: 0.15 };
-                
+                const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
                 const observer = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
                         if(entry.isIntersecting) {
                             entry.target.classList.add('active');
+                            if(entry.target.contains(quoteEl)) {
+                                const chars = quoteEl.querySelectorAll('.ink-char');
+                                chars.forEach((char, index) => {
+                                    setTimeout(() => char.classList.add('visible'), index * 15);
+                                });
+                                authorEl.classList.add('visible');
+                            }
                             observer.unobserve(entry.target);
                         }
                     });
                 }, observerOptions);
-
-                // 기본 reveal 요소 관찰
                 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-            } else {
-                document.querySelectorAll('.reveal').forEach(el => el.style.opacity = '1');
             }
 
-            // [3. Portfolio Tap Interaction]
+            // 4. Portfolio Card Interaction
             const cards = document.querySelectorAll('.interact-card');
             cards.forEach(card => {
                 const label = card.querySelector('.ba-label');
                 card.addEventListener('click', () => {
-                    card.classList.toggle('showing-before');
-                    const isShowingBefore = card.classList.contains('showing-before');
-                    if (isShowingBefore) {
-                        label.textContent = "Before";
-                        label.style.background = "#8E7C68"; 
-                    } else {
-                        label.textContent = "After";
-                        label.style.background = "rgba(0,0,0,0.6)"; 
-                    }
+                    card.classList.add('is-flipped-ani');
+                    setTimeout(() => {
+                        card.classList.toggle('showing-before');
+                        const isShowingBefore = card.classList.contains('showing-before');
+                        if (isShowingBefore) {
+                            label.textContent = "Before";
+                            label.style.background = "#8E7C68"; 
+                        } else {
+                            label.textContent = "After";
+                            label.style.background = "rgba(0,0,0,0.6)"; 
+                        }
+                    }, 200); 
+                    setTimeout(() => card.classList.remove('is-flipped-ani'), 500);
                 });
-                card.addEventListener('contextmenu', (e) => { e.preventDefault(); return false; });
             });
 
-            // [★ 4. Advanced Scroll Interaction]
+            // 5. Floating Bar & Parallax
+            const floatingBar = document.getElementById('floatingBar');
             const shape1 = document.getElementById('shape1');
             const shape2 = document.getElementById('shape2');
             const heroText = document.getElementById('heroText');
             
             window.addEventListener('scroll', () => {
                 const scrollY = window.scrollY;
-                
-                // 1) 배경 블롭 이동 (Parallax)
-                // 느리게, 부드럽게 움직이도록 값을 나눔
-                shape1.style.transform = `translate(${scrollY * 0.1}px, ${scrollY * 0.2}px)`;
-                shape2.style.transform = `translate(${-scrollY * 0.1}px, ${-scrollY * 0.15}px)`;
+                if (scrollY > 300) floatingBar.classList.add('visible');
+                else floatingBar.classList.remove('visible');
 
-                // 2) Hero Text Parallax & Fade
-                // 스크롤 시 텍스트가 위로 올라가며 투명해짐
+                // Parallax (Mobile Optimized: Reduced movement)
+                shape1.style.transform = `translate(${scrollY * 0.05}px, ${scrollY * 0.1}px)`;
+                shape2.style.transform = `translate(${-scrollY * 0.05}px, ${-scrollY * 0.08}px)`;
+
                 if(scrollY < 700) {
-                    heroText.style.transform = `translateY(${scrollY * 0.4}px)`;
+                    heroText.style.transform = `translateY(${scrollY * 0.3}px)`;
                     heroText.style.opacity = 1 - (scrollY / 500);
+                    heroText.style.filter = `blur(${scrollY / 50}px)`;
                 }
             });
         });

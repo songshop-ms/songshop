@@ -198,26 +198,24 @@
        /* [2. Philosophy] - 배경 이미지 스타일 */
         .philosophy-section {
             position: relative;
-            /* 배경 제거된 PNG를 사용하지만, 뒤에 배경색을 깔아 자연스럽게 합성 */
             background-color: #e8e3de; 
+            /* 이미지 주소 */
             background-image: url('https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%EC%B2%A0%ED%95%99%ED%83%AD%EB%B0%B0%EA%B2%BD%EC%A0%9C%EA%B1%B0.png');
             background-repeat: no-repeat;
-            background-position: center bottom; /* 인물이 하단 중앙에 오도록 */
-            background-size: cover; /* 화면을 꽉 채움 */
+            background-position: center bottom;
+            background-size: cover;
             
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 120px 0;
             overflow: hidden;
-            /* 배경 고정 효과 (Parallax) */
             background-attachment: fixed; 
         }
 
-        /* 텍스트 가독성을 위한 전체 어두운 오버레이 */
         .philosophy-section::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.65); /* 어둡게 처리하여 흰 글씨 강조 */
+            background: rgba(0,0,0,0.65); /* 어두운 오버레이 */
             z-index: 1;
         }
 
@@ -251,9 +249,10 @@
             word-break: keep-all;
         }
 
+        /* [수정됨] 이름 가독성 개선 (흰색으로 변경) */
         .philo-author {
             font-size: 0.95rem;
-            color: var(--primary-color); /* 포인트 컬러 */
+            color: #FFFFFF; /* 흰색으로 변경하여 잘 보이게 수정 */
             font-weight: 700;
             letter-spacing: 1px;
             border-top: 1px solid rgba(255,255,255,0.3);
@@ -263,9 +262,9 @@
         
         @media (max-width: 768px) {
             .philosophy-section {
-                background-attachment: scroll; /* 모바일에서는 고정 해제 (성능/호환성) */
+                background-attachment: scroll; 
                 background-position: center bottom;
-                background-size: 120% auto; /* 인물 확대 */
+                background-size: 120% auto;
                 padding: 100px 0;
             }
             .philo-main-text { font-size: 1.05rem; line-height: 1.7; }

@@ -83,7 +83,7 @@
         .stagger-wrap.active .stagger-item:nth-child(2) { transition-delay: 0.2s; }
         .stagger-wrap.active .stagger-item:nth-child(3) { transition-delay: 0.3s; }
 
-        /* [1. Hero - Video Background] - 최종 수정됨 */
+        /* [1. Hero - Video Background] */
         .hero {
             position: relative;
             background-color: #111;
@@ -91,11 +91,10 @@
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            justify-content: flex-end; /* 하단 정렬 */
+            justify-content: flex-end; 
             text-align: center; 
             color: white; 
             overflow: hidden;
-            /* 모바일 브라우저 주소창 문제 대응 */
             min-height: -webkit-fill-available;
         }
 
@@ -106,7 +105,6 @@
 
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            /* 텍스트 가독성을 위한 하단 그라데이션 */
             background: linear-gradient(
                 to bottom, 
                 rgba(0,0,0,0) 0%, 
@@ -117,18 +115,15 @@
             z-index: 1; pointer-events: none;
         }
 
-        /* 텍스트 그룹 */
         .hero-content { 
             width: 100%; max-width: 800px; 
             z-index: 2; position: relative;
             padding: 0 20px;
-            /* 스크롤 버튼과 겹치지 않도록 적당한 여백 */
             margin-bottom: 12vh; 
             display: flex; flex-direction: column; gap: 10px; 
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* 메인 타이틀 */
         .hero h1 { 
             font-family: 'Gowun Batang', serif; 
             font-size: 1.7rem; 
@@ -138,7 +133,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* 서브 타이틀 */
         .hero-sub {
             font-family: 'Gowun Batang', serif;
             font-size: 1.05rem;
@@ -147,7 +141,6 @@
             font-weight: 400;
         }
 
-        /* 브랜드명 */
         .hero-brand { 
             font-family: 'Pretendard', sans-serif;
             font-weight: 600; 
@@ -158,23 +151,17 @@
             text-transform: uppercase;
         }
 
-        /* 스크롤 유도 아이콘 - 모바일 대응 완벽 수정 */
         .scroll-indicator {
             position: absolute;
-            /* 기본(PC) 위치 */
             bottom: 30px;
             left: 50%;
-            
-            /* 모바일 안전 구역(Safe Area) 대응: 아이폰 홈 바 위에 띄움 */
             bottom: calc(30px + env(safe-area-inset-bottom)); 
-            
             transform: translateX(-50%);
             z-index: 10;
             color: rgba(255,255,255,0.7);
             font-size: 0.8rem;
             display: flex; flex-direction: column; align-items: center; gap: 8px;
             cursor: pointer;
-            /* 터치 영역 확보 */
             padding: 20px;
             pointer-events: auto;
             animation: bounce 2s infinite ease-in-out;
@@ -189,16 +176,13 @@
             50% { transform: translate(-50%, 10px); }
         }
 
-        /* 모바일 최적화 미디어 쿼리 */
         @media (max-width: 768px) {
             .section-padding { padding: 70px 0; }
             .section-title { font-size: 1.6rem; }
             .process-overlay { padding: 40px 20px 25px 20px; }
             .shape-1, .shape-2 { opacity: 0.4; } 
 
-            /* Hero 섹션 모바일 조정 */
             .hero-content { 
-                /* 텍스트를 위로 더 올려서 스크롤바/주소창 간섭 방지 */
                 margin-bottom: 18vh; 
                 gap: 6px; 
             }
@@ -206,141 +190,85 @@
             .hero-sub { font-size: 0.95rem; }
             .hero-brand { margin-top: 20px; font-size: 0.65rem; }
             
-            /* 모바일에서는 버튼을 조금 더 위로 */
             .scroll-indicator {
                 bottom: calc(50px + env(safe-area-inset-bottom));
             }
         }
 
-       /* [2. Philosophy] - 인물 중심 레이아웃 수정 */
+       /* [2. Philosophy] - 배경 이미지 스타일 */
         .philosophy-section {
-            background-color: #F9F8F6; /* 밝고 깨끗한 웜화이트 톤 */
             position: relative;
-            padding: 100px 0;
+            /* 배경 제거된 PNG를 사용하지만, 뒤에 배경색을 깔아 자연스럽게 합성 */
+            background-color: #e8e3de; 
+            background-image: url('https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%EC%B2%A0%ED%95%99%ED%83%AD%EB%B0%B0%EA%B2%BD%EC%A0%9C%EA%B1%B0.png');
+            background-repeat: no-repeat;
+            background-position: center bottom; /* 인물이 하단 중앙에 오도록 */
+            background-size: cover; /* 화면을 꽉 채움 */
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 0;
             overflow: hidden;
+            /* 배경 고정 효과 (Parallax) */
+            background-attachment: fixed; 
         }
 
-        .philosophy-grid {
-            display: flex;
-            align-items: center; /* 수직 중앙 정렬 */
-            justify-content: center;
-            gap: 60px; /* PC에서 간격 넓게 */
-            max-width: 1000px;
+        /* 텍스트 가독성을 위한 전체 어두운 오버레이 */
+        .philosophy-section::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.65); /* 어둡게 처리하여 흰 글씨 강조 */
+            z-index: 1;
+        }
+
+        .philosophy-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-box {
+            text-align: center;
+            color: white;
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        /* 1. 인물 사진 영역 (좌측 배치로 변경 추천) */
-        .philo-img-area {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end; /* 사진을 텍스트 쪽으로 붙임 */
-            position: relative;
-        }
-
-        /* 사진 프레임 디자인 */
-        .profile-frame {
-            width: 100%;
-            max-width: 360px; /* PC 최대 크기 제한 */
-            aspect-ratio: 3/4; /* 3:4 세로 비율 고정 */
-            position: relative;
-            /* 아치형 대신 모던한 라운드 직사각형 + 부드러운 그림자 */
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 20px 20px 0px rgba(142, 124, 104, 0.15); /* 그림자 대신 포인트 컬러 박스 */
-            background-color: #EBE5DE; /* 사진 로딩 전 배경 */
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 비율 유지하며 꽉 채우기 */
-            object-position: center top; /* 얼굴 위주로 */
-            transition: transform 0.5s ease;
-        }
-
-        /* 2. 텍스트 영역 (우측) */
-        .philo-text-area {
-            flex: 1.2; /* 텍스트 공간을 좀 더 넓게 */
-            text-align: left;
-            padding-right: 20px;
-        }
-
-        /* 장식용 따옴표 (박스 대신 사용) */
-        .quote-mark {
+        .quote-icon {
+            font-size: 3rem;
+            color: rgba(255,255,255,0.3);
             font-family: serif;
-            font-size: 6rem;
-            line-height: 0;
-            color: var(--primary-color);
-            opacity: 0.2;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             display: block;
         }
 
-        .philo-title {
+        .philo-main-text {
             font-family: 'Gowun Batang', serif;
-            font-size: 2rem;
-            line-height: 1.4;
-            color: #2C2520; /* 진한 브라운 블랙 (가독성 UP) */
-            margin-bottom: 24px;
-            font-weight: 700;
-        }
-
-        .philo-desc {
-            font-family: 'Pretendard', sans-serif;
-            font-size: 1.05rem;
-            color: #5D5246; /* 중간 톤 브라운 (부드러움) */
-            line-height: 1.7;
-            margin-bottom: 30px;
-            font-weight: 300;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            font-weight: 400;
+            margin-bottom: 40px;
+            opacity: 0.95;
             word-break: keep-all;
         }
 
-        .philo-sign {
-            font-family: 'Gowun Batang', serif;
-            font-size: 1.1rem;
-            color: var(--primary-color);
+        .philo-author {
+            font-size: 0.95rem;
+            color: var(--primary-color); /* 포인트 컬러 */
             font-weight: 700;
-            position: relative;
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(255,255,255,0.3);
             display: inline-block;
             padding-top: 15px;
-            border-top: 1px solid #DCD3CA; /* 얇은 구분선 */
         }
-
-        /* [모바일 최적화 수정] */
+        
         @media (max-width: 768px) {
-            .philosophy-section { padding: 80px 0; }
-            
-            .philosophy-grid {
-                flex-direction: column; /* 세로 배치 */
-                gap: 40px;
+            .philosophy-section {
+                background-attachment: scroll; /* 모바일에서는 고정 해제 (성능/호환성) */
+                background-position: center bottom;
+                background-size: 120% auto; /* 인물 확대 */
+                padding: 100px 0;
             }
-
-            /* 모바일에서 사진 크기 강제 조절 (핵심) */
-            .philo-img-area {
-                justify-content: center;
-                width: 100%;
-            }
-
-            .profile-frame {
-                /* 모바일에서는 훨씬 작게 설정 */
-                max-width: 240px; 
-                border-radius: 1000px 1000px 0 0; /* 모바일은 아치형이 예쁨 */
-                box-shadow: none; /* 모바일은 심플하게 */
-                margin: 0 auto;
-            }
-
-            .philo-text-area {
-                text-align: center; /* 모바일은 중앙 정렬 */
-                padding: 0 20px;
-            }
-
-            .quote-mark {
-                margin: 0 auto 30px auto; /* 중앙 정렬 */
-                font-size: 4rem;
-            }
-
-            .philo-title { font-size: 1.5rem; }
-            .philo-desc { font-size: 0.95rem; }
+            .philo-main-text { font-size: 1.05rem; line-height: 1.7; }
         }
 
         
@@ -474,7 +402,7 @@
         <div class="ambient-shape shape-2" id="shape2"></div>
     </div>
 
-    <!-- Hero Section (최종 수정됨) -->
+    <!-- Hero Section -->
     <header class="hero">
         <video id="hero-video" autoplay muted loop playsinline>
             <source src="https://github.com/songshop-ms/songshop/raw/refs/heads/main/%EC%8A%A4%ED%83%A0%EB%94%A910.mp4" type="video/mp4">
@@ -484,49 +412,33 @@
         
         <!-- 텍스트 묶음 -->
         <div class="hero-content" id="heroText">
-            <h1>화려한 걸 원하신다면<br>저에게 받지 않으셔도 좋습니다.</h1>
-            <p class="hero-sub">오로지 자연스러움만을 추구합니다.</p>
+            <h1>시술직후부터<br>자연스러움을 추구합니다.</h1>
+            <p class="hero-sub">당신에게 어울리는 디자인은 어떤 모습일까요?</p>
             <div class="hero-brand">SONGSHOP</div>
         </div>
 
-        <!-- 스크롤 유도 (안전구역/위치 보정됨) -->
+        <!-- 스크롤 유도 -->
         <div class="scroll-indicator" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'});">
             <span>SCROLL</span>
             <i class="fas fa-chevron-down"></i>
         </div>
     </header>
 
-   <!-- Philosophy (레이아웃 변경됨) -->
+   <!-- Philosophy (배경 이미지 스타일) -->
     <section class="section-padding philosophy-section">
         <div class="container reveal">
-            <div class="philosophy-grid">
-                
-                <!-- 이미지 영역 -->
-                <div class="philo-img-area">
-                    <div class="profile-frame">
-                        <!-- 여기에 원장님 사진 주소를 넣으세요 -->
-                        <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%EC%B2%A0%ED%95%99%ED%83%AD%EB%B0%B0%EA%B2%BD%EC%A0%9C%EA%B1%B0.png" class="profile-img" alt="원장님 프로필">
-                    </div>
-                </div>
-
-                <!-- 텍스트 영역 -->
-                <div class="philo-text-area">
-                    <span class="quote-mark">“</span>
-                    <h2 class="philo-title">
-                        얼굴의 지붕,<br>
-                        1mm의 차이가<br>
-                        인상을 바꿉니다.
-                    </h2>
-                    <p class="philo-desc">
-                        화려한 기술보다 중요한 것은<br>
-                        고객님이 가진 고유의 결을 해치지 않는 것입니다.<br><br>
-                        "원래 내 눈썹 같아" 라는 말을 들을 때 가장 행복합니다.<br>
-                        오로지 자연스러움에만 집중하는 공간,<br>
-                        SONGSHOP입니다.
-                    </p>
-                    <div class="philo-sign">SONGSHOP 원장 드림</div>
-                </div>
-
+            <div class="quote-box">
+                <span class="quote-icon">“</span>
+                <p class="philo-main-text">
+                    눈썹은 얼굴의 지붕입니다. 1mm의 두께,<br>
+                    미세한 각도 차이가 인상을 바꿉니다.<br><br>
+                    그렇기에 전문가가 필요합니다.<br>
+                    꼼꼼한 상담도 필요합니다.<br><br>
+                    만약 SONGSHOP에 오셨다면<br>
+                    원하시는 이미지를 말씀만 해주세요.<br><br>
+                    그 다음은 제가 책임지겠습니다.
+                </p>
+                <div class="philo-author">SONGSHOP 원장 드림</div>
             </div>
         </div>
     </section>
@@ -731,17 +643,13 @@
                 });
             });
 
-            // [수정 완료] 기존 잉크 효과(Ink Spreading Effect) 코드는 삭제했습니다.
-            // 철학 섹션이 변경되어 더 이상 사용되지 않는 코드가 에러를 일으키고 있었습니다.
-
-            // 3. Observer (Scroll Reveal)
+            // 2. Observer (Scroll Reveal)
             if ('IntersectionObserver' in window) {
                 const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
                 const observer = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
                         if(entry.isIntersecting) {
                             entry.target.classList.add('active');
-                            // [수정 완료] 예전 inkQuote 관련 코드 삭제
                             observer.unobserve(entry.target);
                         }
                     });
@@ -749,7 +657,7 @@
                 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
             }
 
-            // 4. Portfolio Card Interaction
+            // 3. Portfolio Card Interaction
             const cards = document.querySelectorAll('.interact-card');
             cards.forEach(card => {
                 const label = card.querySelector('.ba-label');
@@ -770,7 +678,7 @@
                 });
             });
 
-            // 5. Floating Bar & Parallax & Fade-out effects
+            // 4. Floating Bar & Parallax & Fade-out effects
             const floatingBar = document.getElementById('floatingBar');
             const shape1 = document.getElementById('shape1');
             const shape2 = document.getElementById('shape2');
@@ -788,17 +696,14 @@
 
                 // Hero Text Fade Out
                 if(scrollY < 700) {
-                    const opacityVal = 1 - (scrollY / 400); // 더 빨리 사라지게 조정
+                    const opacityVal = 1 - (scrollY / 400); 
                     
-                    // 텍스트 페이드아웃 및 이동
                     heroText.style.transform = `translateY(${scrollY * 0.3}px)`;
                     heroText.style.opacity = opacityVal;
                     heroText.style.filter = `blur(${scrollY / 60}px)`;
                     
-                    // 스크롤 아이콘도 같이 페이드아웃
                     if(scrollInd) {
                         scrollInd.style.opacity = opacityVal;
-                        // 스크롤 하면 아이콘은 터치 안되게 막기 (선택사항)
                         if(opacityVal < 0.1) scrollInd.style.pointerEvents = 'none';
                         else scrollInd.style.pointerEvents = 'auto';
                     }

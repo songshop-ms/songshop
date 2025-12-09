@@ -20,7 +20,7 @@
             --text-main: #2C2C2C;
             --text-sub: #555555;
             --naver-green: #03C75A;
-            --kakao-yellow: #FEE500; /* 카카오 컬러 추가 */
+            --kakao-yellow: #FEE500;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -99,9 +99,10 @@
         .hero h1 { font-size: 1.8rem; line-height: 1.45; margin-bottom: 20px; font-weight: 400; }
         .hero p { opacity: 0.9; font-weight: 300; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* [2. Philosophy] */
+        /* [2. Philosophy] (수정됨: 컴팩트한 스타일) */
         .quote-wrap {
-            padding: 50px 24px; background-color: rgba(253, 251, 249, 0.85);
+            padding: 35px 20px; /* 패딩 축소 */
+            background-color: rgba(253, 251, 249, 0.85);
             margin: 0 auto; max-width: 800px; position: relative;
             backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6);
             box-shadow: 0 10px 40px rgba(0,0,0,0.03);
@@ -111,12 +112,17 @@
             font-size: 4rem; color: var(--primary-color); opacity: 0.3; font-family: serif;
         }
         .quote-text { 
-            font-family: 'Gowun Batang', serif; font-size: 1.15rem; 
-            color: #333; margin-bottom: 30px; line-height: 1.9; text-align: center; /* 가독성을 위한 센터 정렬 */
+            font-family: 'Gowun Batang', serif; font-size: 1.1rem; /* 폰트 사이즈 살짝 조정 */
+            color: #333; margin-bottom: 20px; 
+            line-height: 1.6; /* 줄간격 축소 (1.9 -> 1.6) */
+            text-align: center; 
         }
+        /* 문단 간격을 위한 스페이서 클래스 */
+        .text-spacer { display: block; height: 15px; } 
+
         .ink-char { opacity: 0; filter: blur(5px); display: inline-block; transition: 0.5s; }
         .ink-char.visible { opacity: 1; filter: blur(0); }
-        .quote-author { text-align: right; font-size: 0.95rem; color: var(--primary-color); font-weight: 700; opacity: 0; transition: 1s; }
+        .quote-author { text-align: right; font-size: 0.9rem; color: var(--primary-color); font-weight: 700; opacity: 0; transition: 1s; }
         .quote-author.visible { opacity: 1; }
 
         /* [3. Portfolio & Scroll] */
@@ -163,7 +169,6 @@
             background-color: #222; color: white; border-radius: 8px;
             min-width: 80vw; aspect-ratio: 3/4; flex: 0 0 auto; scroll-snap-align: center;
         }
-        /* [수정] 텍스트 가운데 정렬 명시 */
         .more-text { text-align: center; font-family: 'Gowun Batang', serif; font-size: 1.1rem; line-height: 1.4; }
         @media (min-width: 768px) { .more-card { min-width: 300px; height: 400px; } }
 
@@ -222,7 +227,7 @@
 
         footer { padding: 50px 0 100px 0; background: white; border-top: 1px solid #f0f0f0; text-align: center; color: #aaa; font-size: 0.75rem; }
 
-        /* [8] Floating Bar (수정됨) */
+        /* [8] Floating Bar */
         .floating-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: var(--white); height: 60px;
@@ -237,7 +242,6 @@
         .btn-insta i { margin-right: 6px; font-size: 1.1rem; background: -webkit-linear-gradient(#f09433, #dc2743, #bc1888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         .btn-inquiry { background: var(--primary-color); color: white; }
-        /* [수정] 아이콘과 텍스트 사이 여백 추가 */
         .btn-inquiry i { margin-right: 8px; font-size: 1.1rem; color: var(--kakao-yellow); } 
 
         @media (max-width: 768px) {
@@ -263,20 +267,19 @@
         <div class="hero-content" id="heroText">
             <h1>화려한 걸 원하신다면<br>저에게 받지 않으셔도<br>좋습니다.</h1>
             <div style="width: 30px; height: 1px; background: white; margin: 20px auto; opacity: 0.5;"></div>
-            <p>오로지 자연스러움에만 집중하는.<br>SONGSHOP</p>
+            <p>오로지 자연스러움에만 집중합니다.<br>SONGSHOP</p>
         </div>
     </header>
 
-    <!-- Philosophy (내용 수정 & 줄바꿈 적용) -->
+    <!-- Philosophy -->
     <section class="section-padding philosophy">
         <div class="container reveal">
             <div class="text-center">
                 <h2 class="section-title">SONGSHOP Philosophy</h2>
                 <span class="title-line"></span>
-                <p class="section-desc">맡겨주신 모든 고객님의 얼굴이<br>내 얼굴이라는 마음가짐으로 임합니다</p>
+                <p class="section-desc">타협하지 않는 자연스러움</p>
             </div>
             <div class="quote-wrap">
-                <!-- ID 유지, 내용은 스크립트에서 주입됨 -->
                 <p class="quote-text" id="inkQuote"></p>
                 <div class="quote-author">SONGSHOP 원장 드림</div>
             </div>
@@ -384,13 +387,13 @@
         </div>
     </section>
 
-    <!-- 상담은 이렇게 진행됩니다 -->
+    <!-- Why 2 Hours -> 1:1 맞춤 상담 (제목 수정됨) -->
     <section class="section-padding process-section">
         <div class="container">
             <div class="text-center reveal">
-                <h2 class="section-title">Why 2 Hours?</h2>
+                <h2 class="section-title">1:1 맞춤 상담</h2>
                 <span class="title-line"></span>
-                <p class="section-desc">한 분에게 온전히 시간을 쏟는 일대일 과정.</p>
+                <p class="section-desc">상담은 이렇게 이루어집니다.</p>
             </div>
             <div class="process-grid reveal stagger-wrap">
                 <div class="process-item stagger-item">
@@ -435,7 +438,7 @@
                 </div>
                 <div class="faq-item stagger-item">
                     <div class="faq-question">Q. 기존 문신 잔흔이 있는데 가능한가요? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer"><p style="padding-bottom:24px;">잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 '상담 문의'버튼을 통해 사진을 보내주시면 정확한 상담이 가능합니다.</p></div>
+                    <div class="faq-answer"><p style="padding-bottom:24px;">잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 '포트폴리오 확인하기'를 통해 DM으로 사진을 보내주시면 정확한 상담이 가능합니다.</p></div>
                 </div>
                 <div class="faq-item stagger-item">
                     <div class="faq-question">Q. 리터치는 언제 받아야 하나요? <i class="fas fa-plus"></i></div>
@@ -483,30 +486,30 @@
                 });
             });
 
-            // 2. Ink Spreading Effect (수정됨: 줄바꿈 및 2시간 내용 추가)
+            // 2. Ink Spreading Effect (수정됨: 컴팩트한 줄바꿈)
             const quoteEl = document.getElementById('inkQuote');
-            // 가독성을 위해 줄바꿈이 적용된 텍스트 배열
+            // 문장을 합쳐서 세로 길이를 줄였습니다.
             const textLines = [
-                "\"눈썹은 얼굴의 지붕입니다.",
-                "1mm의 두께, 미세한 각도 차이가",
-                "인상을 완전히 바꿉니다.",
-                "", // 빈 줄 (문단 나눔)
-                "그렇기에 전문가가 필요합니다",
-                "꼼꼼한 상담도 필요합니다",
+                "\"눈썹은 얼굴의 지붕입니다. 1mm의 두께,",
+                "미세한 각도 차이가 인상을 바꿉니다.",
+                "", // 문단 나눔 (spacer 사용)
+                "SONGSHOP은 공장형 시술을 하지 않습니다.",
+                "한 분에게 온전히 2시간을 투자하여",
+                "골격, 근육의 움직임, 화장 스타일까지",
+                "모두 파악한 뒤에야 바늘을 듭니다.",
                 "",
-                "만약 SONGSHOP에 오셨다면",
-                "원하시는 이미지를 말씀만해주세요",
-                "",
-                "그다음은 제가 책임지겠습니다.\""
+                "조금 느리더라도, 진짜 내 것 같은",
+                "결을 원하시는 분만 예약해주세요.\""
             ];
 
             // 텍스트 생성 로직
             quoteEl.innerHTML = '';
             textLines.forEach(line => {
                 if(line === "") {
-                    // 빈 문자열이면 줄바꿈 두 번 (문단 간격)
-                    quoteEl.appendChild(document.createElement('br'));
-                    quoteEl.appendChild(document.createElement('br'));
+                    // 빈 문자열이면 전용 스페이서 span 추가 (줄높이 조절 용이)
+                    const spacer = document.createElement('span');
+                    spacer.className = 'text-spacer';
+                    quoteEl.appendChild(spacer);
                 } else {
                     [...line].forEach(char => {
                         const span = document.createElement('span');
@@ -532,7 +535,7 @@
                             if(entry.target.contains(quoteEl)) {
                                 const chars = quoteEl.querySelectorAll('.ink-char');
                                 chars.forEach((char, index) => {
-                                    setTimeout(() => char.classList.add('visible'), index * 10); // 속도 살짝 빠르게 조절
+                                    setTimeout(() => char.classList.add('visible'), index * 10);
                                 });
                                 authorEl.classList.add('visible');
                             }
@@ -588,5 +591,3 @@
     </script>
 </body>
 </html>
-
-

@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    
+    <!-- [Meta Pixel Code] -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // 1. 픽셀 초기화 (ID 적용됨)
+    fbq('init', '1885392752224522'); 
+    
+    // 2. 페이지 조회(PageView) 기본 추적
+    fbq('track', 'PageView');
+    </script>
+    
+    <!-- [수정됨] noscript ID도 원장님 ID로 변경 -->
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- [End Meta Pixel Code] -->
+
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>SONGSHOP - 오로지 자연스러움에만 집중합니다</title>
@@ -694,7 +720,7 @@
         </a>
     </div>
 
-    <!-- Scripts -->
+    <!-- [UI 기능 스크립트] -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             
@@ -784,16 +810,95 @@
             });
         });
     </script>
+
+    <!-- [SONGSHOP 고급 추적 스크립트] -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            /* =========================================
+               1. 체류 시간 추적 (Time on Site)
+               - 10초, 30초, 60초, 3분 경과 시 이벤트 전송
+            ========================================= */
+            const timers = [10, 30, 60, 180]; // 초 단위
+            timers.forEach(seconds => {
+                setTimeout(() => {
+                    if(typeof fbq === 'function') {
+                        fbq('trackCustom', 'TimeOnSite', { seconds: seconds });
+                        console.log(`[Pixel] ${seconds}초 체류 확인`);
+                    }
+                }, seconds * 1000);
+            });
+
+            /* =========================================
+               2. 스크롤 깊이 추적 (Scroll Depth)
+            ========================================= */
+            let scrollMarks = { 25: false, 50: false, 75: false, 90: false };
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+
+                Object.keys(scrollMarks).forEach(mark => {
+                    if (scrollPercent >= mark && !scrollMarks[mark]) {
+                        scrollMarks[mark] = true;
+                        if(typeof fbq === 'function') {
+                            fbq('trackCustom', 'ScrollDepth', { depth: mark + '%' });
+                            console.log(`[Pixel] 스크롤 ${mark}% 도달`);
+                        }
+                    }
+                });
+            });
+
+            /* =========================================
+               3. 버튼 클릭 추적 (Button Clicks)
+            ========================================= */
+            
+            // (A) 하단 플로팅바 - 상담 문의 (카카오톡)
+            const btnInquiry = document.querySelector('.btn-inquiry');
+            if(btnInquiry) {
+                btnInquiry.addEventListener('click', function() {
+                    fbq('track', 'Contact', { content_name: '카카오톡_상담문의' });
+                    console.log("[Pixel] 카카오톡 상담 클릭");
+                });
+            }
+
+            // (B) 하단 플로팅바 - 인스타그램 포트폴리오
+            const btnInsta = document.querySelector('.btn-insta');
+            if(btnInsta) {
+                btnInsta.addEventListener('click', function() {
+                    fbq('trackCustom', 'ViewInstagram', { location: 'FloatingBar' });
+                    console.log("[Pixel] 플로팅바 인스타 클릭");
+                });
+            }
+
+            // (C) 포트폴리오 - 더보기 버튼
+            const moreCard = document.querySelector('.more-card');
+            if(moreCard) {
+                moreCard.addEventListener('click', function() {
+                    fbq('trackCustom', 'ViewMorePortfolio');
+                });
+            }
+
+            // (D) 블로그 후기 클릭
+            const blogItems = document.querySelectorAll('.blog-item');
+            blogItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    fbq('trackCustom', 'ViewBlogReview', { index: index + 1 });
+                });
+            });
+
+            // (E) 비포/애프터 카드 터치
+            const pfCards = document.querySelectorAll('.portfolio-card');
+            pfCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    if(!card.classList.contains('showing-before')) {
+                        fbq('trackCustom', 'PortfolioInteraction');
+                    }
+                });
+            });
+
+        });
+     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

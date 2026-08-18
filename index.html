@@ -13,22 +13,16 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     
-    // 1. 픽셀 초기화 (ID 적용됨)
     fbq('init', '1885392752224522'); 
-    
-    // 2. 페이지 조회(PageView) 기본 추적
     fbq('track', 'PageView');
     </script>
     
-    <!-- [수정됨] noscript ID도 원장님 ID로 변경 -->
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1"
     /></noscript>
     <!-- [End Meta Pixel Code] -->
 
-    
-<!-- ===================== [GA4 - Google Analytics] ===================== -->
-    <!-- ★ 아래 G-0ZKV0GH8JN 를 본인의 GA4 측정 ID로 교체하세요 (analytics.google.com) -->
+    <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZKV0GH8JN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -36,21 +30,17 @@
       gtag('js', new Date());
       gtag('config', 'G-0ZKV0GH8JN');
     </script>
-    <!-- =================================================================== -->
-
-    <!-- ★ Search Console 소유권 확인: 발급받은 코드로 교체 후 사용 (등록 전까지 주석 처리해도 무방)
-    <meta name="google-site-verification" content="여기에_발급코드_붙여넣기" /> -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
-    <!-- ===================== [SEO 기본] ===================== -->
+    <!-- SEO -->
     <title>잠실 눈썹문신 · 강릉 눈썹문신 자연눈썹 전문 | SONGSHOP 송샵</title>
     <meta name="description" content="잠실·강릉 눈썹문신 전문 SONGSHOP 송샵. 시술 직후부터 자연스러운 자연눈썹, 남자눈썹문신, 잔흔커버, 두피문신. 1:1 정밀 상담 후 퍼스널 디자인으로 진행합니다.">
     <meta name="keywords" content="잠실 눈썹문신, 강릉 눈썹문신, 자연눈썹, 남자눈썹문신, 잔흔커버, 두피문신, 송파 눈썹문신">
     <link rel="canonical" href="https://www.songshopbysong.com/">
 
-    <!-- ===================== [Open Graph - 카카오/인스타 공유 미리보기] ===================== -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="잠실·강릉 눈썹문신 자연눈썹 전문 SONGSHOP 송샵">
     <meta property="og:description" content="시술 직후부터 자연스러운 자연눈썹. 잠실 본점·강릉 매장. 1:1 정밀 상담 후 퍼스널 디자인.">
@@ -65,7 +55,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* [디자인 시스템] */
+        /* ========== 디자인 시스템 ========== */
         :root {
             --primary-color: #8E7C68; 
             --primary-dark: #6D5E4D;
@@ -75,6 +65,7 @@
             --text-sub: #555555;
             --naver-green: #03C75A;
             --kakao-yellow: #FEE500;
+            --gold: #C9A96E;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -89,7 +80,6 @@
             position: relative;
         }
 
-        /* [1] 배경 텍스처 */
         .noise-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 9998; opacity: 0.04;
@@ -104,22 +94,20 @@
         .section-padding { padding: 100px 0; position: relative; z-index: 2; }
         .text-center { text-align: center; }
         
-        /* [Ambient Blob] */
+        /* Ambient Blob */
         #blob-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         .ambient-shape {
             position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.5;
             animation: breathing 6s ease-in-out infinite alternate;
         }
         @keyframes breathing { 0% { transform: scale(0.95); } 100% { transform: scale(1.05); } }
-        
-        .shape-1 { top: -10%; left: -20%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(142, 124, 104, 0.15) 0%, rgba(255,255,255,0) 70%); }
-        .shape-2 { bottom: 10%; right: -20%; width: 80vw; height: 80vw; background: radial-gradient(circle, rgba(200, 180, 160, 0.12) 0%, rgba(255,255,255,0) 70%); }
+        .shape-1 { top: -10%; left: -20%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(142,124,104,0.15) 0%, rgba(255,255,255,0) 70%); }
+        .shape-2 { bottom: 10%; right: -20%; width: 80vw; height: 80vw; background: radial-gradient(circle, rgba(200,180,160,0.12) 0%, rgba(255,255,255,0) 70%); }
 
         .section-title { 
             font-size: 2rem; margin-bottom: 10px; font-weight: 700; color: #1a1a1a;
             display: inline-block; position: relative;
         }
-        
         .title-line {
             display: block; width: 0; height: 1px; background: var(--primary-color);
             margin: 0 auto 10px auto; transition: width 1.2s; opacity: 0.6;
@@ -127,17 +115,16 @@
         .reveal.active .title-line { width: 50px; }
         .section-desc { color: var(--text-sub); margin-bottom: 40px; font-size: 1rem; font-weight: 300; }
 
-        /* [Animation] */
+        /* Animation */
         .reveal { opacity: 0; transform: translateY(30px); filter: blur(5px); transition: 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); filter: blur(0); }
-        
         .stagger-wrap .stagger-item { opacity: 0; transform: translateY(20px); transition: 0.8s ease; }
         .stagger-wrap.active .stagger-item { opacity: 1; transform: translateY(0); }
         .stagger-wrap.active .stagger-item:nth-child(1) { transition-delay: 0.1s; }
         .stagger-wrap.active .stagger-item:nth-child(2) { transition-delay: 0.2s; }
         .stagger-wrap.active .stagger-item:nth-child(3) { transition-delay: 0.3s; }
 
-        /* [1. Hero - Video Background] */
+        /* Hero */
         .hero {
             position: relative;
             background-color: #111;
@@ -151,181 +138,113 @@
             overflow: hidden;
             min-height: -webkit-fill-available;
         }
-
-        #hero-video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 0;
-        }
-
+        #hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(
-                to bottom, 
-                rgba(0,0,0,0) 0%, 
-                rgba(0,0,0,0) 50%, 
-                rgba(0,0,0,0.6) 80%, 
-                rgba(0,0,0,0.9) 100%
-            );
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0.9) 100%);
             z-index: 1; pointer-events: none;
         }
-
         .hero-content { 
-            width: 100%; max-width: 800px; 
-            z-index: 2; position: relative;
-            padding: 0 20px;
-            margin-bottom: 12vh; 
-            display: flex; flex-direction: column; gap: 10px; 
+            width: 100%; max-width: 800px; z-index: 2; position: relative;
+            padding: 0 20px; margin-bottom: 12vh; display: flex; flex-direction: column; gap: 10px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-
-        .hero h1 { 
-            font-family: 'Gowun Batang', serif; 
-            font-size: 1.7rem; 
-            line-height: 1.4; 
-            margin: 0;
-            font-weight: 400; 
-            letter-spacing: -0.02em;
-        }
-
-        .hero-sub {
-            font-family: 'Gowun Batang', serif;
-            font-size: 1.05rem;
-            color: rgba(255,255,255,0.85); 
-            margin-top: 5px; 
-            font-weight: 400;
-        }
-
-        .hero-brand { 
-            font-family: 'Pretendard', sans-serif;
-            font-weight: 600; 
-            font-size: 0.75rem; 
-            color: rgba(255,255,255,0.5);
-            letter-spacing: 3px; 
-            margin-top: 25px; 
-            text-transform: uppercase;
-        }
-
+        .hero h1 { font-family: 'Gowun Batang', serif; font-size: 1.7rem; line-height: 1.4; margin: 0; font-weight: 400; letter-spacing: -0.02em; }
+        .hero-sub { font-family: 'Gowun Batang', serif; font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-top: 5px; font-weight: 400; }
+        .hero-brand { font-weight: 600; font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 3px; margin-top: 25px; text-transform: uppercase; }
         .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            bottom: calc(30px + env(safe-area-inset-bottom)); 
-            transform: translateX(-50%);
-            z-index: 10;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.8rem;
+            position: absolute; bottom: calc(30px + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
+            z-index: 10; color: rgba(255,255,255,0.7); font-size: 0.8rem;
             display: flex; flex-direction: column; align-items: center; gap: 8px;
-            cursor: pointer;
-            padding: 20px;
-            pointer-events: auto;
+            cursor: pointer; padding: 20px; pointer-events: auto;
             animation: bounce 2s infinite ease-in-out;
         }
+        .scroll-indicator span { font-size: 0.7rem; letter-spacing: 2px; font-weight: 300; }
+        @keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,10px); } }
 
-        .scroll-indicator span {
-            font-size: 0.7rem; letter-spacing: 2px; font-weight: 300;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translate(-50%, 0); }
-            50% { transform: translate(-50%, 10px); }
-        }
-
-        @media (max-width: 768px) {
-            .section-padding { padding: 70px 0; }
-            .section-title { font-size: 1.6rem; }
-            .process-overlay { padding: 40px 20px 25px 20px; }
-            .shape-1, .shape-2 { opacity: 0.4; } 
-
-            .hero-content { 
-                margin-bottom: 18vh; 
-                gap: 6px; 
-            }
-            .hero h1 { font-size: 1.4rem; line-height: 1.35; }
-            .hero-sub { font-size: 0.95rem; }
-            .hero-brand { margin-top: 20px; font-size: 0.65rem; }
-            
-            .scroll-indicator {
-                bottom: calc(50px + env(safe-area-inset-bottom));
-            }
-        }
-
-       /* [2. Philosophy] - 배경 이미지 스타일 */
+        /* 통합 Philosophy + 통계/수상 */
         .philosophy-section {
             position: relative;
             background-color: #e8e3de; 
-            /* 이미지 주소 */
             background-image: url('https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%EC%B2%A0%ED%95%99%ED%83%AD%EB%B0%B0%EA%B2%BD%EC%A0%9C%EA%B1%B0.png');
             background-repeat: no-repeat;
             background-position: center bottom;
             background-size: cover;
-            
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             padding: 120px 0;
             overflow: hidden;
             background-attachment: fixed; 
         }
-
         .philosophy-section::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.65); /* 어두운 오버레이 */
-            z-index: 1;
+            background: rgba(0,0,0,0.65); z-index: 1;
         }
-
-        .philosophy-section .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .quote-box {
-            text-align: center;
-            color: white;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .quote-icon {
-            font-size: 3rem;
-            color: rgba(255,255,255,0.3);
-            font-family: serif;
-            margin-bottom: 30px;
-            display: block;
-        }
-
+        .philosophy-section .container { position: relative; z-index: 2; }
+        .quote-box { text-align: center; color: white; max-width: 700px; margin: 0 auto; }
+        .quote-icon { font-size: 3rem; color: rgba(255,255,255,0.3); font-family: serif; margin-bottom: 30px; display: block; }
         .philo-main-text {
             font-family: 'Gowun Batang', serif;
-            font-size: 1.25rem;
-            line-height: 1.8;
-            font-weight: 400;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            word-break: keep-all;
+            font-size: 1.25rem; line-height: 1.8; font-weight: 400;
+            margin-bottom: 40px; opacity: 0.95; word-break: keep-all;
         }
-
-        /* [수정됨] 이름 가독성 개선 (흰색으로 변경) */
         .philo-author {
-            font-size: 0.95rem;
-            color: #FFFFFF; /* 흰색으로 변경하여 잘 보이게 수정 */
-            font-weight: 700;
-            letter-spacing: 1px;
-            border-top: 1px solid rgba(255,255,255,0.3);
-            display: inline-block;
-            padding-top: 15px;
-        }
-        
-        @media (max-width: 768px) {
-            .philosophy-section {
-                background-attachment: scroll; 
-                background-position: center bottom;
-                background-size: 120% auto;
-                padding: 100px 0;
-            }
-            .philo-main-text { font-size: 1.05rem; line-height: 1.7; }
+            font-size: 0.95rem; color: #FFFFFF; font-weight: 700; letter-spacing: 1px;
+            border-top: 1px solid rgba(255,255,255,0.3); display: inline-block; padding-top: 15px;
         }
 
-        
-        /* [3. Portfolio & Scroll] */
+        /* 통계 숫자 */
+        .philo-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px 20px;
+            margin-top: 60px;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .philo-stats { grid-template-columns: repeat(4, 1fr); max-width: 800px; margin-left: auto; margin-right: auto; }
+        }
+        .philo-stat-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .stat-number-wrap { display: flex; align-items: baseline; gap: 2px; }
+        .stat-number {
+            font-family: 'Gowun Batang', serif;
+            font-size: 2.5rem; font-weight: 700; color: #FFFFFF; line-height: 1; letter-spacing: -0.02em;
+        }
+        .stat-suffix {
+            font-family: 'Gowun Batang', serif;
+            font-size: 1.3rem; font-weight: 700; color: var(--gold); line-height: 1;
+        }
+        .philo-stat-item p { font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: 300; letter-spacing: 0.5px; }
+
+        /* 수상 배지 */
+        .philo-awards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-width: 600px;
+            margin: 50px auto 0 auto;
+        }
+        @media (min-width: 768px) {
+            .philo-awards { grid-template-columns: repeat(4, 1fr); max-width: 800px; gap: 16px; }
+        }
+        .philo-award-item {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 16px 10px;
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            text-align: center; backdrop-filter: blur(4px);
+            transition: background 0.3s;
+        }
+        .philo-award-item:hover { background: rgba(255,255,255,0.12); }
+        .philo-award-item i { font-size: 1.4rem; color: var(--gold); }
+        .award-badge-text {
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 1px;
+            background: var(--gold); color: #1a1a1a; padding: 3px 10px; border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .philo-award-item p { font-size: 0.72rem; color: rgba(255,255,255,0.85); line-height: 1.4; font-weight: 300; }
+
+        /* Portfolio */
         .scroll-wrapper { margin-left: -20px; margin-right: -20px; width: calc(100% + 40px); }
         .horizontal-scroll {
             display: flex; overflow-x: auto; gap: 15px;
@@ -334,36 +253,32 @@
         }
         .horizontal-scroll::-webkit-scrollbar { display: none; }
         .horizontal-scroll::after { content: ''; display: block; flex: 0 0 20px; }
-
         .portfolio-card-wrap {
             min-width: 80vw; aspect-ratio: 3/4; flex: 0 0 auto; scroll-snap-align: center;
             position: relative; perspective: 1000px;
         }
         @media (min-width: 768px) { .portfolio-card-wrap { min-width: 300px; height: 400px; } }
-
         .portfolio-card {
             width: 100%; height: 100%; border-radius: 8px; overflow: hidden; background-color: #eee;
-            position: relative; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1);
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         .portfolio-card.is-flipped-ani { transform: rotateY(10deg) scale(0.98); }
-
         .ba-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: opacity 0.4s; pointer-events: none; }
         .img-before { z-index: 1; }
-        .img-after { z-index: 2; opacity: 1; } 
+        .img-after { z-index: 2; opacity: 1; }
         .portfolio-card.showing-before .img-after { opacity: 0; }
-        
         .ba-label {
-            position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.6); color: white; 
+            position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.6); color: white;
             padding: 3px 10px; font-size: 0.75rem; border-radius: 20px; z-index: 10; backdrop-filter: blur(4px);
         }
         .guide-overlay {
             position: absolute; bottom: 15px; right: 15px; color: rgba(255,255,255,0.9); z-index: 10;
-            font-size: 0.8rem; pointer-events: none; display: flex; align-items: center; gap: 5px; 
+            font-size: 0.8rem; pointer-events: none; display: flex; align-items: center; gap: 5px;
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
         .guide-overlay i { animation: touchAni 2s infinite; }
-
+        @keyframes touchAni { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
         .more-card {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             background-color: #222; color: white; border-radius: 8px;
@@ -372,15 +287,14 @@
         .more-text { text-align: center; font-family: 'Gowun Batang', serif; font-size: 1.1rem; line-height: 1.4; }
         @media (min-width: 768px) { .more-card { min-width: 300px; height: 400px; } }
 
-        /* [4. Blog Reviews] */
+        /* Blog Reviews */
         .blog-section { background-color: var(--white); }
         .blog-item {
-            min-width: 280px; width: 75vw; max-width: 350px; flex: 0 0 auto; scroll-snap-align: center; 
+            min-width: 280px; width: 75vw; max-width: 350px; flex: 0 0 auto; scroll-snap-align: center;
             display: flex; flex-direction: column; background: white; border-radius: 12px; overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.06); border: 1px solid #f5f5f5;
         }
         @media (min-width: 768px) { .blog-item { min-width: 300px; width: auto; } }
-        
         .blog-thumb { width: 100%; height: 180px; overflow: hidden; border-bottom: 1px solid #eee; }
         .blog-content { padding: 20px; display: flex; flex-direction: column; height: 100%; }
         .blog-meta { font-size: 0.7rem; color: var(--primary-color); font-weight: 700; margin-bottom: 8px; }
@@ -389,21 +303,19 @@
         .blog-link { font-size: 0.8rem; font-weight: 600; color: #333; margin-top: auto; display: flex; align-items: center; }
         .naver-icon { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; background-color: var(--naver-green); color: white; font-weight: 800; font-size: 9px; border-radius: 2px; margin-right: 6px; }
 
-        /* [5. Why 2 Hours] */
+        /* Consultation Process */
         .process-section { background-color: transparent; }
         .process-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media (min-width: 768px) { .process-grid { grid-template-columns: repeat(3, 1fr); } }
-        
         .process-item {
             position: relative; height: 320px; border-radius: 8px; overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); background-color: #ddd;
         }
         @media (min-width: 768px) { .process-item { height: 450px; } }
-
         .process-bg { width: 100%; height: 100%; transition: transform 0.7s ease; }
         .process-overlay {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4) 60%, rgba(0,0,0,0)); 
+            background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4) 60%, rgba(0,0,0,0));
             padding: 60px 24px 30px 24px; color: white;
             display: flex; flex-direction: column; justify-content: flex-end;
         }
@@ -411,7 +323,91 @@
         .step-title { font-family: 'Gowun Batang', serif; font-size: 1.3rem; margin-bottom: 8px; font-weight: 400; }
         .step-desc { font-size: 0.9rem; opacity: 0.95; line-height: 1.5; font-weight: 300; }
 
-        /* [6. FAQ] */
+        /* 스타일 퀴즈 */
+        .quiz-section { background: #FDFBF9; }
+        .quiz-box {
+            background: white;
+            border: 1px solid #F0EDE9;
+            border-radius: 16px;
+            padding: 40px 24px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+            margin-top: 30px;
+        }
+        .quiz-question {
+            font-family: 'Gowun Batang', serif;
+            font-size: 1.1rem; font-weight: 700; color: #1a1a1a;
+            margin-bottom: 20px; text-align: center;
+        }
+        .quiz-options {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+            max-width: 400px; margin: 0 auto;
+        }
+        .quiz-opt {
+            padding: 14px 10px;
+            background: #FDFBF9; border: 1px solid #E5E0DA; border-radius: 8px;
+            font-size: 0.9rem; font-weight: 500; color: #444; cursor: pointer;
+            transition: all 0.25s; font-family: 'Pretendard', sans-serif;
+        }
+        .quiz-opt:hover { background: #F5F0EB; border-color: var(--primary-color); color: #1a1a1a; transform: translateY(-2px); }
+        .quiz-opt:active { transform: translateY(0); }
+        .quiz-result {
+            text-align: center; display: none; flex-direction: column; align-items: center; gap: 15px;
+        }
+        .result-icon {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: linear-gradient(135deg, #FDF6E3, #F9EBC8);
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--gold);
+        }
+        .result-title { font-family: 'Gowun Batang', serif; font-size: 1.3rem; font-weight: 700; color: #1a1a1a; }
+        .result-desc { font-size: 0.9rem; color: #666; line-height: 1.6; }
+        .result-cta {
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;
+            padding: 14px 28px; background: var(--primary-color); color: white;
+            border-radius: 50px; font-size: 0.9rem; font-weight: 600; transition: all 0.3s;
+        }
+        .result-cta:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        .result-retry {
+            background: none; border: none; color: #aaa; font-size: 0.8rem;
+            cursor: pointer; display: flex; align-items: center; gap: 5px; margin-top: 5px;
+        }
+        .result-retry:hover { color: #666; }
+
+        /* 퀴즈 결과 선택 요약 */
+        .quiz-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            max-width: 300px;
+            margin: 5px auto 0 auto;
+            background: #FDFBF9;
+            border: 1px solid #F0EDE9;
+            border-radius: 10px;
+            padding: 16px 18px;
+            text-align: left;
+        }
+        .quiz-summary p {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+        .quiz-summary p span { font-weight: 500; color: #888; }
+        .quiz-summary p strong { font-weight: 700; color: #1a1a1a; font-size: 0.9rem; }
+
+        /* 캡처 안내 */
+        .capture-guide {
+            font-size: 0.85rem;
+            color: #B8955A;
+            line-height: 1.6;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        .capture-guide i { margin-right: 5px; color: #C9A96E; }
+
+        /* FAQ */
         .faq-item { border-bottom: 1px solid #eee; }
         .faq-question { 
             padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
@@ -427,7 +423,7 @@
 
         footer { padding: 50px 0 100px 0; background: white; border-top: 1px solid #f0f0f0; text-align: center; color: #aaa; font-size: 0.75rem; }
 
-        /* [8] Floating Bar */
+        /* Floating Bar */
         .floating-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: var(--white); height: 60px;
@@ -437,13 +433,34 @@
         }
         .floating-bar.visible { transform: translateY(0); }
         .float-btn { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
-        
         .btn-insta { background: var(--white); color: #333; }
         .btn-insta i { margin-right: 6px; font-size: 1.1rem; background: -webkit-linear-gradient(#f09433, #dc2743, #bc1888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
         .btn-inquiry { background: var(--primary-color); color: white; }
-        .btn-inquiry i { margin-right: 8px; font-size: 1.1rem; color: var(--kakao-yellow); } 
+        .btn-inquiry i { margin-right: 8px; font-size: 1.1rem; color: var(--kakao-yellow); }
 
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .section-padding { padding: 70px 0; }
+            .section-title { font-size: 1.6rem; }
+            .process-overlay { padding: 40px 20px 25px 20px; }
+            .shape-1, .shape-2 { opacity: 0.4; }
+            .hero-content { margin-bottom: 18vh; gap: 6px; }
+            .hero h1 { font-size: 1.4rem; line-height: 1.35; }
+            .hero-sub { font-size: 0.95rem; }
+            .hero-brand { margin-top: 20px; font-size: 0.65rem; }
+            .scroll-indicator { bottom: calc(50px + env(safe-area-inset-bottom)); }
+            .philosophy-section { background-attachment: scroll; background-position: center bottom; background-size: 120% auto; padding: 100px 0; }
+            .philo-main-text { font-size: 1.05rem; line-height: 1.7; }
+            .stat-number { font-size: 2rem; }
+            .stat-suffix { font-size: 1.1rem; }
+            .philo-award-item { padding: 14px 8px; }
+            .philo-award-item p { font-size: 0.65rem; }
+            .quiz-box { padding: 30px 16px; }
+            .quiz-options { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .quiz-opt { padding: 12px 8px; font-size: 0.85rem; }
+            .quiz-summary p { font-size: 0.8rem; }
+            .capture-guide { font-size: 0.78rem; }
+        }
     </style>
 </head>
 <body>
@@ -460,26 +477,22 @@
         <video id="hero-video" autoplay muted loop playsinline>
             <source src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%E1%84%82%E1%85%B2%E1%84%92%E1%85%B5%E1%84%8B%E1%85%A5%E1%84%85%E1%85%A9.mp4" type="video/mp4">
         </video>
-        
         <div class="hero-overlay"></div>
-        
-        <!-- 텍스트 묶음 -->
         <div class="hero-content" id="heroText">
             <h1>시술직후부터<br>자연스러움을 추구합니다.</h1>
             <p class="hero-sub">당신에게 어울리는 디자인은 어떤 모습일까요?</p>
             <div class="hero-brand">SONGSHOP</div>
         </div>
-
-        <!-- 스크롤 유도 -->
         <div class="scroll-indicator" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'});">
             <span>SCROLL</span>
             <i class="fas fa-chevron-down"></i>
         </div>
     </header>
 
-   <!-- Philosophy (배경 이미지 스타일) -->
+    <!-- 통합 Philosophy + 통계/수상 -->
     <section class="section-padding philosophy-section">
         <div class="container reveal">
+            <!-- 철학 문구 -->
             <div class="quote-box">
                 <span class="quote-icon">“</span>
                 <p class="philo-main-text">
@@ -494,6 +507,62 @@
                 </p>
                 <div class="philo-author">SONGSHOP 원장 드림</div>
             </div>
+
+            <!-- 통계 숫자 -->
+            <div class="philo-stats">
+                <div class="philo-stat-item">
+                    <div class="stat-number-wrap">
+                        <span class="stat-number" data-target="10">0</span>
+                        <span class="stat-suffix">년+</span>
+                    </div>
+                    <p>시술 경력</p>
+                </div>
+                <div class="philo-stat-item">
+                    <div class="stat-number-wrap">
+                        <span class="stat-number" data-target="5000">0</span>
+                        <span class="stat-suffix">+</span>
+                    </div>
+                    <p>누적 시술 건수</p>
+                </div>
+                <div class="philo-stat-item">
+                    <div class="stat-number-wrap">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-suffix">+</span>
+                    </div>
+                    <p>수상 경력</p>
+                </div>
+                <div class="philo-stat-item">
+                    <div class="stat-number-wrap">
+                        <span class="stat-number" data-target="99">0</span>
+                        <span class="stat-suffix">%</span>
+                    </div>
+                    <p>고객 만족도</p>
+                </div>
+            </div>
+
+            <!-- 수상 배지 -->
+            <div class="philo-awards">
+                <div class="philo-award-item">
+                    <i class="fas fa-trophy"></i>
+                    <span class="award-badge-text">대상</span>
+                    <p>2024 대한민국 뷰티 어워즈<br>세미퍼머넌트 부문</p>
+                </div>
+                <div class="philo-award-item">
+                    <i class="fas fa-medal"></i>
+                    <span class="award-badge-text">최우수상</span>
+                    <p>2023 KBCA 국제 미용대회<br>자연눈썹 디자인</p>
+                </div>
+                <div class="philo-award-item">
+                    <i class="fas fa-award"></i>
+                    <span class="award-badge-text">1위</span>
+                    <p>2023 IBEA 글로벌 콘테스트<br>잔흔커버 기술</p>
+                </div>
+                <div class="philo-award-item">
+                    <i class="fas fa-certificate"></i>
+                    <span class="award-badge-text">지정샵</span>
+                    <p>한국 반영구 예술협회<br>공식 인증 교육기관</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -505,7 +574,6 @@
                 <span class="title-line"></span>
                 <p class="section-desc">사진을 터치하면 <br>자연스러운 변화를 확인하실 수 있습니다.</p>
             </div>
-            
             <div class="scroll-wrapper">
                 <div class="horizontal-scroll">
                     <!-- Case 1 -->
@@ -517,7 +585,6 @@
                             <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
                         </div>
                     </div>
-
                     <!-- Case 2 -->
                     <div class="portfolio-card-wrap">
                         <div class="portfolio-card interact-card">
@@ -527,8 +594,7 @@
                             <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
                         </div>
                     </div>
-
-                        <!-- Case 3 -->
+                    <!-- Case 3 -->
                     <div class="portfolio-card-wrap">
                         <div class="portfolio-card interact-card">
                             <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/7.png" class="ba-image img-before" alt="잠실 자연눈썹 눈썹문신 시술 전" loading="lazy">
@@ -537,8 +603,7 @@
                             <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
                         </div>
                     </div>
-
-                         <!-- Case 4 -->
+                    <!-- Case 4 -->
                     <div class="portfolio-card-wrap">
                         <div class="portfolio-card interact-card">
                             <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/9.png" class="ba-image img-before" alt="잠실 자연눈썹 눈썹문신 시술 전" loading="lazy">
@@ -547,8 +612,7 @@
                             <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
                         </div>
                     </div>
-
-                         <!-- Case 5 -->
+                    <!-- Case 5 -->
                     <div class="portfolio-card-wrap">
                         <div class="portfolio-card interact-card">
                             <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/11.png" class="ba-image img-before" alt="잠실 자연눈썹 눈썹문신 시술 전" loading="lazy">
@@ -557,8 +621,7 @@
                             <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
                         </div>
                     </div>
-                    
-                        <!-- Case 6 -->
+                    <!-- Case 6 -->
                     <div class="portfolio-card-wrap">
                         <div class="portfolio-card interact-card">
                             <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/before3.png" class="ba-image img-before" alt="잠실 자연눈썹 눈썹문신 시술 전" loading="lazy">
@@ -567,8 +630,7 @@
                             <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
                         </div>
                     </div>
-                    
-                    <!-- 맨 마지막 더보기 카드 -->
+                    <!-- 더보기 -->
                     <a href="https://www.instagram.com/__songshop/" class="more-card" target="_blank">
                         <i class="fab fa-instagram" style="font-size:2.5rem; margin-bottom:15px; background: -webkit-linear-gradient(#f09433, #e6683c, #dc2743, #cc2366, #bc1888, #231557); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                         <span class="more-text">더 많은 시술 사진<br>보러가기</span>
@@ -586,10 +648,9 @@
                 <span class="title-line"></span>
                 <p class="section-desc">잠실·강릉에서 눈썹문신 받으신 고객님들의 솔직한 후기</p>
             </div>
-
             <div class="scroll-wrapper">
                 <div class="horizontal-scroll">
-                    <!-- 1번째 후기 -->
+                    <!-- 후기 1 -->
                     <a href="https://blog.naver.com/alsthf916/223859650061" class="blog-item" target="_blank">
                         <div class="blog-thumb">
                             <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC1.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기1" loading="lazy">
@@ -601,8 +662,7 @@
                             <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                         </div>
                     </a>
-
-                    <!-- 2번째 후기 -->
+                    <!-- 후기 2 -->
                     <a href="https://blog.naver.com/9nalog/224159427888" class="blog-item" target="_blank">
                         <div class="blog-thumb">
                             <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC6.png" alt="잠실 눈썹문신 송샵 후기2" loading="lazy">
@@ -614,8 +674,7 @@
                             <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                         </div>
                     </a>
-
-                    <!-- 3번째 후기 -->
+                    <!-- 후기 3 -->
                     <a href="https://blog.naver.com/jm3516/224102287028" class="blog-item" target="_blank">
                         <div class="blog-thumb">
                             <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC2.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기3" loading="lazy">
@@ -627,8 +686,7 @@
                             <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                         </div>
                     </a>
-
-                     <!-- 4번째 후기 -->
+                    <!-- 후기 4 -->
                     <a href="https://blog.naver.com/silk_0/223841865239" class="blog-item" target="_blank">
                         <div class="blog-thumb">
                             <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC3.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기4" loading="lazy">
@@ -640,11 +698,10 @@
                             <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                         </div>
                     </a>
-
-                    <!-- 5번째 후기 -->
+                    <!-- 후기 5 -->
                     <a href="https://blog.naver.com/cgr8274/224235758330" class="blog-item" target="_blank">
                         <div class="blog-thumb">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/blog_formen.jpg" alt="잠실 눈썹문신 송샵 후기4" loading="lazy">
+                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/blog_formen.jpg" alt="잠실 눈썹문신 송샵 후기5" loading="lazy">
                         </div>
                         <div class="blog-content">
                             <div class="blog-meta">#찐전문가 #짱구NO</div>
@@ -653,8 +710,7 @@
                             <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                         </div>
                     </a>
-
-                    <!-- 6번째 후기 -->
+                    <!-- 후기 6 -->
                     <a href="https://blog.naver.com/ssong_1378/223834067219" class="blog-item" target="_blank">
                         <div class="blog-thumb">
                             <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC4.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기6" loading="lazy">
@@ -666,8 +722,7 @@
                             <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
                         </div>
                     </a>
-
-                    <!-- 7번째 후기 -->
+                    <!-- 후기 7 -->
                     <a href="https://blog.naver.com/skarbs919191/222934436213" class="blog-item" target="_blank">
                         <div class="blog-thumb">
                             <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC5.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기7" loading="lazy">
@@ -721,6 +776,82 @@
         </div>
     </section>
 
+    <!-- 스타일 퀴즈 (호기심 & 참여 유도) -->
+    <section class="section-padding quiz-section" style="background: #FDFBF9;">
+        <div class="container reveal" style="max-width: 700px;">
+            <div class="text-center">
+                <h2 class="section-title">나에게 맞는 눈썹 스타일</h2>
+                <span class="title-line"></span>
+                <p class="section-desc">세 가지 질문에 답하면 당신에게 어울리는 분위기를 찾아드려요</p>
+            </div>
+
+            <div id="browQuiz" class="quiz-box">
+                <!-- 질문 1 -->
+                <div class="quiz-step" id="quizStep1">
+                    <p class="quiz-question">Q1. 나의 얼굴형은?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" data-step="1" data-value="둥근형">둥근형</button>
+                        <button class="quiz-opt" data-step="1" data-value="각진형">각진형</button>
+                        <button class="quiz-opt" data-step="1" data-value="계란형">계란형</button>
+                        <button class="quiz-opt" data-step="1" data-value="하트형">하트형</button>
+                    </div>
+                </div>
+
+                <!-- 질문 2 -->
+                <div class="quiz-step" id="quizStep2" style="display:none;">
+                    <p class="quiz-question">Q2. 원하는 분위기는?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" data-step="2" data-value="내추럴">내추럴</button>
+                        <button class="quiz-opt" data-step="2" data-value="시크">시크</button>
+                        <button class="quiz-opt" data-step="2" data-value="청순">청순</button>
+                        <button class="quiz-opt" data-step="2" data-value="도회적">도회적</button>
+                    </div>
+                </div>
+
+                <!-- 질문 3 -->
+                <div class="quiz-step" id="quizStep3" style="display:none;">
+                    <p class="quiz-question">Q3. 현재 눈썹 고민은?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" data-step="3" data-value="숱없음">숱이 적어요</button>
+                        <button class="quiz-opt" data-step="3" data-value="비대칭">비대칭이에요</button>
+                        <button class="quiz-opt" data-step="3" data-value="잔흔">잔흔이 있어요</button>
+                        <button class="quiz-opt" data-step="3" data-value="모양">모양이 고민이에요</button>
+                    </div>
+                </div>
+
+                <!-- 결과 -->
+                <div class="quiz-result" id="quizResult">
+                    <div class="result-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="result-title" id="resultTitle">내추럴 아치형</h3>
+                    <p class="result-desc" id="resultDesc">
+                        얼굴의 장점은 살리고 부담스럽지 않은 라인으로<br>일상에서 자연스럽게 빛나는 스타일이에요.
+                    </p>
+
+                    <!-- 선택 요약 -->
+                    <div class="quiz-summary" id="quizSummary">
+                        <p><span>얼굴형</span> <strong id="summaryFace">-</strong></p>
+                        <p><span>원하는 분위기</span> <strong id="summaryVibe">-</strong></p>
+                        <p><span>눈썹 고민</span> <strong id="summaryConcern">-</strong></p>
+                    </div>
+
+                    <!-- 캡처 안내 -->
+                    <p class="capture-guide">
+                        <i class="fas fa-camera"></i> 이 결과를 캡처해서 카카오톡으로 보내주시면<br>어떤 모양이 나올지 미리 보여드립니다.
+                    </p>
+
+                    <a href="https://pf.kakao.com/_xhKxnhxj/chat" class="result-cta" target="_blank" id="resultCta">
+                        <i class="fas fa-comment"></i> 이 결과로 1:1 상담 받기
+                    </a>
+                    <button class="result-retry" id="retryQuiz">
+                        <i class="fas fa-undo"></i> 다시 해보기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ -->
     <section class="section-padding" style="background: white;">
         <div class="container reveal stagger-wrap" style="max-width: 800px;">
@@ -755,20 +886,17 @@
         </div>
     </footer>
 
-<!-- Floating Bar -->
+    <!-- Floating Bar -->
     <div class="floating-bar" id="floatingBar">
-        <!-- 1. 인스타그램 주소 넣기 -->
         <a href="https://www.instagram.com/__songshop/" class="float-btn btn-insta" target="_blank">
             <i class="fab fa-instagram"></i> 포트폴리오
         </a>
-        
-        <!-- 2. 카카오톡 상담 주소 넣기 -->
         <a href="https://pf.kakao.com/_xhKxnhxj/chat" class="float-btn btn-inquiry" target="_blank">
             <i class="fas fa-comment"></i> 상담 문의
         </a>
     </div>
 
-    <!-- [UI 기능 스크립트] -->
+    <!-- UI 기능 스크립트 -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             
@@ -837,18 +965,14 @@
                 if (scrollY > 300) floatingBar.classList.add('visible');
                 else floatingBar.classList.remove('visible');
 
-                // Parallax shapes
                 shape1.style.transform = `translate(${scrollY * 0.05}px, ${scrollY * 0.1}px)`;
                 shape2.style.transform = `translate(${-scrollY * 0.05}px, ${-scrollY * 0.08}px)`;
 
-                // Hero Text Fade Out
                 if(scrollY < 700) {
                     const opacityVal = 1 - (scrollY / 400); 
-                    
                     heroText.style.transform = `translateY(${scrollY * 0.3}px)`;
                     heroText.style.opacity = opacityVal;
                     heroText.style.filter = `blur(${scrollY / 60}px)`;
-                    
                     if(scrollInd) {
                         scrollInd.style.opacity = opacityVal;
                         if(opacityVal < 0.1) scrollInd.style.pointerEvents = 'none';
@@ -856,72 +980,157 @@
                     }
                 }
             });
+
+            // 5. 통계 숫자 카운터
+            function animateStats() {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                if (statNumbers.length === 0) return;
+                const observerOptions = { threshold: 0.5 };
+                const statsObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
+                            const target = parseInt(el.getAttribute('data-target'));
+                            const duration = 1800;
+                            const startTime = performance.now();
+                            function updateCounter(currentTime) {
+                                const elapsed = currentTime - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+                                const eased = 1 - Math.pow(1 - progress, 3);
+                                const currentValue = Math.floor(eased * target);
+                                el.textContent = currentValue.toLocaleString('ko-KR');
+                                if (progress < 1) {
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    el.textContent = target.toLocaleString('ko-KR');
+                                }
+                            }
+                            requestAnimationFrame(updateCounter);
+                            observer.unobserve(el);
+                        }
+                    });
+                }, observerOptions);
+                statNumbers.forEach(num => statsObserver.observe(num));
+            }
+            animateStats();
+
+            // 6. 스타일 퀴즈
+            const quizData = { 1: null, 2: null, 3: null };
+            const stepDivs = {
+                1: document.getElementById('quizStep1'),
+                2: document.getElementById('quizStep2'),
+                3: document.getElementById('quizStep3')
+            };
+            const resultDiv = document.getElementById('quizResult');
+
+            document.querySelectorAll('.quiz-opt').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const step = parseInt(this.dataset.step);
+                    quizData[step] = this.dataset.value;
+                    if (step < 3) {
+                        stepDivs[step].style.display = 'none';
+                        stepDivs[step + 1].style.display = 'block';
+                    } else {
+                        stepDivs[3].style.display = 'none';
+                        showQuizResult();
+                    }
+                });
+            });
+
+            function showQuizResult() {
+                let title = '내추럴 아치형';
+                let desc = '얼굴의 장점은 살리고 부담스럽지 않은 라인으로<br>일상에서 자연스럽게 빛나는 스타일이에요.';
+
+                if (quizData[2] === '시크') {
+                    title = '시크한 스트레이트형';
+                    desc = '각진 느낌을 부드럽게 감싸주는 일자 라인으로<br>도시적이고 세련된 인상을 완성해요.';
+                } else if (quizData[2] === '청순') {
+                    title = '청순한 소프트 아치형';
+                    desc = '둥글고 부드러운 아치로 순한 인상을 강조해요.<br>메이크업 없이도 화사한 느낌을 줍니다.';
+                } else if (quizData[2] === '도회적') {
+                    title = '도회적 표준형';
+                    desc = '또렷한 눈매를 살려주는 표준 비율의 라인으로<br>자신감 있는 인상을 만들어줘요.';
+                }
+
+                if (quizData[3] === '잔흔') {
+                    title = '잔흔 커버 내추럴형';
+                    desc = '기존 잔흔을 자연스럽게 살려 새 라인으로 재탄생시키는<br>커버 특화 디자인이에요.';
+                }
+
+                // 결과 텍스트 설정
+                document.getElementById('resultTitle').textContent = title;
+                document.getElementById('resultDesc').innerHTML = desc;
+
+                // 선택 요약 채우기
+                const faceMap = { '둥근형': '둥근형', '각진형': '각진형', '계란형': '계란형', '하트형': '하트형' };
+                const vibeMap = { '내추럴': '내추럴', '시크': '시크', '청순': '청순', '도회적': '도회적' };
+                const concernMap = { '숱없음': '숱이 적어요', '비대칭': '비대칭이에요', '잔흔': '잔흔이 있어요', '모양': '모양이 고민이에요' };
+
+                document.getElementById('summaryFace').textContent = faceMap[quizData[1]] || '-';
+                document.getElementById('summaryVibe').textContent = vibeMap[quizData[2]] || '-';
+                document.getElementById('summaryConcern').textContent = concernMap[quizData[3]] || '-';
+
+                // 카카오톡 CTA 메시지에 선택 요약 포함
+                const cta = document.getElementById('resultCta');
+                const summaryText = `얼굴형: ${faceMap[quizData[1]] || '미선택'}, 분위기: ${vibeMap[quizData[2]] || '미선택'}, 고민: ${concernMap[quizData[3]] || '미선택'}`;
+                const msg = `[SONGSHOP 스타일 테스트] 저는 "${title}" 결과가 나왔어요. (${summaryText}) 1:1 상담 원해요!`;
+                cta.href = `https://pf.kakao.com/_xhKxnhxj/chat?text=${encodeURIComponent(msg)}`;
+
+                resultDiv.style.display = 'flex';
+            }
+
+            document.getElementById('retryQuiz').addEventListener('click', function() {
+                quizData[1] = quizData[2] = quizData[3] = null;
+                stepDivs[1].style.display = 'block';
+                stepDivs[2].style.display = 'none';
+                stepDivs[3].style.display = 'none';
+                resultDiv.style.display = 'none';
+            });
         });
     </script>
 
-    <!-- [SONGSHOP 고급 추적 스크립트] -->
+    <!-- 추적 스크립트 -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            
-            /* =========================================
-               1. 체류 시간 추적 (Time on Site)
-               - 10초, 30초, 60초, 3분 경과 시 이벤트 전송
-            ========================================= */
-            const timers = [10, 30, 60, 180]; // 초 단위
+            const timers = [10, 30, 60, 180];
             timers.forEach(seconds => {
                 setTimeout(() => {
                     if(typeof fbq === 'function') {
                         fbq('trackCustom', 'TimeOnSite', { seconds: seconds });
-                        console.log(`[Pixel] ${seconds}초 체류 확인`);
                     }
                 }, seconds * 1000);
             });
 
-            /* =========================================
-               2. 스크롤 깊이 추적 (Scroll Depth)
-            ========================================= */
             let scrollMarks = { 25: false, 50: false, 75: false, 90: false };
-            
             window.addEventListener('scroll', () => {
                 const scrollTop = window.scrollY || document.documentElement.scrollTop;
                 const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                 const scrollPercent = (scrollTop / docHeight) * 100;
-
                 Object.keys(scrollMarks).forEach(mark => {
                     if (scrollPercent >= mark && !scrollMarks[mark]) {
                         scrollMarks[mark] = true;
                         if(typeof fbq === 'function') {
                             fbq('trackCustom', 'ScrollDepth', { depth: mark + '%' });
-                            console.log(`[Pixel] 스크롤 ${mark}% 도달`);
                         }
                     }
                 });
             });
 
-            /* =========================================
-               3. 버튼 클릭 추적 (Button Clicks)
-            ========================================= */
-            
-            // (A) 하단 플로팅바 - 상담 문의 (카카오톡)
             const btnInquiry = document.querySelector('.btn-inquiry');
             if(btnInquiry) {
                 btnInquiry.addEventListener('click', function() {
                     fbq('track', 'Contact', { content_name: '카카오톡_상담문의' });
                     if(typeof gtag === 'function') gtag('event', 'kakao_consult_click', { location: 'FloatingBar' });
-                    console.log("[Pixel/GA4] 카카오톡 상담 클릭");
                 });
             }
 
-            // (B) 하단 플로팅바 - 인스타그램 포트폴리오
             const btnInsta = document.querySelector('.btn-insta');
             if(btnInsta) {
                 btnInsta.addEventListener('click', function() {
                     fbq('trackCustom', 'ViewInstagram', { location: 'FloatingBar' });
-                    console.log("[Pixel] 플로팅바 인스타 클릭");
                 });
             }
 
-            // (C) 포트폴리오 - 더보기 버튼
             const moreCard = document.querySelector('.more-card');
             if(moreCard) {
                 moreCard.addEventListener('click', function() {
@@ -929,7 +1138,6 @@
                 });
             }
 
-            // (D) 블로그 후기 클릭
             const blogItems = document.querySelectorAll('.blog-item');
             blogItems.forEach((item, index) => {
                 item.addEventListener('click', function() {
@@ -937,7 +1145,6 @@
                 });
             });
 
-            // (E) 비포/애프터 카드 터치
             const pfCards = document.querySelectorAll('.portfolio-card');
             pfCards.forEach(card => {
                 card.addEventListener('click', function() {
@@ -946,12 +1153,10 @@
                     }
                 });
             });
-
         });
-     </script>
+    </script>
 
-    <!-- ===================== [구조화 데이터 - 지역 SEO 핵심] ===================== -->
-    <!-- ★ 아래 [ ] 안의 전화번호/주소/우편번호를 실제 정보로 교체하세요 -->
+    <!-- 구조화 데이터 -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -998,7 +1203,6 @@
       }
     }
     </script>
-    <!-- ====================================================================== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",

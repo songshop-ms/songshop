@@ -1,1246 +1,685 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta name="facebook-domain-verification" content="q6ea1lal1z98xvxd8bp1v10vbc4ljm" />
-    <!-- [Meta Pixel Code] -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    
-    fbq('init', '1885392752224522'); 
-    fbq('track', 'PageView');
-    </script>
-    
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- [End Meta Pixel Code] -->
-
-    <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZKV0GH8JN"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-0ZKV0GH8JN');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-
-    <!-- SEO -->
-    <title>잠실 눈썹문신 · 강릉 눈썹문신 자연눈썹 전문 | SONGSHOP 송샵</title>
-    <meta name="description" content="잠실·강릉 눈썹문신 전문 SONGSHOP 송샵. 시술 직후부터 자연스러운 자연눈썹, 남자눈썹문신, 잔흔커버, 두피문신. 1:1 정밀 상담 후 퍼스널 디자인으로 진행합니다.">
-    <meta name="keywords" content="잠실 눈썹문신, 강릉 눈썹문신, 자연눈썹, 남자눈썹문신, 잔흔커버, 두피문신, 송파 눈썹문신">
-    <link rel="canonical" href="https://www.songshopbysong.com/">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="잠실·강릉 눈썹문신 자연눈썹 전문 SONGSHOP 송샵">
-    <meta property="og:description" content="시술 직후부터 자연스러운 자연눈썹. 잠실 본점·강릉 매장. 1:1 정밀 상담 후 퍼스널 디자인.">
-    <meta property="og:url" content="https://www.songshopbysong.com/">
-    <meta property="og:image" content="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/after4.png">
-    <meta property="og:locale" content="ko_KR">
-    <meta property="og:site_name" content="SONGSHOP 송샵">
+    <title>SONGSHOP 상담용 눈썹 디자이너</title>
     
-    <!-- 폰트 & 아이콘 -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* ========== 디자인 시스템 ========== */
         :root {
-            --primary-color: #8E7C68; 
+            --primary-color: #8E7C68;
             --primary-dark: #6D5E4D;
             --bg-color: #FDFBF9;
-            --white: #FFFFFF;
-            --text-main: #2C2C2C;
-            --text-sub: #555555;
-            --naver-green: #03C75A;
-            --kakao-yellow: #FEE500;
             --gold: #C9A96E;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            font-family: 'Pretendard', sans-serif; 
-            color: var(--text-main); 
-            line-height: 1.6; 
-            background-color: var(--bg-color); 
-            word-break: keep-all; 
-            overflow-x: hidden; 
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg-color);
+            color: #2C2C2C;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        .container { max-width: 500px; margin: 0 auto; padding: 0 20px; }
+        .header { text-align: center; padding: 30px 0 15px; }
+        .header h1 { font-family: 'Gowun Batang', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+        .header p { font-size: 0.85rem; color: #555; }
+
+        /* 캔버스 영역 */
+        .canvas-container {
             position: relative;
-        }
-
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9998; opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        h1, h2, h3, .serif-font { font-family: 'Gowun Batang', serif; letter-spacing: -0.03em; }
-        a { text-decoration: none; color: inherit; }
-        img { display: block; width: 100%; height: 100%; object-fit: cover; }
-        
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        .section-padding { padding: 100px 0; position: relative; z-index: 2; }
-        .text-center { text-align: center; }
-        
-        /* Ambient Blob */
-        #blob-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-        .ambient-shape {
-            position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.5;
-            animation: breathing 6s ease-in-out infinite alternate;
-        }
-        @keyframes breathing { 0% { transform: scale(0.95); } 100% { transform: scale(1.05); } }
-        .shape-1 { top: -10%; left: -20%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(142,124,104,0.15) 0%, rgba(255,255,255,0) 70%); }
-        .shape-2 { bottom: 10%; right: -20%; width: 80vw; height: 80vw; background: radial-gradient(circle, rgba(200,180,160,0.12) 0%, rgba(255,255,255,0) 70%); }
-
-        .section-title { 
-            font-size: 2rem; margin-bottom: 10px; font-weight: 700; color: #1a1a1a;
-            display: inline-block; position: relative;
-        }
-        .title-line {
-            display: block; width: 0; height: 1px; background: var(--primary-color);
-            margin: 0 auto 10px auto; transition: width 1.2s; opacity: 0.6;
-        }
-        .reveal.active .title-line { width: 50px; }
-        .section-desc { color: var(--text-sub); margin-bottom: 40px; font-size: 1rem; font-weight: 300; }
-
-        /* Animation */
-        .reveal { opacity: 0; transform: translateY(30px); filter: blur(5px); transition: 1s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); filter: blur(0); }
-        .stagger-wrap .stagger-item { opacity: 0; transform: translateY(20px); transition: 0.8s ease; }
-        .stagger-wrap.active .stagger-item { opacity: 1; transform: translateY(0); }
-        .stagger-wrap.active .stagger-item:nth-child(1) { transition-delay: 0.1s; }
-        .stagger-wrap.active .stagger-item:nth-child(2) { transition-delay: 0.2s; }
-        .stagger-wrap.active .stagger-item:nth-child(3) { transition-delay: 0.3s; }
-
-        /* Hero */
-        .hero {
-            position: relative;
-            background-color: #111;
-            height: 100vh; height: 100dvh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: flex-end; 
-            text-align: center; 
-            color: white; 
-            overflow: hidden;
-            min-height: -webkit-fill-available;
-        }
-        #hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0.9) 100%);
-            z-index: 1; pointer-events: none;
-        }
-        .hero-content { 
-            width: 100%; max-width: 800px; z-index: 2; position: relative;
-            padding: 0 20px; margin-bottom: 12vh; display: flex; flex-direction: column; gap: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        .hero h1 { font-family: 'Gowun Batang', serif; font-size: 1.7rem; line-height: 1.4; margin: 0; font-weight: 400; letter-spacing: -0.02em; }
-        .hero-sub { font-family: 'Gowun Batang', serif; font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-top: 5px; font-weight: 400; }
-        .hero-brand { font-weight: 600; font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 3px; margin-top: 25px; text-transform: uppercase; }
-        .scroll-indicator {
-            position: absolute; bottom: calc(30px + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
-            z-index: 10; color: rgba(255,255,255,0.7); font-size: 0.8rem;
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            cursor: pointer; padding: 20px; pointer-events: auto;
-            animation: bounce 2s infinite ease-in-out;
-        }
-        .scroll-indicator span { font-size: 0.7rem; letter-spacing: 2px; font-weight: 300; }
-        @keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,10px); } }
-
-        /* 통합 Philosophy + 통계/수상 */
-        .philosophy-section {
-            position: relative;
-            background-color: #e8e3de; 
-            background-image: url('https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%EC%B2%A0%ED%95%99%ED%83%AD%EB%B0%B0%EA%B2%BD%EC%A0%9C%EA%B1%B0.png');
-            background-repeat: no-repeat;
-            background-position: center bottom;
-            background-size: cover;
-            display: flex; align-items: center; justify-content: center;
-            padding: 120px 0;
-            overflow: hidden;
-            background-attachment: fixed; 
-        }
-        .philosophy-section::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.65); z-index: 1;
-        }
-        .philosophy-section .container { position: relative; z-index: 2; }
-        .quote-box { text-align: center; color: white; max-width: 700px; margin: 0 auto; }
-        .quote-icon { font-size: 3rem; color: rgba(255,255,255,0.3); font-family: serif; margin-bottom: 30px; display: block; }
-        .philo-main-text {
-            font-family: 'Gowun Batang', serif;
-            font-size: 1.25rem; line-height: 1.8; font-weight: 400;
-            margin-bottom: 40px; opacity: 0.95; word-break: keep-all;
-        }
-        .philo-author {
-            font-size: 0.95rem; color: #FFFFFF; font-weight: 700; letter-spacing: 1px;
-            border-top: 1px solid rgba(255,255,255,0.3); display: inline-block; padding-top: 15px;
-        }
-
-        /* 통계 숫자 */
-        .philo-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px 20px;
-            margin-top: 60px;
-            text-align: center;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        @media (min-width: 768px) {
-            .philo-stats { grid-template-columns: repeat(2, 1fr); max-width: 600px; }
-        }
-        .philo-stat-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-        .stat-number-wrap { display: flex; align-items: baseline; gap: 2px; }
-        .stat-number {
-            font-family: 'Gowun Batang', serif;
-            font-size: 2.5rem; font-weight: 700; color: #FFFFFF; line-height: 1; letter-spacing: -0.02em;
-        }
-        .stat-suffix {
-            font-family: 'Gowun Batang', serif;
-            font-size: 1.3rem; font-weight: 700; color: var(--gold); line-height: 1;
-        }
-        .philo-stat-item p { font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: 300; letter-spacing: 0.5px; }
-
-        /* 수상 및 경력 배지 */
-        .philo-awards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            max-width: 600px;
-            margin: 50px auto 0 auto;
-        }
-        @media (min-width: 768px) {
-            .philo-awards { grid-template-columns: repeat(3, 1fr); max-width: 900px; gap: 16px; }
-        }
-        .philo-award-item {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 10px;
-            padding: 16px 10px;
-            display: flex; flex-direction: column; align-items: center; gap: 6px;
-            text-align: center; backdrop-filter: blur(4px);
-            transition: background 0.3s;
-        }
-        .philo-award-item:hover { background: rgba(255,255,255,0.12); }
-        .philo-award-item i { font-size: 1.4rem; color: var(--gold); }
-        .award-badge-text {
-            font-size: 0.65rem; font-weight: 700; letter-spacing: 1px;
-            background: var(--gold); color: #1a1a1a; padding: 3px 10px; border-radius: 20px;
-            text-transform: uppercase;
-        }
-        .philo-award-item p { font-size: 0.72rem; color: rgba(255,255,255,0.85); line-height: 1.4; font-weight: 300; }
-
-        /* Portfolio */
-        .scroll-wrapper { margin-left: -20px; margin-right: -20px; width: calc(100% + 40px); }
-        .horizontal-scroll {
-            display: flex; overflow-x: auto; gap: 15px;
-            padding: 10px 20px 50px 20px; scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        .horizontal-scroll::-webkit-scrollbar { display: none; }
-        .horizontal-scroll::after { content: ''; display: block; flex: 0 0 20px; }
-        .portfolio-card-wrap {
-            min-width: 80vw; aspect-ratio: 3/4; flex: 0 0 auto; scroll-snap-align: center;
-            position: relative; perspective: 1000px;
-        }
-        @media (min-width: 768px) { .portfolio-card-wrap { min-width: 300px; height: 400px; } }
-        .portfolio-card {
-            width: 100%; height: 100%; border-radius: 8px; overflow: hidden; background-color: #eee;
-            position: relative; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        .portfolio-card.is-flipped-ani { transform: rotateY(10deg) scale(0.98); }
-        .ba-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: opacity 0.4s; pointer-events: none; }
-        .img-before { z-index: 1; }
-        .img-after { z-index: 2; opacity: 1; }
-        .portfolio-card.showing-before .img-after { opacity: 0; }
-        .ba-label {
-            position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.6); color: white;
-            padding: 3px 10px; font-size: 0.75rem; border-radius: 20px; z-index: 10; backdrop-filter: blur(4px);
-        }
-        .guide-overlay {
-            position: absolute; bottom: 15px; right: 15px; color: rgba(255,255,255,0.9); z-index: 10;
-            font-size: 0.8rem; pointer-events: none; display: flex; align-items: center; gap: 5px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
-        .guide-overlay i { animation: touchAni 2s infinite; }
-        @keyframes touchAni { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
-        .more-card {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background-color: #222; color: white; border-radius: 8px;
-            min-width: 80vw; aspect-ratio: 3/4; flex: 0 0 auto; scroll-snap-align: center;
-        }
-        .more-text { text-align: center; font-family: 'Gowun Batang', serif; font-size: 1.1rem; line-height: 1.4; }
-        @media (min-width: 768px) { .more-card { min-width: 300px; height: 400px; } }
-
-        /* Blog Reviews */
-        .blog-section { background-color: var(--white); }
-        .blog-item {
-            min-width: 280px; width: 75vw; max-width: 350px; flex: 0 0 auto; scroll-snap-align: center;
-            display: flex; flex-direction: column; background: white; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06); border: 1px solid #f5f5f5;
-        }
-        @media (min-width: 768px) { .blog-item { min-width: 300px; width: auto; } }
-        .blog-thumb { width: 100%; height: 180px; overflow: hidden; border-bottom: 1px solid #eee; }
-        .blog-content { padding: 20px; display: flex; flex-direction: column; height: 100%; }
-        .blog-meta { font-size: 0.7rem; color: var(--primary-color); font-weight: 700; margin-bottom: 8px; }
-        .blog-title { font-size: 1.05rem; font-weight: 700; line-height: 1.4; margin-bottom: 10px; color: #222; word-break: keep-all; }
-        .blog-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .blog-link { font-size: 0.8rem; font-weight: 600; color: #333; margin-top: auto; display: flex; align-items: center; }
-        .naver-icon { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; background-color: var(--naver-green); color: white; font-weight: 800; font-size: 9px; border-radius: 2px; margin-right: 6px; }
-
-        /* Consultation Process */
-        .process-section { background-color: transparent; }
-        .process-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media (min-width: 768px) { .process-grid { grid-template-columns: repeat(3, 1fr); } }
-        .process-item {
-            position: relative; height: 320px; border-radius: 8px; overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); background-color: #ddd;
-        }
-        @media (min-width: 768px) { .process-item { height: 450px; } }
-        .process-bg { width: 100%; height: 100%; transition: transform 0.7s ease; }
-        .process-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4) 60%, rgba(0,0,0,0));
-            padding: 60px 24px 30px 24px; color: white;
-            display: flex; flex-direction: column; justify-content: flex-end;
-        }
-        .step-num { font-family: 'Gowun Batang', serif; font-size: 2.5rem; opacity: 0.4; margin-bottom: -5px; line-height: 1; }
-        .step-title { font-family: 'Gowun Batang', serif; font-size: 1.3rem; margin-bottom: 8px; font-weight: 400; }
-        .step-desc { font-size: 0.9rem; opacity: 0.95; line-height: 1.5; font-weight: 300; }
-
-        /* 스타일 퀴즈 */
-        .quiz-section { background: #FDFBF9; }
-        .quiz-box {
-            background: white;
-            border: 1px solid #F0EDE9;
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: #e8e3de;
             border-radius: 16px;
-            padding: 40px 24px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
-            margin-top: 30px;
+            overflow: hidden;
+            margin: 15px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            touch-action: none;
         }
-        .quiz-question {
-            font-family: 'Gowun Batang', serif;
-            font-size: 1.1rem; font-weight: 700; color: #1a1a1a;
-            margin-bottom: 20px; text-align: center;
+        .canvas-container canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            touch-action: none;
         }
-        .quiz-options {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
-            max-width: 400px; margin: 0 auto;
-        }
-        .quiz-opt {
-            padding: 14px 10px;
-            background: #FDFBF9; border: 1px solid #E5E0DA; border-radius: 8px;
-            font-size: 0.9rem; font-weight: 500; color: #444; cursor: pointer;
-            transition: all 0.25s; font-family: 'Pretendard', sans-serif;
-        }
-        .quiz-opt:hover { background: #F5F0EB; border-color: var(--primary-color); color: #1a1a1a; transform: translateY(-2px); }
-        .quiz-opt:active { transform: translateY(0); }
-        .quiz-result {
-            text-align: center; display: none; flex-direction: column; align-items: center; gap: 15px;
-        }
-        .result-icon {
-            width: 60px; height: 60px; border-radius: 50%;
-            background: linear-gradient(135deg, #FDF6E3, #F9EBC8);
-            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--gold);
-        }
-        .result-title { font-family: 'Gowun Batang', serif; font-size: 1.3rem; font-weight: 700; color: #1a1a1a; }
-        .result-desc { font-size: 0.9rem; color: #666; line-height: 1.6; }
-        .result-cta {
-            display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;
-            padding: 14px 28px; background: var(--primary-color); color: white;
-            border-radius: 50px; font-size: 0.9rem; font-weight: 600; transition: all 0.3s;
-        }
-        .result-cta:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .result-retry {
-            background: none; border: none; color: #aaa; font-size: 0.8rem;
-            cursor: pointer; display: flex; align-items: center; gap: 5px; margin-top: 5px;
-        }
-        .result-retry:hover { color: #666; }
-
-        /* 퀴즈 결과 선택 요약 */
-        .quiz-summary {
+        .placeholder {
+            position: absolute;
+            inset: 0;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            width: 100%;
-            max-width: 300px;
-            margin: 5px auto 0 auto;
-            background: #FDFBF9;
-            border: 1px solid #F0EDE9;
-            border-radius: 10px;
-            padding: 16px 18px;
-            text-align: left;
-        }
-        .quiz-summary p {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
-            color: #666;
-            margin: 0;
+            justify-content: center;
+            color: #aaa;
+            font-size: 0.9rem;
+            text-align: center;
+            gap: 10px;
+            pointer-events: none;
         }
-        .quiz-summary p span { font-weight: 500; color: #888; }
-        .quiz-summary p strong { font-weight: 700; color: #1a1a1a; font-size: 0.9rem; }
+        .placeholder i { font-size: 2.5rem; color: #ccc; }
+
+        /* 버튼 */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        .btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 14px 10px;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Pretendard', sans-serif;
+        }
+        .btn:active { transform: scale(0.96); }
+        .btn-upload { background: #1a1a1a; color: white; }
+        .btn-reset { background: #f5f0eb; color: #666; }
+
+        /* 프리셋 */
+        .preset-section {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 8px;
+            padding: 10px 0 15px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .preset-section::-webkit-scrollbar { display: none; }
+        .preset-btn {
+            flex: 0 0 auto;
+            padding: 10px 14px;
+            border-radius: 20px;
+            background: white;
+            border: 1px solid #E5E0DA;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            font-family: 'Pretendard', sans-serif;
+        }
+        .preset-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        .preset-btn:active { transform: scale(0.95); }
+
+        /* 변환 제어 패널 */
+        .transform-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #f0edE9;
+        }
+        .panel-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .control-label {
+            font-size: 0.75rem;
+            color: #888;
+            min-width: 50px;
+            text-align: right;
+        }
+        input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 4px;
+            border-radius: 2px;
+            background: #E5E0DA;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+        .value-label {
+            font-size: 0.75rem;
+            color: #555;
+            min-width: 40px;
+            text-align: center;
+        }
 
         /* 캡처 안내 */
         .capture-guide {
             font-size: 0.85rem;
             color: #B8955A;
-            line-height: 1.6;
-            font-weight: 500;
-            margin-top: 5px;
+            margin-top: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
-        .capture-guide i { margin-right: 5px; color: #C9A96E; }
-
-        /* FAQ */
-        .faq-item { border-bottom: 1px solid #eee; }
-        .faq-question { 
-            padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-            font-weight: 600; font-size: 1rem; color: #333;
-        }
-        .faq-question i { color: var(--primary-color); margin-left: 10px; font-size: 0.9rem; transition: 0.4s; }
-        .faq-answer { 
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s; opacity: 0;
-            color: var(--text-sub); font-size: 0.9rem; line-height: 1.6;
-        }
-        .faq-item.active .faq-answer { opacity: 1; }
-        .faq-item.active .faq-question i { transform: rotate(45deg); }
-
-        footer { padding: 50px 0 100px 0; background: white; border-top: 1px solid #f0f0f0; text-align: center; color: #aaa; font-size: 0.75rem; }
-
-        /* Floating Bar */
-        .floating-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: var(--white); height: 60px;
-            display: flex; z-index: 9999;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
-            transform: translateY(100%); transition: transform 0.5s ease;
-        }
-        .floating-bar.visible { transform: translateY(0); }
-        .float-btn { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
-        .btn-insta { background: var(--white); color: #333; }
-        .btn-insta i { margin-right: 6px; font-size: 1.1rem; background: -webkit-linear-gradient(#f09433, #dc2743, #bc1888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .btn-inquiry { background: var(--primary-color); color: white; }
-        .btn-inquiry i { margin-right: 8px; font-size: 1.1rem; color: var(--kakao-yellow); }
-
-        /* 모바일 대응 */
-        @media (max-width: 768px) {
-            .section-padding { padding: 70px 0; }
-            .section-title { font-size: 1.6rem; }
-            .process-overlay { padding: 40px 20px 25px 20px; }
-            .shape-1, .shape-2 { opacity: 0.4; }
-            .hero-content { margin-bottom: 18vh; gap: 6px; }
-            .hero h1 { font-size: 1.4rem; line-height: 1.35; }
-            .hero-sub { font-size: 0.95rem; }
-            .hero-brand { margin-top: 20px; font-size: 0.65rem; }
-            .scroll-indicator { bottom: calc(50px + env(safe-area-inset-bottom)); }
-            .philosophy-section { background-attachment: scroll; background-position: center bottom; background-size: 120% auto; padding: 100px 0; }
-            .philo-main-text { font-size: 1.05rem; line-height: 1.7; }
-            .stat-number { font-size: 2rem; }
-            .stat-suffix { font-size: 1.1rem; }
-            .philo-award-item { padding: 14px 8px; }
-            .philo-award-item p { font-size: 0.65rem; }
-            .quiz-box { padding: 30px 16px; }
-            .quiz-options { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .quiz-opt { padding: 12px 8px; font-size: 0.85rem; }
-            .quiz-summary p { font-size: 0.8rem; }
-            .capture-guide { font-size: 0.78rem; }
-        }
+        .footer { text-align: center; padding: 30px 0 10px; color: #aaa; font-size: 0.75rem; }
     </style>
 </head>
 <body>
 
-    <div class="noise-overlay"></div>
-
-    <div id="blob-container">
-        <div class="ambient-shape shape-1" id="shape1"></div>
-        <div class="ambient-shape shape-2" id="shape2"></div>
+    <div class="header">
+        <h1>👁️‍🗨️ 상담용 눈썹 디자이너</h1>
+        <p>사진을 올리고 눈썹 프리셋을 선택한 뒤,<br>점을 움직여 딱 맞게 조절하세요</p>
     </div>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <video id="hero-video" autoplay muted loop playsinline>
-            <source src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%E1%84%82%E1%85%B2%E1%84%92%E1%85%B5%E1%84%8B%E1%85%A5%E1%84%85%E1%85%A9.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content" id="heroText">
-            <h1>시술직후부터<br>자연스러움을 추구합니다.</h1>
-            <p class="hero-sub">당신에게 어울리는 디자인은 어떤 모습일까요?</p>
-            <div class="hero-brand">SONGSHOP</div>
-        </div>
-        <div class="scroll-indicator" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'});">
-            <span>SCROLL</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </header>
-
-    <!-- 통합 Philosophy + 통계/수상 -->
-    <section class="section-padding philosophy-section">
-        <div class="container reveal">
-            <!-- 철학 문구 -->
-            <div class="quote-box">
-                <span class="quote-icon">“</span>
-                <p class="philo-main-text">
-                    눈썹은 얼굴의 지붕입니다. 1mm의 두께,<br>
-                    미세한 각도 차이가 인상을 바꿉니다.<br><br>
-                    그렇기에 전문가가 필요합니다.<br>
-                    꼼꼼한 상담도 필요합니다.<br><br>
-                    만약 SONGSHOP에 오셨다면<br>
-                    원하시는 이미지를 말씀만 해주세요.<br><br>
-                    그 다음은 제가 책임지겠습니다.<br><br>
-                    잠실 본점과 강릉 매장에서 원장이 직접 시술합니다.
-                </p>
-                <div class="philo-author">SONGSHOP 원장 드림</div>
-            </div>
-
-            <!-- 통계 숫자 -->
-            <div class="philo-stats">
-                <div class="philo-stat-item">
-                    <div class="stat-number-wrap">
-                        <span class="stat-number" data-target="7">0</span>
-                        <span class="stat-suffix">년+</span>
-                    </div>
-                    <p>시술 경력</p>
-                </div>
-                <div class="philo-stat-item">
-                    <div class="stat-number-wrap">
-                        <span class="stat-number" data-target="3000">0</span>
-                        <span class="stat-suffix">+</span>
-                    </div>
-                    <p>누적 시술 건수</p>
-                </div>
-            </div>
-
-            <!-- 수상 및 경력 -->
-            <div class="philo-awards">
-                <div class="philo-award-item">
-                    <i class="fas fa-trophy"></i>
-                    <span class="award-badge-text">종합 3등</span>
-                    <p>TNA X TNL X INCA<br>대만 국제 반영구 대회</p>
-                </div>
-                <div class="philo-award-item">
-                    <i class="fas fa-medal"></i>
-                    <span class="award-badge-text">2등</span>
-                    <p>JIBC 일본 국제 반영구 대회<br>Eyebrows 부문</p>
-                </div>
-                <div class="philo-award-item">
-                    <i class="fas fa-user-tie"></i>
-                    <span class="award-badge-text">심사위원</span>
-                    <p>제 17회 국제 바디아트 콘테스트<br>Eyebrows SMP 부문</p>
-                </div>
-                <div class="philo-award-item">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <span class="award-badge-text">특임강사</span>
-                    <p>대한문신사중앙회 소속<br>문신사 국가고시 담당</p>
-                </div>
-                <div class="philo-award-item">
-                    <i class="fas fa-palette"></i>
-                    <span class="award-badge-text">해외 경력</span>
-                    <p>전 Toronto, Canada. Chronic Ink.<br>소속 아티스트 (2023) · Artist of February</p>
-                </div>
-                <div class="philo-award-item">
-                    <i class="fas fa-flag-usa"></i>
-                    <span class="award-badge-text">해외 경력</span>
-                    <p>전 LA, United States. Beauty Friend.<br>소속 아티스트 (2024) · K beauty 담당자</p>
-                </div>
+    <div class="container">
+        <!-- 캔버스 -->
+        <div class="canvas-container" id="canvasContainer">
+            <canvas id="mainCanvas"></canvas>
+            <div class="placeholder" id="placeholder">
+                <i class="fas fa-camera"></i>
+                <p>사진을 업로드해주세요</p>
             </div>
         </div>
-    </section>
 
-    <!-- Portfolio -->
-    <section class="section-padding reveal blur-trigger">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Real Portfolio</h2>
-                <span class="title-line"></span>
-                <p class="section-desc">사진을 터치하면 <br>자연스러운 변화를 확인하실 수 있습니다.</p>
+        <!-- 업로드 버튼 -->
+        <div class="btn-group">
+            <button class="btn btn-upload" id="uploadBtn"><i class="fas fa-image"></i> 사진 업로드</button>
+            <button class="btn btn-reset" id="resetBtn"><i class="fas fa-redo"></i> 초기화</button>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" style="display:none;">
+
+        <!-- 눈썹 프리셋 -->
+        <div class="preset-section" id="presetSection">
+            <button class="preset-btn active" data-preset="natural">내추럴 아치</button>
+            <button class="preset-btn" data-preset="chic">시크 스트레이트</button>
+            <button class="preset-btn" data-preset="innocent">청순 소프트</button>
+            <button class="preset-btn" data-preset="urban">도회적 표준</button>
+            <button class="preset-btn" data-preset="cover">잔흔 커버</button>
+        </div>
+
+        <!-- 사진 변환 패널 -->
+        <div class="transform-panel">
+            <div class="panel-title"><i class="fas fa-image"></i> 사진 조절</div>
+            <div class="control-row">
+                <span class="control-label">확대</span>
+                <input type="range" id="photoZoom" min="0.5" max="3" step="0.01" value="1">
+                <span class="value-label" id="photoZoomVal">100%</span>
             </div>
-            <div class="scroll-wrapper">
-                <div class="horizontal-scroll">
-                    <!-- Case 1 -->
-                    <div class="portfolio-card-wrap">
-                        <div class="portfolio-card interact-card">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/1.png" class="ba-image img-before" alt="잠실 눈썹문신 자연눈썹 시술 전" loading="lazy">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/2.png" class="ba-image img-after" alt="잠실 눈썹문신 자연눈썹 시술 후 결과" loading="lazy">
-                            <div class="ba-label">After</div>
-                            <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
-                        </div>
-                    </div>
-                    <!-- Case 2 -->
-                    <div class="portfolio-card-wrap">
-                        <div class="portfolio-card interact-card">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/3.png" class="ba-image img-before" alt="강릉 눈썹문신 자연눈썹 시술 전" loading="lazy">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/4.png" class="ba-image img-after" alt="강릉 눈썹문신 자연눈썹 시술 후 결과" loading="lazy">
-                            <div class="ba-label">After</div>
-                            <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
-                        </div>
-                    </div>
-                    <!-- Case 3 -->
-                    <div class="portfolio-card-wrap">
-                        <div class="portfolio-card interact-card">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/7.png" class="ba-image img-before" alt="잠실 자연눈썹 눈썹문신 시술 전" loading="lazy">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/8.png" class="ba-image img-after" alt="잠실 자연눈썹 눈썹문신 시술 후 결과" loading="lazy">
-                            <div class="ba-label">After</div>
-                            <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
-                        </div>
-                    </div>
-                    <!-- Case 4 -->
-                    <div class="portfolio-card-wrap">
-                        <div class="portfolio-card interact-card">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/9.png" class="ba-image img-before" alt="잠실 자연눈썹 눈썹문신 시술 전" loading="lazy">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/10.png" class="ba-image img-after" alt="잠실 자연눈썹 눈썹문신 시술 후 결과" loading="lazy">
-                            <div class="ba-label">After</div>
-                            <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
-                        </div>
-                    </div>
-                    <!-- Case 5 -->
-                    <div class="portfolio-card-wrap">
-                        <div class="portfolio-card interact-card">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/11.png" class="ba-image img-before" alt="잠실 자연눈썹 눈썹문신 시술 전" loading="lazy">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/12.png" class="ba-image img-after" alt="잠실 자연눈썹 눈썹문신 시술 후 결과" loading="lazy">
-                            <div class="ba-label">After</div>
-                            <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
-                        </div>
-                    </div>
-                    <!-- Case 6 -->
-                    <div class="portfolio-card-wrap">
-                        <div class="portfolio-card interact-card">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/before3.png" class="ba-image img-before" alt="잠실 자연눈썹 눈썹문신 시술 전" loading="lazy">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/atfer3.png" class="ba-image img-after" alt="잠실 자연눈썹 눈썹문신 시술 후 결과" loading="lazy">
-                            <div class="ba-label">After</div>
-                            <div class="guide-overlay"><i class="fas fa-hand-pointer"></i> Touch</div>
-                        </div>
-                    </div>
-                    <!-- 더보기 -->
-                    <a href="https://www.instagram.com/__songshop/" class="more-card" target="_blank">
-                        <i class="fab fa-instagram" style="font-size:2.5rem; margin-bottom:15px; background: -webkit-linear-gradient(#f09433, #e6683c, #dc2743, #cc2366, #bc1888, #231557); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
-                        <span class="more-text">더 많은 시술 사진<br>보러가기</span>
-                    </a>
-                </div>
+            <div class="control-row">
+                <span class="control-label">이동</span>
+                <input type="range" id="photoPanX" min="-200" max="200" step="1" value="0">
+                <span class="value-label" id="photoPanXVal">0</span>
+            </div>
+            <div class="control-row">
+                <span class="control-label">이동</span>
+                <input type="range" id="photoPanY" min="-200" max="200" step="1" value="0">
+                <span class="value-label" id="photoPanYVal">0</span>
+            </div>
+            <div class="control-row">
+                <span class="control-label">회전</span>
+                <input type="range" id="photoRotate" min="-30" max="30" step="0.5" value="0">
+                <span class="value-label" id="photoRotateVal">0°</span>
             </div>
         </div>
-    </section>
 
-    <!-- Blog Reviews -->
-    <section class="section-padding blog-section">
-        <div class="container reveal">
-            <div class="text-center">
-                <h2 class="section-title">Real Reviews</h2>
-                <span class="title-line"></span>
-                <p class="section-desc">잠실·강릉에서 눈썹문신 받으신 고객님들의 솔직한 후기</p>
+        <!-- 눈썹 변환 패널 -->
+        <div class="transform-panel">
+            <div class="panel-title"><i class="fas fa-paint-brush"></i> 눈썹 조절</div>
+            <div class="control-row">
+                <span class="control-label">확대</span>
+                <input type="range" id="browZoom" min="0.5" max="3" step="0.01" value="1">
+                <span class="value-label" id="browZoomVal">100%</span>
             </div>
-            <div class="scroll-wrapper">
-                <div class="horizontal-scroll">
-                    <!-- 후기 1 -->
-                    <a href="https://blog.naver.com/alsthf916/223859650061" class="blog-item" target="_blank">
-                        <div class="blog-thumb">
-                            <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC1.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기1" loading="lazy">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">#잔흔커버 #탈각후기</div>
-                            <h3 class="blog-title">단골 추천이 많을 수 밖에 없는곳, 송샵!</h3>
-                            <p class="blog-desc">눈썹 손 하나도 안댔는데 라인 너무 예쁘지 않아요?</p>
-                            <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
-                        </div>
-                    </a>
-                    <!-- 후기 2 -->
-                    <a href="https://blog.naver.com/9nalog/224159427888" class="blog-item" target="_blank">
-                        <div class="blog-thumb">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC6.png" alt="잠실 눈썹문신 송샵 후기2" loading="lazy">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">#무통증 #자다가끝남</div>
-                            <h3 class="blog-title">시술 바로 다음날인데 이렇게 자연스러울수 있네요??</h3>
-                            <p class="blog-desc">원하는 눈썹결의 느낌 결감도 살리고 원장님이 자연스러움도 더해주셔서 바로 활동해도 정말 전혀 무리없을 정도!!</p>
-                            <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
-                        </div>
-                    </a>
-                    <!-- 후기 3 -->
-                    <a href="https://blog.naver.com/jm3516/224102287028" class="blog-item" target="_blank">
-                        <div class="blog-thumb">
-                            <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC2.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기3" loading="lazy">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">#찰떡라인 #무적쌩얼</div>
-                            <h3 class="blog-title">송샵 눈썹문신 후 한달 타임라인 후기</h3>
-                            <p class="blog-desc">눈썹 보이시죠? 쌩얼에도 너무 자연스러워요😍</p>
-                            <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
-                        </div>
-                    </a>
-                    <!-- 후기 4 -->
-                    <a href="https://blog.naver.com/silk_0/223841865239" class="blog-item" target="_blank">
-                        <div class="blog-thumb">
-                            <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC3.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기4" loading="lazy">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">#내돈내산 #눈썹재탄생</div>
-                            <h3 class="blog-title">송샵 눈썹 포토 리뷰!</h3>
-                            <p class="blog-desc">하나하나 꼼꼼히 챙겨주셔서 만족도가 너무 높아요</p>
-                            <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
-                        </div>
-                    </a>
-                    <!-- 후기 5 -->
-                    <a href="https://blog.naver.com/cgr8274/224235758330" class="blog-item" target="_blank">
-                        <div class="blog-thumb">
-                            <img src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/blog_formen.jpg" alt="잠실 눈썹문신 송샵 후기5" loading="lazy">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">#찐전문가 #짱구NO</div>
-                            <h3 class="blog-title">눈썹하고 엄청 마음에 들어하는 남편 ㅋㅋ</h3>
-                            <p class="blog-desc">남자눈썹문신은 여자눈썹이랑 다르게 너무 진하면 인상이 강해 보일 수 있어서 자연스러움이 핵심이라고 하시더라구요</p>
-                            <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
-                        </div>
-                    </a>
-                    <!-- 후기 6 -->
-                    <a href="https://blog.naver.com/ssong_1378/223834067219" class="blog-item" target="_blank">
-                        <div class="blog-thumb">
-                            <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC4.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기6" loading="lazy">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">#남편눈썹 #관리하는남자</div>
-                            <h3 class="blog-title">짱구 NO! 남편 데리고 갔다 왔어요</h3>
-                            <p class="blog-desc">평소 관리하는걸 잘 못하던 남편인데 눈썹 하나만으로...</p>
-                            <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
-                        </div>
-                    </a>
-                    <!-- 후기 7 -->
-                    <a href="https://blog.naver.com/skarbs919191/222934436213" class="blog-item" target="_blank">
-                        <div class="blog-thumb">
-                            <img src="https://github.com/songshop-ms/songshop/blob/main/%ED%9B%84%EA%B8%B0%EC%8D%B8%EB%84%A4%EC%9D%BC5.jpg?raw=true" alt="잠실 눈썹문신 송샵 후기7" loading="lazy">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">#자연눈썹 #속눈썹펌</div>
-                            <h3 class="blog-title">눈썹+속눈썹펌 꿀조합 후기</h3>
-                            <p class="blog-desc">하고나서 바로 친구들 만났는데 다들 잘됐다고 칭찬해줘서 기분 좋았어요! 다들 왜하는지 이제야 알겠더라구요</p>
-                            <div class="blog-link"><span class="naver-icon">N</span> 자세히 보기</div>
-                        </div>
-                    </a>
-                </div>
+            <div class="control-row">
+                <span class="control-label">이동</span>
+                <input type="range" id="browPanX" min="-200" max="200" step="1" value="0">
+                <span class="value-label" id="browPanXVal">0</span>
+            </div>
+            <div class="control-row">
+                <span class="control-label">이동</span>
+                <input type="range" id="browPanY" min="-200" max="200" step="1" value="0">
+                <span class="value-label" id="browPanYVal">0</span>
+            </div>
+            <div class="control-row">
+                <span class="control-label">회전</span>
+                <input type="range" id="browRotate" min="-30" max="30" step="0.5" value="0">
+                <span class="value-label" id="browRotateVal">0°</span>
             </div>
         </div>
-    </section>
 
-    <!-- 1:1 Consultation -->
-    <section class="section-padding process-section">
-        <div class="container">
-            <div class="text-center reveal">
-                <h2 class="section-title">1:1 Consultation</h2>
-                <span class="title-line"></span>
-                <p class="section-desc">상담은 이렇게 이루어집니다.</p>
-            </div>
-            <div class="process-grid reveal stagger-wrap">
-                <div class="process-item stagger-item">
-                    <img src="https://github.com/songshop-ms/songshop/blob/main/%EC%83%81%EB%8B%B4.jpg?raw=true" class="process-bg" alt="눈썹문신 정밀 상담 및 분석 과정" loading="lazy">
-                    <div class="process-overlay">
-                        <div class="step-num">01</div>
-                        <h3 class="step-title">정밀 상담 & 분석</h3>
-                        <p class="step-desc">고객님의 골격, 안면 비대칭, 기존 잔흔 유무를 꼼꼼히 체크합니다.</p>
-                    </div>
-                </div>
-                <div class="process-item stagger-item">
-                    <img src="https://github.com/songshop-ms/songshop/blob/main/%EB%94%94%EC%9E%90%EC%9D%B81.jpg?raw=true" class="process-bg" alt="눈썹문신 퍼스널 디자인 과정" loading="lazy">
-                    <div class="process-overlay">
-                        <div class="step-num">02</div>
-                        <h3 class="step-title">퍼스널 디자인</h3>
-                        <p class="step-desc">앉아서, 누워서, 눈을 떴을 때와 감았을 때를 모두 체크하여 최적의 라인을 찾습니다.</p>
-                    </div>
-                </div>
-                <div class="process-item stagger-item">
-                    <img src="https://github.com/songshop-ms/songshop/blob/main/%EC%9E%91%EC%97%85.jpg?raw=true" class="process-bg" alt="자연눈썹 섬세한 시술 과정" loading="lazy">
-                    <div class="process-overlay">
-                        <div class="step-num">03</div>
-                        <h3 class="step-title">섬세한 터치</h3>
-                        <p class="step-desc">피부 데미지를 최소화하는 SONGSHOP만의 터치로 한 올 한 올 결을 심습니다.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="capture-guide">
+            <i class="fas fa-camera"></i> 조절이 끝나면 화면을 캡처해서 고객에게 보내주세요
         </div>
-    </section>
-
-    <!-- 스타일 퀴즈 (호기심 & 참여 유도) -->
-    <section class="section-padding quiz-section" style="background: #FDFBF9;">
-        <div class="container reveal" style="max-width: 700px;">
-            <div class="text-center">
-                <h2 class="section-title">나에게 맞는 눈썹 스타일</h2>
-                <span class="title-line"></span>
-                <p class="section-desc">세 가지 질문에 답하면 당신에게 어울리는 분위기를 찾아드려요</p>
-            </div>
-
-            <div id="browQuiz" class="quiz-box">
-                <!-- 질문 1 -->
-                <div class="quiz-step" id="quizStep1">
-                    <p class="quiz-question">Q1. 나의 얼굴형은?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-opt" data-step="1" data-value="둥근형">둥근형</button>
-                        <button class="quiz-opt" data-step="1" data-value="각진형">각진형</button>
-                        <button class="quiz-opt" data-step="1" data-value="계란형">계란형</button>
-                        <button class="quiz-opt" data-step="1" data-value="하트형">하트형</button>
-                    </div>
-                </div>
-
-                <!-- 질문 2 -->
-                <div class="quiz-step" id="quizStep2" style="display:none;">
-                    <p class="quiz-question">Q2. 원하는 분위기는?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-opt" data-step="2" data-value="내추럴">내추럴</button>
-                        <button class="quiz-opt" data-step="2" data-value="시크">시크</button>
-                        <button class="quiz-opt" data-step="2" data-value="청순">청순</button>
-                        <button class="quiz-opt" data-step="2" data-value="도회적">도회적</button>
-                    </div>
-                </div>
-
-                <!-- 질문 3 -->
-                <div class="quiz-step" id="quizStep3" style="display:none;">
-                    <p class="quiz-question">Q3. 현재 눈썹 고민은?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-opt" data-step="3" data-value="숱없음">숱이 적어요</button>
-                        <button class="quiz-opt" data-step="3" data-value="비대칭">비대칭이에요</button>
-                        <button class="quiz-opt" data-step="3" data-value="잔흔">잔흔이 있어요</button>
-                        <button class="quiz-opt" data-step="3" data-value="모양">모양이 고민이에요</button>
-                    </div>
-                </div>
-
-                <!-- 결과 -->
-                <div class="quiz-result" id="quizResult">
-                    <div class="result-icon">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <h3 class="result-title" id="resultTitle">내추럴 아치형</h3>
-                    <p class="result-desc" id="resultDesc">
-                        얼굴의 장점은 살리고 부담스럽지 않은 라인으로<br>일상에서 자연스럽게 빛나는 스타일이에요.
-                    </p>
-
-                    <!-- 선택 요약 -->
-                    <div class="quiz-summary" id="quizSummary">
-                        <p><span>얼굴형</span> <strong id="summaryFace">-</strong></p>
-                        <p><span>원하는 분위기</span> <strong id="summaryVibe">-</strong></p>
-                        <p><span>눈썹 고민</span> <strong id="summaryConcern">-</strong></p>
-                    </div>
-
-                    <!-- 캡처 안내 -->
-                    <p class="capture-guide">
-                        <i class="fas fa-camera"></i> 이 결과를 캡처해서 카카오톡으로 보내주시면<br>어떤 모양이 나올지 미리 보여드립니다.
-                    </p>
-
-                    <a href="https://pf.kakao.com/_xhKxnhxj/chat" class="result-cta" target="_blank" id="resultCta">
-                        <i class="fas fa-comment"></i> 이 결과로 1:1 상담 받기
-                    </a>
-                    <button class="result-retry" id="retryQuiz">
-                        <i class="fas fa-undo"></i> 다시 해보기
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section-padding" style="background: white;">
-        <div class="container reveal stagger-wrap" style="max-width: 800px;">
-            <div class="text-center">
-                <h2 class="section-title">Q&A</h2>
-                <span class="title-line"></span>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item stagger-item">
-                    <div class="faq-question">Q. 시술 직후 짱구처럼 진해지나요? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer"><p style="padding-bottom:24px;">아니요. SONGSHOP은 시술 직후에도 일상생활이 가능할 정도의 자연스러운 농도를 맞춰드립니다.</p></div>
-                </div>
-                <div class="faq-item stagger-item">
-                    <div class="faq-question">Q. 기존 문신 잔흔이 있는데 가능한가요? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer"><p style="padding-bottom:24px;">잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 '포트폴리오 확인하기'를 통해 DM으로 사진을 보내주시면 정확한 상담이 가능합니다.</p></div>
-                </div>
-                <div class="faq-item stagger-item">
-                    <div class="faq-question">Q. 리터치는 언제 받아야 하나요? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer"><p style="padding-bottom:24px;">피부 재생 주기를 고려하여 첫 시술 후 4주~8주 사이에 받으시는 것을 권장드립니다.</p></div>
-                </div>
-                <div class="faq-item stagger-item">
-                    <div class="faq-question">Q. 잠실, 강릉 어디서 시술 가능한가요? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer"><p style="padding-bottom:24px;">SONGSHOP은 잠실 본점과 강릉 매장에서 동일한 퀄리티로 진행합니다. 잠실 눈썹문신·강릉 눈썹문신 모두 예약 후 방문해 주시면 정밀 상담부터 도와드립니다.</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 SONGSHOP. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Floating Bar -->
-    <div class="floating-bar" id="floatingBar">
-        <a href="https://www.instagram.com/__songshop/" class="float-btn btn-insta" target="_blank">
-            <i class="fab fa-instagram"></i> 포트폴리오
-        </a>
-        <a href="https://pf.kakao.com/_xhKxnhxj/chat" class="float-btn btn-inquiry" target="_blank">
-            <i class="fas fa-comment"></i> 상담 문의
-        </a>
     </div>
 
-    <!-- UI 기능 스크립트 -->
+    <div class="footer">
+        <p>&copy; 2025 SONGSHOP. All rights reserved.</p>
+    </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            // 1. FAQ Logic
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                question.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    const answer = item.querySelector('.faq-answer');
-                    faqItems.forEach(otherItem => {
-                        otherItem.classList.remove('active');
-                        otherItem.querySelector('.faq-answer').style.maxHeight = null;
-                    });
-                    if (!isActive) {
-                        item.classList.add('active');
-                        answer.style.maxHeight = answer.scrollHeight + "px";
-                    }
-                });
-            });
+        const canvas = document.getElementById('mainCanvas');
+        const ctx = canvas.getContext('2d');
+        const canvasContainer = document.getElementById('canvasContainer');
+        const placeholder = document.getElementById('placeholder');
+        const fileInput = document.getElementById('fileInput');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const resetBtn = document.getElementById('resetBtn');
 
-            // 2. Observer (Scroll Reveal)
-            if ('IntersectionObserver' in window) {
-                const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-                const observer = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if(entry.isIntersecting) {
-                            entry.target.classList.add('active');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, observerOptions);
-                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        let uploadedImage = null; // 업로드된 이미지
+        let currentPreset = 'natural';
+        let leftBrowPoints = []; // 왼쪽 눈썹 제어점 (5개)
+        let rightBrowPoints = []; // 오른쪽 눈썹 제어점 (5개)
+
+        // 사진 변환 상태
+        let photoTransform = { zoom: 1, panX: 0, panY: 0, rotate: 0 };
+        // 눈썹 변환 상태
+        let browTransform = { zoom: 1, panX: 0, panY: 0, rotate: 0 };
+
+        // 드래그 상태
+        let draggingPoint = null;
+        let dragOffset = { x: 0, y: 0 };
+
+        // 프리셋 정의 (기본 눈썹 모양 비율 - 캔버스 기준)
+        // 각 포인트: [x비율, y비율] (캔버스 중앙 기준)
+        const eyebrowPresets = {
+            natural: {
+                label: '내추럴 아치',
+                leftPoints: [
+                    [0.25, 0.45], [0.32, 0.40], [0.40, 0.36], [0.48, 0.40], [0.55, 0.45]
+                ],
+                rightPoints: [
+                    [0.75, 0.45], [0.68, 0.40], [0.60, 0.36], [0.52, 0.40], [0.45, 0.45]
+                ]
+            },
+            chic: {
+                label: '시크 스트레이트',
+                leftPoints: [
+                    [0.25, 0.42], [0.32, 0.41], [0.40, 0.40], [0.48, 0.41], [0.55, 0.42]
+                ],
+                rightPoints: [
+                    [0.75, 0.42], [0.68, 0.41], [0.60, 0.40], [0.52, 0.41], [0.45, 0.42]
+                ]
+            },
+            innocent: {
+                label: '청순 소프트',
+                leftPoints: [
+                    [0.25, 0.46], [0.32, 0.39], [0.40, 0.34], [0.48, 0.39], [0.55, 0.46]
+                ],
+                rightPoints: [
+                    [0.75, 0.46], [0.68, 0.39], [0.60, 0.34], [0.52, 0.39], [0.45, 0.46]
+                ]
+            },
+            urban: {
+                label: '도회적 표준',
+                leftPoints: [
+                    [0.25, 0.44], [0.32, 0.40], [0.40, 0.37], [0.48, 0.40], [0.55, 0.44]
+                ],
+                rightPoints: [
+                    [0.75, 0.44], [0.68, 0.40], [0.60, 0.37], [0.52, 0.40], [0.45, 0.44]
+                ]
+            },
+            cover: {
+                label: '잔흔 커버',
+                leftPoints: [
+                    [0.25, 0.43], [0.32, 0.40], [0.40, 0.38], [0.48, 0.40], [0.55, 0.43]
+                ],
+                rightPoints: [
+                    [0.75, 0.43], [0.68, 0.40], [0.60, 0.38], [0.52, 0.40], [0.45, 0.43]
+                ]
             }
+        };
 
-            // 3. Portfolio Card Interaction
-            const cards = document.querySelectorAll('.interact-card');
-            cards.forEach(card => {
-                const label = card.querySelector('.ba-label');
-                card.addEventListener('click', () => {
-                    card.classList.add('is-flipped-ani');
-                    setTimeout(() => {
-                        card.classList.toggle('showing-before');
-                        const isShowingBefore = card.classList.contains('showing-before');
-                        if (isShowingBefore) {
-                            label.textContent = "Before";
-                            label.style.background = "#8E7C68"; 
-                        } else {
-                            label.textContent = "After";
-                            label.style.background = "rgba(0,0,0,0.6)"; 
-                        }
-                    }, 200); 
-                    setTimeout(() => card.classList.remove('is-flipped-ani'), 500);
-                });
-            });
-
-            // 4. Floating Bar & Parallax & Fade-out effects
-            const floatingBar = document.getElementById('floatingBar');
-            const shape1 = document.getElementById('shape1');
-            const shape2 = document.getElementById('shape2');
-            const heroText = document.getElementById('heroText');
-            const scrollInd = document.querySelector('.scroll-indicator');
-            
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                if (scrollY > 300) floatingBar.classList.add('visible');
-                else floatingBar.classList.remove('visible');
-
-                shape1.style.transform = `translate(${scrollY * 0.05}px, ${scrollY * 0.1}px)`;
-                shape2.style.transform = `translate(${-scrollY * 0.05}px, ${-scrollY * 0.08}px)`;
-
-                if(scrollY < 700) {
-                    const opacityVal = 1 - (scrollY / 400); 
-                    heroText.style.transform = `translateY(${scrollY * 0.3}px)`;
-                    heroText.style.opacity = opacityVal;
-                    heroText.style.filter = `blur(${scrollY / 60}px)`;
-                    if(scrollInd) {
-                        scrollInd.style.opacity = opacityVal;
-                        if(opacityVal < 0.1) scrollInd.style.pointerEvents = 'none';
-                        else scrollInd.style.pointerEvents = 'auto';
-                    }
-                }
-            });
-
-            // 5. 통계 숫자 카운터
-            function animateStats() {
-                const statNumbers = document.querySelectorAll('.stat-number');
-                if (statNumbers.length === 0) return;
-                const observerOptions = { threshold: 0.5 };
-                const statsObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const el = entry.target;
-                            const target = parseInt(el.getAttribute('data-target'));
-                            const duration = 1800;
-                            const startTime = performance.now();
-                            function updateCounter(currentTime) {
-                                const elapsed = currentTime - startTime;
-                                const progress = Math.min(elapsed / duration, 1);
-                                const eased = 1 - Math.pow(1 - progress, 3);
-                                const currentValue = Math.floor(eased * target);
-                                el.textContent = currentValue.toLocaleString('ko-KR');
-                                if (progress < 1) {
-                                    requestAnimationFrame(updateCounter);
-                                } else {
-                                    el.textContent = target.toLocaleString('ko-KR');
-                                }
-                            }
-                            requestAnimationFrame(updateCounter);
-                            observer.unobserve(el);
-                        }
-                    });
-                }, observerOptions);
-                statNumbers.forEach(num => statsObserver.observe(num));
+        // 캔버스 크기 설정
+        function resizeCanvas() {
+            const rect = canvasContainer.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            if (uploadedImage) {
+                drawCanvas();
             }
-            animateStats();
-
-            // 6. 스타일 퀴즈
-            const quizData = { 1: null, 2: null, 3: null };
-            const stepDivs = {
-                1: document.getElementById('quizStep1'),
-                2: document.getElementById('quizStep2'),
-                3: document.getElementById('quizStep3')
-            };
-            const resultDiv = document.getElementById('quizResult');
-
-            document.querySelectorAll('.quiz-opt').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const step = parseInt(this.dataset.step);
-                    quizData[step] = this.dataset.value;
-                    if (step < 3) {
-                        stepDivs[step].style.display = 'none';
-                        stepDivs[step + 1].style.display = 'block';
-                    } else {
-                        stepDivs[3].style.display = 'none';
-                        showQuizResult();
-                    }
-                });
-            });
-
-            function showQuizResult() {
-                let title = '내추럴 아치형';
-                let desc = '얼굴의 장점은 살리고 부담스럽지 않은 라인으로<br>일상에서 자연스럽게 빛나는 스타일이에요.';
-
-                if (quizData[2] === '시크') {
-                    title = '시크한 스트레이트형';
-                    desc = '각진 느낌을 부드럽게 감싸주는 일자 라인으로<br>도시적이고 세련된 인상을 완성해요.';
-                } else if (quizData[2] === '청순') {
-                    title = '청순한 소프트 아치형';
-                    desc = '둥글고 부드러운 아치로 순한 인상을 강조해요.<br>메이크업 없이도 화사한 느낌을 줍니다.';
-                } else if (quizData[2] === '도회적') {
-                    title = '도회적 표준형';
-                    desc = '또렷한 눈매를 살려주는 표준 비율의 라인으로<br>자신감 있는 인상을 만들어줘요.';
-                }
-
-                if (quizData[3] === '잔흔') {
-                    title = '잔흔 커버 내추럴형';
-                    desc = '기존 잔흔을 자연스럽게 살려 새 라인으로 재탄생시키는<br>커버 특화 디자인이에요.';
-                }
-
-                // 결과 텍스트 설정
-                document.getElementById('resultTitle').textContent = title;
-                document.getElementById('resultDesc').innerHTML = desc;
-
-                // 선택 요약 채우기
-                const faceMap = { '둥근형': '둥근형', '각진형': '각진형', '계란형': '계란형', '하트형': '하트형' };
-                const vibeMap = { '내추럴': '내추럴', '시크': '시크', '청순': '청순', '도회적': '도회적' };
-                const concernMap = { '숱없음': '숱이 적어요', '비대칭': '비대칭이에요', '잔흔': '잔흔이 있어요', '모양': '모양이 고민이에요' };
-
-                document.getElementById('summaryFace').textContent = faceMap[quizData[1]] || '-';
-                document.getElementById('summaryVibe').textContent = vibeMap[quizData[2]] || '-';
-                document.getElementById('summaryConcern').textContent = concernMap[quizData[3]] || '-';
-
-                // 카카오톡 CTA 메시지에 선택 요약 포함
-                const cta = document.getElementById('resultCta');
-                const summaryText = `얼굴형: ${faceMap[quizData[1]] || '미선택'}, 분위기: ${vibeMap[quizData[2]] || '미선택'}, 고민: ${concernMap[quizData[3]] || '미선택'}`;
-                const msg = `[SONGSHOP 스타일 테스트] 저는 "${title}" 결과가 나왔어요. (${summaryText}) 1:1 상담 원해요!`;
-                cta.href = `https://pf.kakao.com/_xhKxnhxj/chat?text=${encodeURIComponent(msg)}`;
-
-                resultDiv.style.display = 'flex';
-            }
-
-            document.getElementById('retryQuiz').addEventListener('click', function() {
-                quizData[1] = quizData[2] = quizData[3] = null;
-                stepDivs[1].style.display = 'block';
-                stepDivs[2].style.display = 'none';
-                stepDivs[3].style.display = 'none';
-                resultDiv.style.display = 'none';
-            });
-        });
-    </script>
-
-    <!-- 추적 스크립트 -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const timers = [10, 30, 60, 180];
-            timers.forEach(seconds => {
-                setTimeout(() => {
-                    if(typeof fbq === 'function') {
-                        fbq('trackCustom', 'TimeOnSite', { seconds: seconds });
-                    }
-                }, seconds * 1000);
-            });
-
-            let scrollMarks = { 25: false, 50: false, 75: false, 90: false };
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrollPercent = (scrollTop / docHeight) * 100;
-                Object.keys(scrollMarks).forEach(mark => {
-                    if (scrollPercent >= mark && !scrollMarks[mark]) {
-                        scrollMarks[mark] = true;
-                        if(typeof fbq === 'function') {
-                            fbq('trackCustom', 'ScrollDepth', { depth: mark + '%' });
-                        }
-                    }
-                });
-            });
-
-            const btnInquiry = document.querySelector('.btn-inquiry');
-            if(btnInquiry) {
-                btnInquiry.addEventListener('click', function() {
-                    fbq('track', 'Contact', { content_name: '카카오톡_상담문의' });
-                    if(typeof gtag === 'function') gtag('event', 'kakao_consult_click', { location: 'FloatingBar' });
-                });
-            }
-
-            const btnInsta = document.querySelector('.btn-insta');
-            if(btnInsta) {
-                btnInsta.addEventListener('click', function() {
-                    fbq('trackCustom', 'ViewInstagram', { location: 'FloatingBar' });
-                });
-            }
-
-            const moreCard = document.querySelector('.more-card');
-            if(moreCard) {
-                moreCard.addEventListener('click', function() {
-                    fbq('trackCustom', 'ViewMorePortfolio');
-                });
-            }
-
-            const blogItems = document.querySelectorAll('.blog-item');
-            blogItems.forEach((item, index) => {
-                item.addEventListener('click', function() {
-                    fbq('trackCustom', 'ViewBlogReview', { index: index + 1 });
-                });
-            });
-
-            const pfCards = document.querySelectorAll('.portfolio-card');
-            pfCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    if(!card.classList.contains('showing-before')) {
-                        fbq('trackCustom', 'PortfolioInteraction');
-                    }
-                });
-            });
-        });
-    </script>
-
-    <!-- 구조화 데이터 -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BeautySalon",
-      "name": "SONGSHOP 송샵 (잠실 본점)",
-      "description": "잠실 눈썹문신 자연눈썹 전문샵. 남자눈썹문신, 잔흔커버, 두피문신.",
-      "url": "https://www.songshopbysong.com/",
-      "image": "https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/after4.png",
-      "telephone": "+82-10-7579-6581",
-      "priceRange": "₩₩",
-      "areaServed": ["잠실", "송파구", "서울"],
-      "knowsAbout": ["눈썹문신", "자연눈썹", "남자눈썹문신", "잔흔커버", "두피문신", "스칼프"],
-      "sameAs": ["https://www.instagram.com/__songshop/"],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "백제고분로7길 24-19",
-        "addressLocality": "송파구",
-        "addressRegion": "서울",
-        "postalCode": "05560",
-        "addressCountry": "KR"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BeautySalon",
-      "name": "SONGSHOP 송샵 (강릉 매장)",
-      "description": "강릉 눈썹문신 자연눈썹 전문샵. 남자눈썹문신, 잔흔커버, 두피문신.",
-      "url": "https://www.songshopbysong.com/",
-      "image": "https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/after5.png",
-      "telephone": "+82-10-7579-6581",
-      "priceRange": "₩₩",
-      "areaServed": ["강릉", "강원특별자치도"],
-      "knowsAbout": ["눈썹문신", "자연눈썹", "남자눈썹문신", "잔흔커버", "두피문신"],
-      "sameAs": ["https://www.instagram.com/__songshop/"],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "토성로 118",
-        "addressLocality": "강릉시",
-        "addressRegion": "강원특별자치도",
-        "postalCode": "25534",
-        "addressCountry": "KR"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "시술 직후 짱구처럼 진해지나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "아니요. SONGSHOP은 시술 직후에도 일상생활이 가능할 정도의 자연스러운 농도를 맞춰드립니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "기존 문신 잔흔이 있는데 가능한가요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 포트폴리오 확인하기를 통해 DM으로 사진을 보내주시면 정확한 상담이 가능합니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "리터치는 언제 받아야 하나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "피부 재생 주기를 고려하여 첫 시술 후 4주에서 8주 사이에 받으시는 것을 권장드립니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "잠실 강릉 어디서 시술 가능한가요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "SONGSHOP은 잠실 본점과 강릉 매장에서 동일한 퀄리티로 진행합니다. 잠실 눈썹문신과 강릉 눈썹문신 모두 예약 후 방문해 주시면 정밀 상담부터 도와드립니다."
-          }
         }
-      ]
-    }
+
+        // 프리셋 적용
+        function applyPreset(presetName) {
+            const preset = eyebrowPresets[presetName];
+            if (!preset) return;
+
+            leftBrowPoints = preset.leftPoints.map(([xRatio, yRatio]) => ({
+                x: xRatio * canvas.width,
+                y: yRatio * canvas.height
+            }));
+            rightBrowPoints = preset.rightPoints.map(([xRatio, yRatio]) => ({
+                x: xRatio * canvas.width,
+                y: yRatio * canvas.height
+            }));
+
+            currentPreset = presetName;
+            updatePresetButtons();
+            drawCanvas();
+        }
+
+        function updatePresetButtons() {
+            document.querySelectorAll('.preset-btn[data-preset]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.preset === currentPreset);
+            });
+        }
+
+        // 캔버스 그리기
+        function drawCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. 사진 그리기 (사진 변환 적용)
+            if (uploadedImage) {
+                ctx.save();
+                ctx.translate(canvas.width / 2 + photoTransform.panX, canvas.height / 2 + photoTransform.panY);
+                ctx.rotate(photoTransform.rotate * Math.PI / 180);
+                ctx.scale(photoTransform.zoom, photoTransform.zoom);
+                const imgWidth = canvas.width * 0.9;
+                const imgHeight = canvas.height * 0.9;
+                ctx.drawImage(uploadedImage, -imgWidth / 2, -imgHeight / 2, imgWidth, imgHeight);
+                ctx.restore();
+            }
+
+            // 2. 눈썹 그리기 (눈썹 변환 적용)
+            if (leftBrowPoints.length > 0 && rightBrowPoints.length > 0) {
+                ctx.save();
+                ctx.translate(canvas.width / 2 + browTransform.panX, canvas.height / 2 + browTransform.panY);
+                ctx.rotate(browTransform.rotate * Math.PI / 180);
+                ctx.scale(browTransform.zoom, browTransform.zoom);
+
+                // 눈썹 점선
+                drawBrowDashedLine(leftBrowPoints);
+                drawBrowDashedLine(rightBrowPoints);
+
+                // 제어점
+                drawControlPoints(leftBrowPoints);
+                drawControlPoints(rightBrowPoints);
+
+                ctx.restore();
+            }
+
+            // 3. 플레이스홀더 숨김/표시
+            if (uploadedImage) {
+                placeholder.style.display = 'none';
+            } else {
+                placeholder.style.display = 'flex';
+            }
+        }
+
+        function drawBrowDashedLine(points) {
+            if (points.length < 3) return;
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);
+            for (let i = 0; i < points.length - 1; i++) {
+                const p0 = points[Math.max(0, i - 1)];
+                const p1 = points[i];
+                const p2 = points[i + 1];
+                const p3 = points[Math.min(points.length - 1, i + 2)];
+                for (let t = 0; t <= 1; t += 0.05) {
+                    const t2 = t * t;
+                    const t3 = t2 * t;
+                    const x = 0.5 * ((2 * p1.x) + (-p0.x + p2.x) * t + (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t2 + (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t3);
+                    const y = 0.5 * ((2 * p1.y) + (-p0.y + p2.y) * t + (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t2 + (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t3);
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([5, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        function drawControlPoints(points) {
+            points.forEach(pt => {
+                ctx.beginPath();
+                ctx.arc(pt.x, pt.y, draggingPoint ? 7 : 5, 0, Math.PI * 2);
+                ctx.fillStyle = draggingPoint ? 'rgba(255, 255, 255, 0.9)' : 'rgba(201, 169, 110, 0.8)';
+                ctx.fill();
+                ctx.strokeStyle = '#8E7C68';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            });
+        }
+
+        // 좌표 변환 (눈썹 변환 기준)
+        function getBrowLocalCoords(clientX, clientY) {
+            const rect = canvas.getBoundingClientRect();
+            const x = (clientX - rect.left) * (canvas.width / rect.width);
+            const y = (clientY - rect.top) * (canvas.height / rect.height);
+
+            // 눈썹 변환 역산
+            const centerX = canvas.width / 2 + browTransform.panX;
+            const centerY = canvas.height / 2 + browTransform.panY;
+            const cos = Math.cos(-browTransform.rotate * Math.PI / 180);
+            const sin = Math.sin(-browTransform.rotate * Math.PI / 180);
+            const dx = x - centerX;
+            const dy = y - centerY;
+            const localX = (dx * cos - dy * sin) / browTransform.zoom;
+            const localY = (dx * sin + dy * cos) / browTransform.zoom;
+            return { x: localX, y: localY };
+        }
+
+        function findPointAt(pos) {
+            const radius = 15;
+            for (let i = 0; i < leftBrowPoints.length; i++) {
+                if (Math.hypot(pos.x - leftBrowPoints[i].x, pos.y - leftBrowPoints[i].y) < radius) return { side: 'left', index: i };
+                if (Math.hypot(pos.x - rightBrowPoints[i].x, pos.y - rightBrowPoints[i].y) < radius) return { side: 'right', index: i };
+            }
+            return null;
+        }
+
+        // 드래그 이벤트
+        canvas.addEventListener('mousedown', (e) => {
+            const pos = getBrowLocalCoords(e.clientX, e.clientY);
+            const found = findPointAt(pos);
+            if (found) {
+                draggingPoint = found;
+                const pt = found.side === 'left' ? leftBrowPoints[found.index] : rightBrowPoints[found.index];
+                dragOffset = { x: pos.x - pt.x, y: pos.y - pt.y };
+                e.preventDefault();
+                drawCanvas();
+            }
+        });
+
+        canvas.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1 && uploadedImage) {
+                const pos = getBrowLocalCoords(e.touches[0].clientX, e.touches[0].clientY);
+                const found = findPointAt(pos);
+                if (found) {
+                    draggingPoint = found;
+                    const pt = found.side === 'left' ? leftBrowPoints[found.index] : rightBrowPoints[found.index];
+                    dragOffset = { x: pos.x - pt.x, y: pos.y - pt.y };
+                    e.preventDefault();
+                    drawCanvas();
+                }
+            }
+        }, { passive: false });
+
+        window.addEventListener('mousemove', (e) => {
+            if (draggingPoint) {
+                const pos = getBrowLocalCoords(e.clientX, e.clientY);
+                movePoint(draggingPoint.side, draggingPoint.index, pos.x - dragOffset.x, pos.y - dragOffset.y);
+                e.preventDefault();
+            }
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (draggingPoint && e.touches.length === 1) {
+                const pos = getBrowLocalCoords(e.touches[0].clientX, e.touches[0].clientY);
+                movePoint(draggingPoint.side, draggingPoint.index, pos.x - dragOffset.x, pos.y - dragOffset.y);
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        window.addEventListener('mouseup', () => {
+            draggingPoint = null;
+            drawCanvas();
+        });
+        canvas.addEventListener('touchend', () => {
+            draggingPoint = null;
+            drawCanvas();
+        });
+
+        function movePoint(side, index, x, y) {
+            if (side === 'left') {
+                leftBrowPoints[index].x = x;
+                leftBrowPoints[index].y = y;
+                // 대칭
+                const centerX = canvas.width / 2;
+                rightBrowPoints[index].x = centerX - (x - centerX);
+                rightBrowPoints[index].y = y;
+            } else {
+                rightBrowPoints[index].x = x;
+                rightBrowPoints[index].y = y;
+                const centerX = canvas.width / 2;
+                leftBrowPoints[index].x = centerX - (x - centerX);
+                leftBrowPoints[index].y = y;
+            }
+            drawCanvas();
+        }
+
+        // 이미지 업로드
+        uploadBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length === 0) return;
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    uploadedImage = img;
+                    resizeCanvas();
+                    // 눈썹 프리셋 초기화
+                    applyPreset(currentPreset);
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // 초기화
+        resetBtn.addEventListener('click', () => {
+            uploadedImage = null;
+            leftBrowPoints = [];
+            rightBrowPoints = [];
+            photoTransform = { zoom: 1, panX: 0, panY: 0, rotate: 0 };
+            browTransform = { zoom: 1, panX: 0, panY: 0, rotate: 0 };
+            updateTransformUI();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            placeholder.style.display = 'flex';
+        });
+
+        // 변환 UI 업데이트
+        function updateTransformUI() {
+            document.getElementById('photoZoom').value = photoTransform.zoom;
+            document.getElementById('photoZoomVal').textContent = Math.round(photoTransform.zoom * 100) + '%';
+            document.getElementById('photoPanX').value = photoTransform.panX;
+            document.getElementById('photoPanXVal').textContent = photoTransform.panX;
+            document.getElementById('photoPanY').value = photoTransform.panY;
+            document.getElementById('photoPanYVal').textContent = photoTransform.panY;
+            document.getElementById('photoRotate').value = photoTransform.rotate;
+            document.getElementById('photoRotateVal').textContent = photoTransform.rotate + '°';
+
+            document.getElementById('browZoom').value = browTransform.zoom;
+            document.getElementById('browZoomVal').textContent = Math.round(browTransform.zoom * 100) + '%';
+            document.getElementById('browPanX').value = browTransform.panX;
+            document.getElementById('browPanXVal').textContent = browTransform.panX;
+            document.getElementById('browPanY').value = browTransform.panY;
+            document.getElementById('browPanYVal').textContent = browTransform.panY;
+            document.getElementById('browRotate').value = browTransform.rotate;
+            document.getElementById('browRotateVal').textContent = browTransform.rotate + '°';
+        }
+
+        // 사진 변환 슬라이더 이벤트
+        document.getElementById('photoZoom').addEventListener('input', (e) => {
+            photoTransform.zoom = parseFloat(e.target.value);
+            document.getElementById('photoZoomVal').textContent = Math.round(photoTransform.zoom * 100) + '%';
+            drawCanvas();
+        });
+        document.getElementById('photoPanX').addEventListener('input', (e) => {
+            photoTransform.panX = parseInt(e.target.value);
+            document.getElementById('photoPanXVal').textContent = photoTransform.panX;
+            drawCanvas();
+        });
+        document.getElementById('photoPanY').addEventListener('input', (e) => {
+            photoTransform.panY = parseInt(e.target.value);
+            document.getElementById('photoPanYVal').textContent = photoTransform.panY;
+            drawCanvas();
+        });
+        document.getElementById('photoRotate').addEventListener('input', (e) => {
+            photoTransform.rotate = parseFloat(e.target.value);
+            document.getElementById('photoRotateVal').textContent = photoTransform.rotate + '°';
+            drawCanvas();
+        });
+
+        // 눈썹 변환 슬라이더 이벤트
+        document.getElementById('browZoom').addEventListener('input', (e) => {
+            browTransform.zoom = parseFloat(e.target.value);
+            document.getElementById('browZoomVal').textContent = Math.round(browTransform.zoom * 100) + '%';
+            drawCanvas();
+        });
+        document.getElementById('browPanX').addEventListener('input', (e) => {
+            browTransform.panX = parseInt(e.target.value);
+            document.getElementById('browPanXVal').textContent = browTransform.panX;
+            drawCanvas();
+        });
+        document.getElementById('browPanY').addEventListener('input', (e) => {
+            browTransform.panY = parseInt(e.target.value);
+            document.getElementById('browPanYVal').textContent = browTransform.panY;
+            drawCanvas();
+        });
+        document.getElementById('browRotate').addEventListener('input', (e) => {
+            browTransform.rotate = parseFloat(e.target.value);
+            document.getElementById('browRotateVal').textContent = browTransform.rotate + '°';
+            drawCanvas();
+        });
+
+        // 프리셋 버튼
+        document.querySelectorAll('.preset-btn[data-preset]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyPreset(btn.dataset.preset);
+            });
+        });
+
+        // 창 크기 변경
+        window.addEventListener('resize', resizeCanvas);
+
+        // 초기화
+        resizeCanvas();
+        updateTransformUI();
+        placeholder.style.display = 'flex';
     </script>
 </body>
 </html>

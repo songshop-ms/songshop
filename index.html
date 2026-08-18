@@ -199,9 +199,12 @@
             gap: 30px 20px;
             margin-top: 60px;
             text-align: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         @media (min-width: 768px) {
-            .philo-stats { grid-template-columns: repeat(4, 1fr); max-width: 800px; margin-left: auto; margin-right: auto; }
+            .philo-stats { grid-template-columns: repeat(2, 1fr); max-width: 600px; }
         }
         .philo-stat-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .stat-number-wrap { display: flex; align-items: baseline; gap: 2px; }
@@ -215,7 +218,7 @@
         }
         .philo-stat-item p { font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: 300; letter-spacing: 0.5px; }
 
-        /* 수상 배지 */
+        /* 수상 및 경력 배지 */
         .philo-awards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -224,7 +227,7 @@
             margin: 50px auto 0 auto;
         }
         @media (min-width: 768px) {
-            .philo-awards { grid-template-columns: repeat(4, 1fr); max-width: 800px; gap: 16px; }
+            .philo-awards { grid-template-columns: repeat(3, 1fr); max-width: 900px; gap: 16px; }
         }
         .philo-award-item {
             background: rgba(255,255,255,0.06);
@@ -512,55 +515,51 @@
             <div class="philo-stats">
                 <div class="philo-stat-item">
                     <div class="stat-number-wrap">
-                        <span class="stat-number" data-target="10">0</span>
+                        <span class="stat-number" data-target="7">0</span>
                         <span class="stat-suffix">년+</span>
                     </div>
                     <p>시술 경력</p>
                 </div>
                 <div class="philo-stat-item">
                     <div class="stat-number-wrap">
-                        <span class="stat-number" data-target="5000">0</span>
+                        <span class="stat-number" data-target="3000">0</span>
                         <span class="stat-suffix">+</span>
                     </div>
                     <p>누적 시술 건수</p>
                 </div>
-                <div class="philo-stat-item">
-                    <div class="stat-number-wrap">
-                        <span class="stat-number" data-target="15">0</span>
-                        <span class="stat-suffix">+</span>
-                    </div>
-                    <p>수상 경력</p>
-                </div>
-                <div class="philo-stat-item">
-                    <div class="stat-number-wrap">
-                        <span class="stat-number" data-target="99">0</span>
-                        <span class="stat-suffix">%</span>
-                    </div>
-                    <p>고객 만족도</p>
-                </div>
             </div>
 
-            <!-- 수상 배지 -->
+            <!-- 수상 및 경력 -->
             <div class="philo-awards">
                 <div class="philo-award-item">
                     <i class="fas fa-trophy"></i>
-                    <span class="award-badge-text">대상</span>
-                    <p>2024 대한민국 뷰티 어워즈<br>세미퍼머넌트 부문</p>
+                    <span class="award-badge-text">종합 3등</span>
+                    <p>TNA X TNL X INCA<br>대만 국제 반영구 대회</p>
                 </div>
                 <div class="philo-award-item">
                     <i class="fas fa-medal"></i>
-                    <span class="award-badge-text">최우수상</span>
-                    <p>2023 KBCA 국제 미용대회<br>자연눈썹 디자인</p>
+                    <span class="award-badge-text">2등</span>
+                    <p>JIBC 일본 국제 반영구 대회<br>눈썹부문</p>
                 </div>
                 <div class="philo-award-item">
-                    <i class="fas fa-award"></i>
-                    <span class="award-badge-text">1위</span>
-                    <p>2023 IBEA 글로벌 콘테스트<br>잔흔커버 기술</p>
+                    <i class="fas fa-user-tie"></i>
+                    <span class="award-badge-text">심사위원</span>
+                    <p>제 17회 국제 바디아트 콘테스트<br>반영구 SMP 부문</p>
                 </div>
                 <div class="philo-award-item">
-                    <i class="fas fa-certificate"></i>
-                    <span class="award-badge-text">지정샵</span>
-                    <p>한국 반영구 예술협회<br>공식 인증 교육기관</p>
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span class="award-badge-text">특임강사</span>
+                    <p>대한문신사중앙회 소속<br>문신사 국가고시</p>
+                </div>
+                <div class="philo-award-item">
+                    <i class="fas fa-palette"></i>
+                    <span class="award-badge-text">해외 경력</span>
+                    <p>전 Toronto, Canada. Chronic Ink.<br>소속 아티스트 (2023) · 베스트 아웃풋</p>
+                </div>
+                <div class="philo-award-item">
+                    <i class="fas fa-flag-usa"></i>
+                    <span class="award-badge-text">해외 경력</span>
+                    <p>전 LA, United States. Beauty Friend.<br>소속 아티스트 (2024) · K beauty 담당자</p>
                 </div>
             </div>
         </div>

@@ -485,7 +485,7 @@
     </div>
 
     <!-- Hero Section -->
-    <header class="hero">
+    <header class="hero" data-sec="1_hero">
         <video id="hero-video" autoplay muted loop playsinline>
             <source src="https://raw.githubusercontent.com/songshop-ms/songshop/refs/heads/main/%E1%84%82%E1%85%B2%E1%84%92%E1%85%B5%E1%84%8B%E1%85%A5%E1%84%85%E1%85%A9.mp4" type="video/mp4">
         </video>
@@ -502,7 +502,7 @@
     </header>
 
     <!-- ══════ 철학 + 이력 ══════ -->
-    <section class="philosophy-section">
+    <section class="philosophy-section" data-sec="2_philosophy">
 
         <!-- 밴드 1 : 멘트 -->
         <div class="band band-quote">
@@ -525,7 +525,7 @@
         </div>
 
         <!-- 밴드 2 : 이력 (수상 사진 배경) -->
-        <div class="band band-record">
+        <div class="band band-record" data-sec="3_career">
             <div class="record-bg" role="img" aria-label="대만·일본 국제 반영구 대회 수상 현장"></div>
 
             <div class="record-lead"></div>
@@ -580,7 +580,7 @@
     </section>
 
     <!-- Portfolio -->
-    <section class="section-padding reveal blur-trigger">
+    <section class="section-padding reveal blur-trigger" data-sec="4_portfolio">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-title">Real Portfolio</h2>
@@ -647,7 +647,7 @@
     </section>
 
     <!-- Blog Reviews -->
-    <section class="section-padding blog-section">
+    <section class="section-padding blog-section" data-sec="5_reviews">
         <div class="container reveal">
             <div class="text-center">
                 <h2 class="section-title">Real Reviews</h2>
@@ -739,7 +739,7 @@
     </section>
 
     <!-- 1:1 Consultation -->
-    <section class="section-padding process-section">
+    <section class="section-padding process-section" data-sec="6_process">
         <div class="container">
             <div class="text-center reveal">
                 <h2 class="section-title">1:1 Consultation</h2>
@@ -776,7 +776,7 @@
     </section>
 
     <!-- 스타일 퀴즈 -->
-    <section class="section-padding quiz-section">
+    <section class="section-padding quiz-section" data-sec="7_quiz">
         <div class="container reveal" style="max-width: 700px;">
             <div class="text-center">
                 <h2 class="section-title">나에게 맞는 눈썹 스타일</h2>
@@ -846,7 +846,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section-padding" style="background: white;">
+    <section class="section-padding" style="background: white;" data-sec="8_faq">
         <div class="container reveal stagger-wrap" style="max-width: 800px;">
             <div class="text-center">
                 <h2 class="section-title">Q&amp;A</h2>
@@ -1074,85 +1074,193 @@
         });
     </script>
 
-    <!-- 추적 스크립트 -->
+    <!-- ══════ 진단용 계측 스크립트 ══════ -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const timers = [10, 30, 60, 180];
-            timers.forEach(seconds => {
-                setTimeout(() => {
-                    if(typeof fbq === 'function') {
-                        fbq('trackCustom', 'TimeOnSite', { seconds: seconds });
-                    }
-                }, seconds * 1000);
+    (function () {
+      "use strict";
+
+      /* ---------- 공통 발사대 ---------- */
+      var LOC = (function () {
+        try {
+          var q = new URLSearchParams(location.search).get('loc');
+          if (q) sessionStorage.setItem('ss_loc', q);
+          return sessionStorage.getItem('ss_loc') || 'unknown';
+        } catch (e) { return 'unknown'; }
+      })();
+
+      var sent = {};
+      function track(name, params, opts) {
+        params = params || {};
+        params.loc = LOC;
+        opts = opts || {};
+        if (opts.once) {
+          var key = opts.key || name;
+          if (sent[key]) return;
+          sent[key] = 1;
+        }
+        try {
+          if (typeof fbq === 'function') {
+            if (opts.standard) fbq('track', opts.standard, params);
+            else fbq('trackCustom', name, params);
+          }
+        } catch (e) {}
+        try { if (typeof gtag === 'function') gtag('event', name, params); } catch (e) {}
+      }
+
+      /* ---------- 활성 시간 계측 (탭이 보일 때만) ---------- */
+      var activeSec = 0, focused = null, dwell = {}, ratios = {}, maxDepth = 0, quizStep = 0;
+
+      setInterval(function () {
+        if (document.visibilityState !== 'visible') return;
+        activeSec++;
+        var best = null, bestR = 0.25;
+        for (var k in ratios) { if (ratios[k] > bestR) { bestR = ratios[k]; best = k; } }
+        if (best) {
+          focused = best;
+          dwell[best] = (dwell[best] || 0) + 1;
+        }
+      }, 1000);
+
+      /* ---------- 1층 : 도착 품질 ---------- */
+      var vis = 0;
+      var visTimer = setInterval(function () {
+        if (document.visibilityState !== 'visible') return;
+        if (++vis >= 3) {
+          clearInterval(visTimer);
+          track('engaged_3s', {}, { once: true });
+        }
+      }, 1000);
+
+      /* ---------- 2·3층 : 섹션 도달 & 체류 ---------- */
+      document.addEventListener('DOMContentLoaded', function () {
+
+        var secs = document.querySelectorAll('[data-sec]');
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              var name = en.target.getAttribute('data-sec');
+              ratios[name] = en.isIntersecting ? en.intersectionRatio : 0;
+              /* 화면보다 긴 섹션은 비율이 0.5에 못 미치므로
+                 "화면의 절반 이상을 차지했는가"도 같이 본다 */
+              var vh = window.innerHeight || document.documentElement.clientHeight;
+              var reached = en.intersectionRatio >= 0.5 ||
+                            (en.isIntersecting && en.intersectionRect.height >= vh * 0.5);
+              if (reached) {
+                track('sec' + name, {}, { once: true });
+                track('section_reach', { section: name }, { once: true, key: 'reach_' + name });
+              }
             });
+          }, { threshold: [0, 0.05, 0.1, 0.25, 0.4, 0.5, 0.75, 1] });
+          secs.forEach(function (s) { io.observe(s); });
+        }
 
-            let scrollMarks = { 25: false, 50: false, 75: false, 90: false };
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrollPercent = (scrollTop / docHeight) * 100;
-                Object.keys(scrollMarks).forEach(mark => {
-                    if (scrollPercent >= mark && !scrollMarks[mark]) {
-                        scrollMarks[mark] = true;
-                        if(typeof fbq === 'function') {
-                            fbq('trackCustom', 'ScrollDepth', { depth: mark + '%' });
-                        }
-                    }
-                });
-            });
+        /* ---------- 스크롤 최대 깊이 ---------- */
+        window.addEventListener('scroll', function () {
+          var d = document.documentElement;
+          var p = (d.scrollTop || window.scrollY) / (d.scrollHeight - d.clientHeight) * 100;
+          if (p > maxDepth) maxDepth = Math.min(100, Math.round(p));
+        }, { passive: true });
 
-            const btnInquiry = document.querySelector('.btn-inquiry');
-            if(btnInquiry) {
-                btnInquiry.addEventListener('click', function() {
-                    fbq('track', 'Contact', { content_name: '카카오톡_상담문의' });
-                    if(typeof gtag === 'function') gtag('event', 'kakao_consult_click', { location: 'FloatingBar' });
-                });
+        /* ---------- 상호작용 ---------- */
+        function engaged(kind) {
+          track('engaged_view', { kind: kind }, { once: true });
+        }
+
+        document.querySelectorAll('.portfolio-card').forEach(function (c) {
+          c.addEventListener('click', function () {
+            if (!c.classList.contains('showing-before')) {
+              track('act_portfolio', {}, { once: true });
+              engaged('portfolio');
             }
-
-            const btnInsta = document.querySelector('.btn-insta');
-            if(btnInsta) {
-                btnInsta.addEventListener('click', function() {
-                    fbq('trackCustom', 'ViewInstagram', { location: 'FloatingBar' });
-                });
-            }
-
-            const moreCard = document.querySelector('.more-card');
-            if(moreCard) {
-                moreCard.addEventListener('click', function() {
-                    fbq('trackCustom', 'ViewMorePortfolio');
-                });
-            }
-
-            const blogItems = document.querySelectorAll('.blog-item');
-            blogItems.forEach((item, index) => {
-                item.addEventListener('click', function() {
-                    fbq('trackCustom', 'ViewBlogReview', { index: index + 1 });
-                });
-            });
-
-            const pfCards = document.querySelectorAll('.portfolio-card');
-            pfCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    if(!card.classList.contains('showing-before')) {
-                        fbq('trackCustom', 'PortfolioInteraction');
-                    }
-                });
-            });
-
-            // 이력 행 노출 추적
-            const recRows = document.querySelectorAll('.rec');
-            if (recRows.length && 'IntersectionObserver' in window) {
-                const recObs = new IntersectionObserver((entries, obs) => {
-                    entries.forEach(e => {
-                        if (e.isIntersecting) {
-                            if(typeof fbq === 'function') fbq('trackCustom', 'ViewCareer');
-                            obs.disconnect();
-                        }
-                    });
-                }, { threshold: 0.5 });
-                recObs.observe(recRows[0]);
-            }
+          });
         });
+        document.querySelectorAll('.blog-item').forEach(function (it, i) {
+          it.addEventListener('click', function () {
+            track('act_review', { index: i + 1 });
+            engaged('review');
+          });
+        });
+        document.querySelectorAll('.faq-question').forEach(function (q, i) {
+          q.addEventListener('click', function () {
+            track('act_faq', { index: i + 1 }, { once: true });
+            engaged('faq');
+          });
+        });
+        var more = document.querySelector('.more-card');
+        if (more) more.addEventListener('click', function () { track('act_more_portfolio'); });
+        var insta = document.querySelector('.btn-insta');
+        if (insta) insta.addEventListener('click', function () { track('act_instagram', { placement: 'float' }); });
+
+        /* ---------- 퀴즈 깔때기 ---------- */
+        document.querySelectorAll('.quiz-opt').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var step = parseInt(this.dataset.step, 10);
+            if (step === 1) { track('quiz_start', {}, { once: true }); engaged('quiz'); }
+            if (step > quizStep) quizStep = step;
+            track('quiz_q' + step, { value: this.dataset.value }, { once: true });
+            if (step === 3) {
+              track('quiz_complete', {
+                face: document.getElementById('summaryFace') ? document.getElementById('summaryFace').textContent : '',
+                concern: this.dataset.value
+              }, { once: true, standard: 'Lead' });
+            }
+          });
+        });
+
+        var qcta = document.getElementById('resultCta');
+        if (qcta) qcta.addEventListener('click', function () {
+          var r = document.getElementById('resultTitle');
+          track('kakao_quiz', {
+            placement: 'quiz',
+            result: r ? r.textContent : '',
+            concern: document.getElementById('summaryConcern') ? document.getElementById('summaryConcern').textContent : ''
+          }, { standard: 'Contact' });
+        });
+        var retry = document.getElementById('retryQuiz');
+        if (retry) retry.addEventListener('click', function () { track('quiz_retry'); });
+
+        /* ---------- 상담 CTA ---------- */
+        var floatBtn = document.querySelector('.btn-inquiry');
+        if (floatBtn) floatBtn.addEventListener('click', function () {
+          track('kakao_float', {
+            placement: 'float',
+            section: focused || 'unknown',
+            depth: maxDepth
+          }, { standard: 'Contact' });
+        });
+      });
+
+      /* ---------- 4층 : 이탈 스냅샷 ---------- */
+      function bucket(n) {
+        if (n < 3) return '0-2';
+        if (n < 10) return '3-9';
+        if (n < 30) return '10-29';
+        if (n < 60) return '30-59';
+        return '60+';
+      }
+      var exited = false;
+      function exitSnapshot() {
+        if (exited) return;
+        exited = true;
+        var top = null, topN = 0, str = [];
+        for (var k in dwell) {
+          str.push(k + ':' + dwell[k]);
+          if (dwell[k] > topN) { topN = dwell[k]; top = k; }
+        }
+        track('lp_exit', {
+          last_section: focused || '1_hero',
+          top_section: top || '1_hero',
+          depth: maxDepth,
+          active: bucket(activeSec),
+          quiz_step: quizStep,
+          dwell: str.join(',')
+        });
+      }
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') exitSnapshot();
+      });
+      window.addEventListener('pagehide', exitSnapshot);
+    })();
     </script>
 
     <!-- 구조화 데이터 -->

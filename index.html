@@ -38,8 +38,8 @@
 
     <!-- SEO -->
     <title>잠실·강릉 눈썹문신 자연눈썹 전문 | SONGSHOP 송샵</title>
-    <meta name="description" content="잠실·강릉 눈썹문신 전문 SONGSHOP. 시술 직후부터 자연스러운 자연눈썹, 잔흔커버, 두피문신. 원장이 1:1 상담 후 직접 시술합니다.">
-    <meta name="keywords" content="잠실 눈썹문신, 강릉 눈썹문신, 자연눈썹, 남자눈썹문신, 잔흔커버, 두피문신, 송파 눈썹문신">
+    <meta name="description" content="시술 직후부터의 자연스러움. 원장이 1:1 상담 후 직접 시술합니다.">
+    <meta name="keywords" content="잠실 눈썹문신, 강릉 눈썹문신, 남자눈썹문신, 송파 눈썹문신, 잠실 남자눈썹문신, 강동눈썹문신">
     <link rel="canonical" href="https://www.songshopbysong.com/">
 
     <!-- Open Graph -->
@@ -186,108 +186,62 @@
         @keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,10px); } }
 
         /* ══════════════════════════════════════════
-           철학 + 이력  (두 사진 크로스 디졸브)
+           시술자 : 경력  (/men authority 구조)
            ══════════════════════════════════════════ */
-        .philosophy-section { position: relative; background: var(--ink); overflow: hidden; z-index: 2; }
-        .band { position: relative; }
-        .band > .container { position: relative; z-index: 3; }
+        .auth-section { position: relative; z-index: 2; background: var(--ink); color: #fff; padding: 90px 0 100px; }
 
-        /* ── 밴드 1 : 멘트 ── */
-        .band-quote {
-            padding: 115px 0 155px; z-index: 1;
-            /* ★ 현재: 레포에 이미 있는 원본(1.1MB). craft-bg.jpg 업로드 후 아래 줄로 교체 권장(133KB)
-               background-image: url('/craft-bg.jpg'); */
-            background-image: url('/%EC%B2%A0%ED%95%99%ED%83%AD%EB%B0%B0%EA%B2%BD%EC%A0%9C%EA%B1%B0.webp');
-            background-repeat: no-repeat;
-            background-position: center bottom;
-            background-size: cover;
-        }
-        /* 가독성 오버레이 (마스크·fixed 미사용 → 합성 버그 회피) */
-        .band-quote::before {
-            content: ''; position: absolute; inset: 0; z-index: 1;
-            background:
-                radial-gradient(ellipse 72% 50% at 50% 40%, rgba(0,0,0,0.74) 0%, rgba(0,0,0,0.42) 100%),
-                linear-gradient(to bottom, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.45) 100%);
-        }
-        .quote-box { text-align: center; color: white; max-width: 700px; margin: 0 auto; }
-        .quote-icon { font-size: 3rem; color: rgba(255,255,255,0.32); font-family: serif; margin-bottom: 28px; display: block; }
-        .philo-main-text {
-            font-family: 'Gowun Batang', serif; font-size: 1.25rem; line-height: 1.8;
-            margin-bottom: 38px; color: rgba(255,255,255,0.96);
-            text-shadow: 0 2px 14px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.6);
-        }
-        .philo-author {
-            font-size: 0.95rem; color: #FFF; font-weight: 700; letter-spacing: 1px;
-            border-top: 1px solid rgba(255,255,255,0.32); display: inline-block; padding-top: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-        }
-
-        /* ── 밴드 2 : 이력 (수상 사진 배경) ── */
-        .band-record { padding: 0 0 90px; background: transparent; margin-top: -175px; z-index: 2; }
-        .record-bg {
-            position: absolute; top: 0; left: 0; width: 100%; z-index: 1;
-            aspect-ratio: 1078 / 1145;
-            /* ★ 현재: 레포에 이미 있는 원본(2.0MB). mix-bg.jpg 업로드 후 아래 줄로 교체 권장(258KB)
-               background-image: url('/mix-bg.jpg'); */
+        .creds-band { position: relative; width: 100%; margin: 34px 0 4px; overflow: hidden; aspect-ratio: 1080/1078; max-height: 560px; }
+        .creds-band .ph {
+            position: absolute; inset: 0;
             background-image: url('/mix.webp');
-            background-size: cover; background-position: center center; background-repeat: no-repeat;
-            filter: grayscale(0.30) contrast(1.02);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+            background-size: cover; background-position: center 18%; background-repeat: no-repeat;
+            filter: grayscale(0.34) contrast(1.04);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000 20%, #000 62%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000 20%, #000 62%, rgba(0,0,0,0) 100%);
         }
-        .record-bg::after {
+        .creds-band .ph::after {
             content: ''; position: absolute; inset: 0;
             background: linear-gradient(to bottom,
-                rgba(0,0,0,0.30) 0%,
-                rgba(0,0,0,0.34) 26%,
-                rgba(0,0,0,0.44) 50%,
-                rgba(0,0,0,0.72) 78%,
-                rgba(0,0,0,0.85) 100%);
+                rgba(20,18,16,0.62) 0%, rgba(20,18,16,0.24) 30%, rgba(20,18,16,0.34) 62%, rgba(20,18,16,0.92) 100%);
         }
-        .record-lead { height: 38vh; min-height: 250px; max-height: 360px; }
+        .creds-band .stamp {
+            position: absolute; left: 0; bottom: 14px; z-index: 2;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.66rem; letter-spacing: 0.2em; font-weight: 700; color: var(--gold);
+        }
+        .creds-band .stamp em { font-style: normal; font-size: 0.72rem; letter-spacing: 0.02em; font-weight: 400; color: rgba(255,255,255,0.55); }
 
-        .ledger { max-width: 720px; margin: 0 auto; }
-        .ledger-stats {
-            display: grid; grid-template-columns: repeat(2,1fr);
-            border-top: 1px solid rgba(255,255,255,0.24);
-            padding: 24px 0 30px;
-        }
-        .ledger-stats > div + div { border-left: 1px solid rgba(255,255,255,0.16); }
-        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+        .stats { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,0.14); padding: 22px 0 26px; }
+        .stats > div + div { border-left: 1px solid rgba(255,255,255,0.14); }
+        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .stat-number-wrap { display: flex; align-items: baseline; gap: 2px; }
-        .stat-number { font-family: 'Gowun Batang', serif; font-size: 2.4rem; font-weight: 700; color: #FFF; line-height: 1; text-shadow: 0 2px 14px rgba(0,0,0,0.85); }
-        .stat-suffix { font-family: 'Gowun Batang', serif; font-size: 1.25rem; font-weight: 700; color: var(--gold); line-height: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        .stat-item p { font-size: 0.75rem; color: rgba(255,255,255,0.72); font-weight: 300; letter-spacing: 1px; text-shadow: 0 1px 9px rgba(0,0,0,0.9); }
+        .stat-number { font-size: 2.2rem; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.04em; }
+        .stat-suffix { font-size: 1.1rem; font-weight: 700; color: var(--gold); line-height: 1; }
+        .stat-item p { font-size: 0.72rem; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; font-weight: 300; }
 
-        .rec {
-            display: block; border-top: 1px solid rgba(255,255,255,0.16);
-            padding: 20px 2px 22px;
-            transition: padding-left 0.35s cubic-bezier(.2,.8,.2,1), border-color 0.35s;
+        .rec { display: block; padding: 18px 2px; border-bottom: 1px solid rgba(255,255,255,0.14); }
+        .rec-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+        .rec-cat { font-size: 0.62rem; letter-spacing: 0.26em; font-weight: 700; color: var(--gold); }
+        .rec-result { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.7); }
+        .rec-title { font-size: 1.06rem; font-weight: 700; line-height: 1.4; letter-spacing: -0.02em; color: #fff; }
+        .rec-sub { display: block; margin-top: 5px; font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.55); }
+        .rec:last-of-type { border-bottom: none; }
+
+        .auth-note {
+            margin-top: 34px; padding-left: 18px; border-left: 2px solid var(--gold);
+            font-family: 'Gowun Batang', serif; font-size: 1.02rem; line-height: 1.85; color: rgba(255,255,255,0.9);
         }
-        .rec:last-child { border-bottom: 1px solid rgba(255,255,255,0.16); }
-        .rec:hover { padding-left: 10px; border-color: rgba(201,169,110,0.5); }
-        .rec-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 9px; }
-        .rec-cat { font-size: 0.66rem; letter-spacing: 3px; font-weight: 700; color: var(--gold); text-shadow: 0 1px 9px rgba(0,0,0,0.9); }
-        .rec-result { font-size: 0.74rem; letter-spacing: 1px; font-weight: 600; color: rgba(255,255,255,0.78); text-align: right; text-shadow: 0 1px 9px rgba(0,0,0,0.9); }
-        .rec-title {
-            font-family: 'Gowun Batang', serif; font-size: 1.18rem; font-weight: 700; line-height: 1.4;
-            color: #fff; letter-spacing: -0.02em; text-shadow: 0 2px 14px rgba(0,0,0,0.9);
-        }
-        .rec-sub {
-            display: block; margin-top: 6px; font-family: 'Pretendard', sans-serif;
-            font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.6);
-            text-shadow: 0 1px 9px rgba(0,0,0,0.9);
+        .auth-note span {
+            display: block; margin-top: 14px; font-family: 'Pretendard', sans-serif;
+            font-size: 0.82rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.55);
         }
         @media (min-width: 768px) {
-            .record-bg { aspect-ratio: auto; height: 660px; background-position: center 32%; }
-            .record-lead { height: 330px; }
-            .ledger { max-width: 760px; }
-            .rec { padding: 24px 2px 26px; }
-            .rec-title { font-size: 1.4rem; }
-            .rec-sub { font-size: 0.83rem; }
-            .rec-cat { font-size: 0.68rem; }
-            .rec-result { font-size: 0.78rem; }
+            .creds-band { aspect-ratio: auto; height: 430px; margin-top: 40px; }
+            .creds-band .ph { background-position: center 22%; }
+            .rec { padding: 20px 2px; }
+            .rec-title { font-size: 1.2rem; }
         }
+        @media (min-width: 860px) { .auth-section { padding: 110px 0 120px; } }
 
         /* Portfolio */
         .scroll-wrapper { margin-left: -20px; margin-right: -20px; width: calc(100% + 40px); }
@@ -498,10 +452,6 @@
         }
         .store-card p { font-size: 0.82rem; color: var(--text-sub); line-height: 1.7; margin: 0; }
         .store-card .store-hours { color: var(--text-main); font-weight: 500; margin-top: 6px; }
-        .store-card .store-map {
-            display: inline-block; margin-top: 12px; font-size: 0.78rem;
-            color: var(--naver-green); font-weight: 600;
-        }
         .store-note { font-size: 0.78rem; color: var(--text-sub); line-height: 1.7; }
         @media (max-width: 600px) {
             .store-grid { flex-direction: column; align-items: stretch; }
@@ -536,10 +486,6 @@
             .hero-brand { margin-top: 20px; font-size: 0.65rem; }
             .scroll-indicator { bottom: calc(50px + env(safe-area-inset-bottom)); }
 
-            .band-quote { padding: 95px 0 130px; }
-            .band-quote { background-size: 135% auto; }
-            .band-record { margin-top: -145px; padding-bottom: 75px; }
-            .philo-main-text { font-size: 1.05rem; line-height: 1.7; }
             .stat-number { font-size: 2rem; }
             .stat-suffix { font-size: 1.05rem; }
             .rec { padding: 17px 2px 19px; }
@@ -552,6 +498,65 @@
             .quiz-summary p { font-size: 0.8rem; }
             .capture-guide { font-size: 0.78rem; }
         }
+
+        /* ══════════════════════════════════════════
+           증거 : 결  (히어로 직후 기술 섹션)
+           ══════════════════════════════════════════ */
+        .proof-section { position: relative; z-index: 2; background: var(--ink); color: #fff; padding: 90px 0 100px; }
+        .dk-rule { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
+        .dk-rule .k { font-size: 0.66rem; letter-spacing: 0.24em; font-weight: 700; color: var(--gold); white-space: nowrap; }
+        .dk-rule .l { flex: 1; height: 1px; background: rgba(255,255,255,0.2); }
+        .dk-h { font-family: 'Gowun Batang', serif; font-size: 1.6rem; line-height: 1.4; font-weight: 700; margin-bottom: 14px; color: #fff; }
+        .dk-h em { font-style: normal; color: var(--gold); }
+        .dk-lede { font-size: 0.98rem; color: rgba(255,255,255,0.66); font-weight: 300; }
+
+        .proof-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 32px; }
+        .proof-media { position: relative; background: #000; overflow: hidden; border-radius: 4px; margin: 0; }
+        .proof-media video { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
+        .proof-badge {
+            position: absolute; top: 8px; left: 8px; z-index: 3;
+            display: flex; align-items: center; gap: 5px;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); color: #fff;
+            font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; padding: 4px 8px; border-radius: 2px;
+        }
+        @media (min-width: 640px) {
+            .proof-badge { top: 12px; left: 12px; gap: 7px; font-size: 0.66rem; letter-spacing: 0.16em; padding: 6px 11px; }
+        }
+        .proof-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: proofLive 1.6s ease-in-out infinite; }
+        @keyframes proofLive { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+        .proof-note { margin-top: 13px; }
+        .proof-note-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; color: var(--gold);
+        }
+        .proof-note-tag i { font-size: 0.38rem; }
+        .proof-note p { margin-top: 7px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+        .look { border-top: 1px solid rgba(255,255,255,0.14); margin-top: 34px; }
+        .look-i { padding: 18px 2px; border-bottom: 1px solid rgba(255,255,255,0.14); }
+        .look-i h3 { font-family: 'Pretendard', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; display: flex; gap: 10px; align-items: baseline; }
+        .look-i h3 span { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); flex: 0 0 auto; }
+        .look-i p { font-size: 0.87rem; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.75; }
+
+        .proof-close { margin-top: 34px; padding: 24px; border-left: 2px solid var(--gold); background: rgba(255,255,255,0.045); font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.9); }
+        .proof-close b { color: #fff; font-weight: 700; }
+
+        .checks { margin-top: 30px; }
+        .checks .lab { font-size: 0.66rem; letter-spacing: 0.22em; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
+        .checks ul { list-style: none; display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.14); }
+        .checks li { background: var(--ink); padding: 14px 16px; font-size: 0.9rem; color: rgba(255,255,255,0.82); display: flex; gap: 10px; align-items: baseline; font-weight: 300; }
+        .checks li i { color: var(--gold); font-size: 0.55rem; }
+        @media (min-width: 768px) { .checks ul { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 640px) { .proof-duo { gap: 12px; } }
+        @media (min-width: 860px) {
+            .proof-section { padding: 110px 0 120px; }
+            .dk-h { font-size: 2rem; }
+            .look { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 40px; }
+            .look-i { padding: 24px 22px 6px; border-bottom: none; border-left: 1px solid rgba(255,255,255,0.14); }
+            .look-i:first-child { border-left: none; padding-left: 0; }
+            .look-i:last-child { padding-right: 0; }
+        }
+
     </style>
 </head>
 <body>
@@ -580,86 +585,68 @@
         </div>
     </header>
 
-    <!-- ══════ 철학 + 이력 ══════ -->
-    <section class="philosophy-section" data-sec="2_philosophy">
 
-        <!-- 밴드 1 : 멘트 -->
-        <div class="band band-quote">
-            <div class="container reveal">
-                <div class="quote-box">
-                    <span class="quote-icon">“</span>
-                    <p class="philo-main-text">
-                        눈썹은 얼굴의 지붕입니다. 1mm의 두께,<br>
-                        미세한 각도 차이가 인상을 바꿉니다.<br><br>
-                        그렇기에 전문가가 필요합니다.<br>
-                        꼼꼼한 상담도 필요합니다.<br><br>
-                        만약 SONGSHOP에 오셨다면<br>
-                        원하시는 이미지를 말씀만 해주세요.<br><br>
-                        그 다음은 제가 책임지겠습니다.<br><br>
-                        잠실 본점과 강릉 매장에서 원장이 직접 시술합니다.
-                    </p>
-                    <div class="philo-author">SONGSHOP 원장 드림</div>
+    <!-- ══════ 증거 : 결 ══════ -->
+    <section class="proof-section" data-sec="2_proof">
+        <div class="container reveal">
+
+            <div class="dk-rule"><span class="k">증명</span><span class="l"></span></div>
+            <h2 class="dk-h">자연스럽다는 말은 누구나 합니다.<br><em>그래서 확대해봤습니다.</em></h2>
+            <p class="dk-lede">여성과 남성, 어떤 눈썹이든 쓸어넘겨도 진짜 내 눈썹같은 결을 심어드립니다.</p>
+
+            <div class="proof-duo">
+                <figure class="proof-media">
+                    <video class="proof-video" autoplay muted loop playsinline preload="metadata" poster="/brow-poster-w.jpg">
+                        <source src="/brow-sweep-w.mp4" type="video/mp4">
+                    </video>
+                    <figcaption class="proof-badge"><span class="dot"></span> 여성</figcaption>
+                </figure>
+                <figure class="proof-media">
+                    <video class="proof-video" autoplay muted loop playsinline preload="metadata" poster="/brow-poster-m.jpg">
+                        <source src="/brow-sweep-m.mp4" type="video/mp4">
+                    </video>
+                    <figcaption class="proof-badge"><span class="dot"></span> 남성</figcaption>
+                </figure>
+            </div>
+            <div class="proof-note">
+                <span class="proof-note-tag"><i class="fas fa-circle"></i>무편집 · 무보정</span>
+            </div>
+
+            <div class="look">
+                <div class="look-i">
+                    <h3><span>01</span>내 털 같은 결을 심는가</h3>
+                    <p>면으로 색을 채운 눈썹은 털을 걷어내면 덩어리가 그대로 드러납니다. 결로 심으면 걷어내도 원래 제 눈썹처럼 보입니다.</p>
+                </div>
+                <div class="look-i">
+                    <h3><span>02</span>원래 털의 방향까지 고려했는가</h3>
+                    <p>쓸어 올렸을 때 심은 선과 진짜 털과 같도록 방향까지 고려하는 디테일이 필요합니다.</p>
+                </div>
+                <div class="look-i">
+                    <h3><span>03</span>원래 털과 굵기와 색감이 비슷한가</h3>
+                    <p>기존 털의 굵기와 색감까지 맞추어야 유지기간 내내 내 얼굴과 맞는 결이 심어집니다.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- 밴드 2 : 이력 (수상 사진 배경) -->
-        <div class="band band-record" data-sec="3_career">
-            <div class="record-bg" role="img" aria-label="대만·일본 국제 반영구 대회 수상 현장"></div>
-
-            <div class="record-lead"></div>
-
-            <div class="container">
-              <div class="ledger reveal">
-
-                <div class="ledger-stats">
-                    <div class="stat-item">
-                        <div class="stat-number-wrap">
-                            <span class="stat-number" data-target="7">0</span><span class="stat-suffix">년+</span>
-                        </div>
-                        <p>시술 경력</p>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number-wrap">
-                            <span class="stat-number" data-target="3000">0</span><span class="stat-suffix">+</span>
-                        </div>
-                        <p>누적 시술 건수</p>
-                    </div>
-                </div>
-
-                <div class="rec">
-                    <div class="rec-meta"><span class="rec-cat">수상</span><span class="rec-result">종합 3등</span></div>
-                    <div class="rec-title">TNA × TNL × INCA 대만 국제 반영구 대회</div>
-                </div>
-                <div class="rec">
-                    <div class="rec-meta"><span class="rec-cat">수상</span><span class="rec-result">2등</span></div>
-                    <div class="rec-title">JIBC 일본 국제 반영구 대회<span class="rec-sub">Eyebrows 부문</span></div>
-                </div>
-                <div class="rec">
-                    <div class="rec-meta"><span class="rec-cat">활동</span><span class="rec-result">심사위원</span></div>
-                    <div class="rec-title">제17회 국제 바디아트 콘테스트<span class="rec-sub">반영구 SMP 부문</span></div>
-                </div>
-                <div class="rec">
-                    <div class="rec-meta"><span class="rec-cat">활동</span><span class="rec-result">특임강사</span></div>
-                    <div class="rec-title">대한문신사중앙회<span class="rec-sub">문신사 국가고시 담당</span></div>
-                </div>
-                <div class="rec">
-                    <div class="rec-meta"><span class="rec-cat">해외</span><span class="rec-result">2023</span></div>
-                    <div class="rec-title">Chronic Ink · Toronto, Canada<span class="rec-sub">소속 아티스트 · Artist of February 선정</span></div>
-                </div>
-                <div class="rec">
-                    <div class="rec-meta"><span class="rec-cat">해외</span><span class="rec-result">2024</span></div>
-                    <div class="rec-title">Beauty Friend · Los Angeles, USA<span class="rec-sub">소속 아티스트 · K-beauty 담당</span></div>
-                </div>
-
-              </div>
+            <div class="proof-close">
+                눈썹문신이 잘됐는지는 <b>디테일이 결정짓습니다.</b><br>
+                자신있게 결과물을 오픈할 수 있는 곳에서 하셔야 합니다.
             </div>
-        </div>
 
+            <div class="checks">
+                <div class="lab">이런 경우라면 특히</div>
+                <ul>
+                    <li><i class="fas fa-minus"></i><span>숱이 적어 인상이 흐릿하다</span></li>
+                    <li><i class="fas fa-minus"></i><span>좌우 눈썹이 비대칭이다</span></li>
+                    <li><i class="fas fa-minus"></i><span>예전에 한 문신이 잔흔으로 남았다</span></li>
+                    <li><i class="fas fa-minus"></i><span>눈썹으로 인상을 바꾸고 싶다</span></li>
+                </ul>
+            </div>
+
+        </div>
     </section>
 
     <!-- Portfolio -->
-    <section class="section-padding reveal blur-trigger" data-sec="4_portfolio">
+    <section class="section-padding reveal blur-trigger" data-sec="3_portfolio">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-title">Real Portfolio</h2>
@@ -725,7 +712,10 @@
         </div>
     </section>
 
-    <!-- Blog Reviews -->
+    <!-- ══════ 후기 ══════
+         ★ data-sec 는 "5_reviews" 로 고정한다.
+            집행 중인 광고의 전환 기준 이벤트(sec5_reviews)라 이름을 바꾸면 캠페인이 끊긴다.
+            물리적으로는 네 번째지만 번호는 5 를 유지하며, 4 번은 결번으로 둔다. ══════ -->
     <section class="section-padding blog-section" data-sec="5_reviews">
         <div class="container reveal">
             <div class="text-center">
@@ -817,8 +807,67 @@
         </div>
     </section>
 
+    <!-- ══════ 시술자 : 경력 ══════ -->
+    <section class="auth-section" data-sec="6_authority">
+        <div class="container reveal">
+
+            <div class="dk-rule"><span class="k">시술자</span><span class="l"></span></div>
+            <h2 class="dk-h">안심하고 맡기셔도 됩니다.<br><em>경력에 걸맞는 작업을 해드리겠습니다.</em></h2>
+            <p class="dk-lede">일대일 원장 책임 시술제를 원칙으로 합니다. 잠실 본점과 강릉 매장 모두 원장이 직접 시술합니다.</p>
+
+            <div class="creds-band">
+                <div class="ph" role="img" aria-label="대만·일본 국제 반영구 대회 수상 현장"></div>
+                <div class="stamp">수상 현장 <em>대만 · 일본 국제 반영구 대회</em></div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number-wrap"><span class="stat-number" data-target="7">0</span><span class="stat-suffix">년+</span></div>
+                    <p>시술 경력</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number-wrap"><span class="stat-number" data-target="3000">0</span><span class="stat-suffix">+</span></div>
+                    <p>누적 시술</p>
+                </div>
+            </div>
+
+            <div class="rec">
+                <div class="rec-meta"><span class="rec-cat">수상</span><span class="rec-result">종합 3등</span></div>
+                <div class="rec-title">TNA × TNL × INCA 대만 국제 반영구 대회</div>
+            </div>
+            <div class="rec">
+                <div class="rec-meta"><span class="rec-cat">수상</span><span class="rec-result">2등</span></div>
+                <div class="rec-title">JIBC 일본 국제 반영구 대회<span class="rec-sub">Eyebrows 부문</span></div>
+            </div>
+            <div class="rec">
+                <div class="rec-meta"><span class="rec-cat">활동</span><span class="rec-result">심사위원</span></div>
+                <div class="rec-title">제17회 국제 바디아트 콘테스트<span class="rec-sub">반영구 SMP 부문</span></div>
+            </div>
+            <div class="rec">
+                <div class="rec-meta"><span class="rec-cat">활동</span><span class="rec-result">특임강사</span></div>
+                <div class="rec-title">대한문신사중앙회<span class="rec-sub">문신사 국가고시 담당</span></div>
+            </div>
+            <div class="rec">
+                <div class="rec-meta"><span class="rec-cat">해외</span><span class="rec-result">2023</span></div>
+                <div class="rec-title">Chronic Ink · Toronto, Canada<span class="rec-sub">소속 아티스트 · Artist of February 선정</span></div>
+            </div>
+            <div class="rec">
+                <div class="rec-meta"><span class="rec-cat">해외</span><span class="rec-result">2024</span></div>
+                <div class="rec-title">Beauty Friend · Los Angeles, USA<span class="rec-sub">소속 아티스트 · K-beauty 담당</span></div>
+            </div>
+
+            <p class="auth-note">
+                원하는 디자인을 말로 설명 못 하셔도 괜찮습니다.<br>
+                '알아서 어울리게 해주세요' 정도만 얘기해 주셔도 좋습니다.<br>
+                나머지는 제가 책임지겠습니다.
+                <span>SONGSHOP 원장 송민성</span>
+            </p>
+
+        </div>
+    </section>
+
     <!-- 1:1 Consultation -->
-    <section class="section-padding process-section" data-sec="6_process">
+    <section class="section-padding process-section" data-sec="7_process">
         <div class="container">
             <div class="text-center reveal">
                 <h2 class="section-title">1:1 Consultation</h2>
@@ -855,7 +904,7 @@
     </section>
 
     <!-- 스타일 퀴즈 -->
-    <section class="section-padding quiz-section" data-sec="7_quiz">
+    <section class="section-padding quiz-section" data-sec="8_quiz">
         <div class="container reveal" style="max-width: 700px;">
             <div class="text-center">
                 <h2 class="section-title">나에게 맞는 눈썹 스타일</h2>
@@ -934,7 +983,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section-padding" style="background: white;" data-sec="8_faq">
+    <section class="section-padding" style="background: white;" data-sec="9_faq">
         <div class="container reveal stagger-wrap" style="max-width: 800px;">
             <div class="text-center">
                 <h2 class="section-title">Q&amp;A</h2>
@@ -947,7 +996,7 @@
                 </div>
                 <div class="faq-item stagger-item">
                     <div class="faq-question">Q. 기존 문신 잔흔이 있는데 가능한가요? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer"><p style="padding-bottom:24px;">잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 '포트폴리오 확인하기'를 통해 DM으로 사진을 보내주시면 정확한 상담이 가능합니다.</p></div>
+                    <div class="faq-answer"><p style="padding-bottom:24px;">잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 사진을 미리 보내주시면 정확한 상담이 가능합니다.</p></div>
                 </div>
                 <div class="faq-item stagger-item">
                     <div class="faq-question">Q. 리터치는 언제 받아야 하나요? <i class="fas fa-plus"></i></div>
@@ -975,7 +1024,6 @@
                         <h3>강릉 매장</h3>
                         <p>강원특별자치도 강릉시 토성로 118</p>
                         <p class="store-hours">10:00 – 22:00 · 예약제</p>
-                        <a class="store-map" href="https://map.naver.com/p/entry/place/2045435849" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>
                     </div>
                 </div>
                 <p class="store-note">고정 휴무일 없이 예약 일정에 맞춰 운영합니다. 방문 전 카카오톡으로 예약해 주세요.</p>
@@ -1240,6 +1288,10 @@
         } catch (e) { return 'unknown'; }
       })();
 
+      /* ★ 집행 중인 광고의 전환 기준 이벤트.
+         이 이름이 바뀌면 캠페인 최적화가 끊기므로 섹션 위치·이름을 함께 고정한다. */
+      var CONV_SEC = '5_reviews';
+
       var sent = {};
       function track(name, params, opts) {
         params = params || {};
@@ -1251,15 +1303,19 @@
           if (sent[key]) return;
           sent[key] = 1;
         }
+        /* opts.to : 'both'(기본) | 'meta' | 'ga'
+           진단 전용 이벤트를 Meta 로 보내지 않기 위한 스위치.
+           Meta 커스텀 이벤트는 광고 최적화에 쓰이지 않으므로 이벤트 관리자만 채운다. */
+        var to = opts.to || 'both';
         try {
-          if (typeof fbq === 'function') {
+          if (to !== 'ga' && typeof fbq === 'function') {
             /* 표준 이벤트(광고 최적화용)와 커스텀 이름(진단용)을 함께 전송해
                이벤트 관리자 목록에서 kakao_quiz / kakao_float 가 분리되어 보이게 한다 */
             if (opts.standard) fbq('track', opts.standard, params);
             fbq('trackCustom', name, params);
           }
         } catch (e) {}
-        try { if (typeof gtag === 'function') gtag('event', name, params); } catch (e) {}
+        try { if (to !== 'meta' && typeof gtag === 'function') gtag('event', name, params); } catch (e) {}
       }
 
       /* ---------- 활성 시간 계측 (탭이 보일 때만) ---------- */
@@ -1286,6 +1342,14 @@
         }
       }, 1000);
 
+
+      /* 증거 영상 : 탭하면 처음부터 */
+      (function () {
+        document.querySelectorAll('.proof-video').forEach(function (v) {
+          v.addEventListener('click', function () { v.currentTime = 0; v.play(); });
+        });
+      })();
+
       /* ---------- 2·3층 : 섹션 도달 & 체류 ---------- */
       document.addEventListener('DOMContentLoaded', function () {
 
@@ -1301,8 +1365,10 @@
               var reached = en.intersectionRatio >= 0.5 ||
                             (en.isIntersecting && en.intersectionRect.height >= vh * 0.5);
               if (reached) {
-                track('sec' + name, {}, { once: true });
-                track('section_reach', { section: name }, { once: true, key: 'reach_' + name });
+                /* 전환 이벤트만 기존 이름 그대로 양쪽 전송 (광고 최적화 기준) */
+                if (name === CONV_SEC) track('sec' + name, {}, { once: true });
+                /* 나머지 섹션 도달은 진단용 → GA4 에만. 이름 하나에 파라미터로 구분한다 */
+                track('section_reach', { section: name }, { once: true, key: 'reach_' + name, to: 'ga' });
               }
             });
           }, { threshold: [0, 0.05, 0.1, 0.25, 0.4, 0.5, 0.75, 1] });
@@ -1397,11 +1463,13 @@
       function exitSnapshot() {
         if (exited) return;
         exited = true;
-        var top = null, topN = 0, str = [];
-        for (var k in dwell) {
-          str.push(k + ':' + dwell[k]);
-          if (dwell[k] > topN) { topN = dwell[k]; top = k; }
-        }
+        var pairs = [];
+        for (var k in dwell) pairs.push([k, dwell[k]]);
+        pairs.sort(function (a, b) { return b[1] - a[1]; });
+        var top = pairs.length ? pairs[0][0] : null;
+        /* GA4 이벤트 파라미터 값은 100자 제한.
+           전 섹션을 이어붙이면 체류가 긴 방문자일수록 뒤가 잘리므로 상위 3개만 남긴다 */
+        var str = pairs.slice(0, 3).map(function (p) { return p[0] + ':' + p[1]; });
         track('lp_exit', {
           last_section: focused || '1_hero',
           top_section: top || '1_hero',
@@ -1510,8 +1578,13 @@
       "image": "https://www.songshopbysong.com/og-image.jpg",
       "telephone": "+82-10-7579-6581",
       "priceRange": "₩₩",
-      "areaServed": ["강릉", "강원특별자치도"],
+      "parentOrganization": { "@id": "https://www.songshopbysong.com/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "강릉시" },
+        { "@type": "AdministrativeArea", "name": "강원특별자치도" }
+      ],
       "knowsAbout": ["눈썹문신", "자연눈썹", "남자눈썹문신", "잔흔커버", "두피문신"],
+      "hasMap": "https://map.naver.com/p/entry/place/2045435849",
       "sameAs": [
         "https://www.instagram.com/__songshop/",
         "https://map.naver.com/p/entry/place/2045435849"
@@ -1583,7 +1656,7 @@
           "name": "기존 문신 잔흔이 있는데 가능한가요?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 포트폴리오 확인하기를 통해 DM으로 사진을 보내주시면 정확한 상담이 가능합니다."
+            "text": "잔흔의 색상과 진하기에 따라 다릅니다. 예약 전 사진을 미리 보내주시면 정확한 상담이 가능합니다."
           }
         },
         {

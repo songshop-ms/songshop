@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <meta charset="UTF-8">
     <meta name="facebook-domain-verification" content="q6ea1lal1z98xvxd8bp1v10vbc4ljm" />
     <meta name="naver-site-verification" content="ec2353b8ae3acd35de8e98ff487a312c73c2b373" />
     <!-- [Meta Pixel Code] -->
@@ -32,7 +33,6 @@
       gtag('config', 'G-0ZKV0GH8JN');
     </script>
 
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#8E7C68">
 
@@ -465,6 +465,38 @@
         .faq-item.active .faq-question i { transform: rotate(45deg); }
 
         footer { padding: 50px 0 100px 0; background: white; border-top: 1px solid #f0f0f0; text-align: center; color: #aaa; font-size: 0.75rem; }
+
+        /* 매장 안내 */
+        .store-info { margin-bottom: 40px; }
+        .store-info-title {
+            font-size: 1.05rem; font-weight: 700; color: #1a1a1a;
+            margin-bottom: 24px; letter-spacing: -0.03em;
+        }
+        .store-grid {
+            display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .store-card {
+            flex: 1 1 260px; max-width: 340px;
+            border: 1px solid #ededed; border-radius: 10px;
+            padding: 22px 20px; text-align: left; background: var(--bg-color);
+        }
+        .store-card h3 {
+            font-size: 0.95rem; font-weight: 700; color: var(--primary-color);
+            margin-bottom: 10px; letter-spacing: -0.03em;
+        }
+        .store-card p { font-size: 0.82rem; color: var(--text-sub); line-height: 1.7; margin: 0; }
+        .store-card .store-hours { color: var(--text-main); font-weight: 500; margin-top: 6px; }
+        .store-card .store-map {
+            display: inline-block; margin-top: 12px; font-size: 0.78rem;
+            color: var(--naver-green); font-weight: 600;
+        }
+        .store-note { font-size: 0.78rem; color: var(--text-sub); line-height: 1.7; }
+        @media (max-width: 600px) {
+            .store-grid { flex-direction: column; align-items: stretch; }
+            /* column 방향에서는 flex-basis가 높이로 적용되므로 auto 로 되돌린다 */
+            .store-card { flex: 0 0 auto; max-width: none; }
+        }
 
         /* Floating Bar */
         .floating-bar {
@@ -920,6 +952,23 @@
 
     <footer>
         <div class="container">
+            <section class="store-info">
+                <h2 class="store-info-title">매장 안내</h2>
+                <div class="store-grid">
+                    <div class="store-card">
+                        <h3>잠실 본점</h3>
+                        <p>서울 송파구 백제고분로7길 24-19</p>
+                        <p class="store-hours">10:00 – 22:00 · 예약제</p>
+                    </div>
+                    <div class="store-card">
+                        <h3>강릉 매장</h3>
+                        <p>강원특별자치도 강릉시 토성로 118</p>
+                        <p class="store-hours">10:00 – 22:00 · 예약제</p>
+                        <a class="store-map" href="https://map.naver.com/p/entry/place/2045435849" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>
+                    </div>
+                </div>
+                <p class="store-note">고정 휴무일 없이 예약 일정에 맞춰 운영합니다. 방문 전 카카오톡으로 예약해 주세요.</p>
+            </section>
             <p>&copy; 2025 SONGSHOP. All rights reserved.</p>
         </div>
     </footer>
@@ -1372,7 +1421,10 @@
         "@type": "Person",
         "name": "송민성"
       },
-      "sameAs": ["https://www.instagram.com/__songshop/"]
+      "sameAs": [
+        "https://www.instagram.com/__songshop/",
+        "https://map.naver.com/p/entry/place/2045435849"
+      ]
     }
     </script>
     <script type="application/ld+json">
@@ -1404,7 +1456,13 @@
         "addressRegion": "서울",
         "postalCode": "05560",
         "addressCountry": "KR"
-      }
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "10:00",
+        "closes": "22:00"
+      }]
     }
     </script>
     <script type="application/ld+json">
@@ -1419,7 +1477,10 @@
       "priceRange": "₩₩",
       "areaServed": ["강릉", "강원특별자치도"],
       "knowsAbout": ["눈썹문신", "자연눈썹", "남자눈썹문신", "잔흔커버", "두피문신"],
-      "sameAs": ["https://www.instagram.com/__songshop/"],
+      "sameAs": [
+        "https://www.instagram.com/__songshop/",
+        "https://map.naver.com/p/entry/place/2045435849"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "토성로 118",
@@ -1427,7 +1488,18 @@
         "addressRegion": "강원특별자치도",
         "postalCode": "25534",
         "addressCountry": "KR"
-      }
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.7537193,
+        "longitude": 128.8899041
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "10:00",
+        "closes": "22:00"
+      }]
     }
     </script>
     <script type="application/ld+json">

@@ -570,7 +570,7 @@
 
     <!-- Hero Section -->
     <header class="hero" data-sec="1_hero">
-        <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="/hero-poster.webp">
+        <video id="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="/hero-poster.webp">
             <source src="/hero.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -596,13 +596,13 @@
 
             <div class="proof-duo">
                 <figure class="proof-media">
-                    <video class="proof-video" autoplay muted loop playsinline preload="metadata" poster="/brow-poster-w.jpg">
+                    <video class="proof-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="/brow-poster-w.jpg">
                         <source src="/brow-sweep-w.mp4" type="video/mp4">
                     </video>
                     <figcaption class="proof-badge"><span class="dot"></span> 여성</figcaption>
                 </figure>
                 <figure class="proof-media">
-                    <video class="proof-video" autoplay muted loop playsinline preload="metadata" poster="/brow-poster-m.jpg">
+                    <video class="proof-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="/brow-poster-m.jpg">
                         <source src="/brow-sweep-m.mp4" type="video/mp4">
                     </video>
                     <figcaption class="proof-badge"><span class="dot"></span> 남성</figcaption>
@@ -1343,10 +1343,61 @@
       }, 1000);
 
 
-      /* 증거 영상 : 탭하면 처음부터 */
+      /* ── 영상 자동재생 ──────────────────────────────────────────────
+         autoplay 속성만으로는 부족하다. iOS 는 동시에 재생할 수 있는 video 수가
+         제한돼 있어 3개를 한꺼번에 틀면 뒤엣것부터 막히고, 저전력 모드나
+         opacity:0 상태(등장 애니메이션 대기)에서도 정책상 거부된다.
+         거부되면 포스터 위에 재생버튼이 뜨므로, 화면에 보이는 것만 재생하고
+         실패한 건 사용자 동작 때 다시 시도한다. ────────────────────────── */
       (function () {
+        var vids = Array.prototype.slice.call(document.querySelectorAll('video[autoplay]'));
+        if (!vids.length) return;
+        var blocked = [];
+
+        function tryPlay(v) {
+          v.muted = true;                 /* 속성뿐 아니라 프로퍼티도 세워야 정책을 통과한다 */
+          var p;
+          try { p = v.play(); } catch (e) { return; }
+          if (p && p.catch) p.catch(function () {
+            if (blocked.indexOf(v) === -1) blocked.push(v);
+          });
+        }
+
+        /* 리스너는 계속 살려둔다. 스크롤은 즉시 발생하므로 한 번 쓰고 떼면
+           정작 페이지 아래쪽 영상이 막혔을 때 복구할 수단이 없다.
+           막힌 게 없으면 길이 검사 한 번으로 끝나 비용은 없다. */
+        function retry() {
+          if (blocked.length) blocked.splice(0).forEach(tryPlay);
+        }
+        ['touchstart', 'click', 'scroll'].forEach(function (ev) {
+          document.addEventListener(ev, retry, { passive: true });
+        });
+
+        /* 화면 밖 영상은 멈춰 동시 재생 수를 줄인다 (배터리·데이터도 아낀다) */
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) tryPlay(en.target);
+              else if (!en.target.paused) en.target.pause();
+            });
+          }, { threshold: 0.15 });
+          vids.forEach(function (v) { io.observe(v); });
+        } else {
+          vids.forEach(tryPlay);
+        }
+
+        /* 탭에서 다시 눈으로 돌아왔을 때 복구 */
+        document.addEventListener('visibilitychange', function () {
+          if (document.visibilityState !== 'visible') return;
+          vids.forEach(function (v) {
+            var r = v.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) tryPlay(v);
+          });
+        });
+
+        /* 증거 영상 : 탭하면 처음부터 */
         document.querySelectorAll('.proof-video').forEach(function (v) {
-          v.addEventListener('click', function () { v.currentTime = 0; v.play(); });
+          v.addEventListener('click', function () { v.currentTime = 0; tryPlay(v); });
         });
       })();
 

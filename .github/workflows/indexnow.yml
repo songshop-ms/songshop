@@ -1,0 +1,51 @@
+# IndexNow: 페이지가 바뀌면 Bing·네이버·Yandex에 자동으로 알린다.
+# 손으로 핑하는 방식은 반드시 끊기므로 배포 파이프라인에 넣어둔다.
+# Google은 IndexNow를 소비하지 않는다 — 구글은 sitemap lastmod 로 처리.
+
+name: IndexNow ping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'men/index.html'
+      - 'privacy.html'
+      - 'sitemap.xml'
+      - 'llms.txt'
+      - 'llms-full.txt'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify IndexNow
+        env:
+          KEY: fe2da6389f2da761dd5d07720e655a45
+          HOST: www.songshopbysong.com
+        run: |
+          payload=$(cat <<JSON
+          {
+            "host": "$HOST",
+            "key": "$KEY",
+            "keyLocation": "https://$HOST/$KEY.txt",
+            "urlList": [
+              "https://$HOST/",
+              "https://$HOST/men/"
+            ]
+          }
+          JSON
+          )
+          echo "$payload"
+          code=$(curl -sS -o /tmp/resp.txt -w '%{http_code}' \
+            -X POST 'https://api.indexnow.org/indexnow' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "$payload")
+          echo "HTTP $code"
+          cat /tmp/resp.txt || true
+          # 200 = 수락, 202 = 수락(키 검증 대기). 그 외는 실패로 본다.
+          case "$code" in
+            200|202) echo "IndexNow accepted." ;;
+            *) echo "IndexNow ping failed with HTTP $code"; exit 1 ;;
+          esac

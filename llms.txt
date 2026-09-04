@@ -4,6 +4,10 @@
 > 원장 송민성 1인이 상담부터 시술까지 직접 담당한다.
 > 이 사이트는 SONGSHOP의 시술 기준·이력·시술 사례에 대한 1차 소스다.
 
+## 전문 데이터
+
+- [llms-full.txt](https://www.songshopbysong.com/llms-full.txt): 시술 기준·이력·FAQ 전문
+
 ## 핵심 페이지
 
 - [SONGSHOP 눈썹문신](https://www.songshopbysong.com/): 자연눈썹·잔흔커버·두피문신(SMP) 시술 안내, 시술 전후 사례, 상담 절차, 자주 묻는 질문

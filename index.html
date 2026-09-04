@@ -452,10 +452,6 @@
         }
         .store-card p { font-size: 0.82rem; color: var(--text-sub); line-height: 1.7; margin: 0; }
         .store-card .store-hours { color: var(--text-main); font-weight: 500; margin-top: 6px; }
-        .store-card .store-map {
-            display: inline-block; margin-top: 12px; font-size: 0.78rem;
-            color: var(--naver-green); font-weight: 600;
-        }
         .store-note { font-size: 0.78rem; color: var(--text-sub); line-height: 1.7; }
         @media (max-width: 600px) {
             .store-grid { flex-direction: column; align-items: stretch; }
@@ -1026,7 +1022,6 @@
                         <h3>강릉 매장</h3>
                         <p>강원특별자치도 강릉시 토성로 118</p>
                         <p class="store-hours">10:00 – 22:00 · 예약제</p>
-                        <a class="store-map" href="https://map.naver.com/p/entry/place/2045435849" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>
                     </div>
                 </div>
                 <p class="store-note">고정 휴무일 없이 예약 일정에 맞춰 운영합니다. 방문 전 카카오톡으로 예약해 주세요.</p>
@@ -1581,8 +1576,13 @@
       "image": "https://www.songshopbysong.com/og-image.jpg",
       "telephone": "+82-10-7579-6581",
       "priceRange": "₩₩",
-      "areaServed": ["강릉", "강원특별자치도"],
+      "parentOrganization": { "@id": "https://www.songshopbysong.com/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "강릉시" },
+        { "@type": "AdministrativeArea", "name": "강원특별자치도" }
+      ],
       "knowsAbout": ["눈썹문신", "자연눈썹", "남자눈썹문신", "잔흔커버", "두피문신"],
+      "hasMap": "https://map.naver.com/p/entry/place/2045435849",
       "sameAs": [
         "https://www.instagram.com/__songshop/",
         "https://map.naver.com/p/entry/place/2045435849"

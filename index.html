@@ -564,19 +564,23 @@
         .proof-h em { font-style: normal; color: var(--gold); }
         .proof-lede { font-size: 0.98rem; color: rgba(255,255,255,0.66); font-weight: 300; }
 
-        .proof-duo { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
+        .proof-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 32px; }
         .proof-media { position: relative; background: #000; overflow: hidden; border-radius: 4px; margin: 0; }
         .proof-media video { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
         .proof-badge {
-            position: absolute; top: 12px; left: 12px; z-index: 3;
-            display: flex; align-items: center; gap: 7px;
+            position: absolute; top: 8px; left: 8px; z-index: 3;
+            display: flex; align-items: center; gap: 5px;
             background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); color: #fff;
-            font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; padding: 6px 11px; border-radius: 2px;
+            font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; padding: 4px 8px; border-radius: 2px;
+        }
+        @media (min-width: 640px) {
+            .proof-badge { top: 12px; left: 12px; gap: 7px; font-size: 0.66rem; letter-spacing: 0.16em; padding: 6px 11px; }
         }
         .proof-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: proofLive 1.6s ease-in-out infinite; }
         @keyframes proofLive { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
         .proof-cap { margin-top: 10px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6; display: flex; gap: 7px; align-items: flex-start; }
         .proof-cap i { color: var(--gold); font-size: 0.55rem; padding-top: 6px; }
+        .proof-cap b { color: var(--gold); font-weight: 700; letter-spacing: 0.02em; }
 
         .look { border-top: 1px solid rgba(255,255,255,0.14); margin-top: 34px; }
         .look-i { padding: 18px 2px; border-bottom: 1px solid rgba(255,255,255,0.14); }
@@ -593,7 +597,7 @@
         .checks li { background: var(--ink); padding: 14px 16px; font-size: 0.9rem; color: rgba(255,255,255,0.82); display: flex; gap: 10px; align-items: baseline; font-weight: 300; }
         .checks li i { color: var(--gold); font-size: 0.55rem; }
         @media (min-width: 768px) { .checks ul { grid-template-columns: 1fr 1fr; } }
-        @media (min-width: 640px) { .proof-duo { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 640px) { .proof-duo { gap: 12px; } }
         @media (min-width: 860px) {
             .proof-section { padding: 110px 0 120px; }
             .proof-h { font-size: 2rem; }
@@ -655,7 +659,7 @@
                 </figure>
             </div>
             <p class="proof-cap"><i class="fas fa-circle"></i>
-                둘 다 실제 시술 직후, 보정도 필터도 없습니다. 화면을 누르면 처음부터 다시 재생됩니다.</p>
+                두 영상 모두 <b>실제 시술 직후 · 무편집 · 무보정</b>입니다. 필터도 색보정도 넣지 않았습니다. 화면을 누르면 처음부터 다시 재생됩니다.</p>
 
             <div class="look">
                 <div class="look-i">

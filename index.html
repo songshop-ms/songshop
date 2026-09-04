@@ -1412,11 +1412,19 @@
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://www.songshopbysong.com/#organization",
       "name": "SONGSHOP",
       "alternateName": "송샵",
       "url": "https://www.songshopbysong.com/",
       "logo": "https://www.songshopbysong.com/og-image.jpg",
       "description": "서울 잠실·강원 강릉에서 운영하는 눈썹 반영구화장(눈썹문신) 전문 스튜디오. 원장 송민성 1인이 상담부터 시술까지 직접 담당한다.",
+      "telephone": "+82-10-7579-6581",
+      "areaServed": ["잠실", "송파구", "서울", "강릉", "강원특별자치도"],
+      "knowsAbout": ["눈썹문신", "자연눈썹", "남자눈썹문신", "잔흔커버", "두피문신", "스칼프", "SMP"],
+      "location": [
+        { "@id": "https://www.songshopbysong.com/#jamsil" },
+        { "@id": "https://www.songshopbysong.com/#gangneung" }
+      ],
       "founder": {
         "@type": "Person",
         "name": "송민성"
@@ -1439,16 +1447,10 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BeautySalon",
-      "name": "SONGSHOP 송샵 (잠실 본점)",
-      "description": "잠실 눈썹문신 자연눈썹 전문샵. 남자눈썹문신, 잔흔커버, 두피문신.",
-      "url": "https://www.songshopbysong.com/",
-      "image": "https://www.songshopbysong.com/og-image.jpg",
-      "telephone": "+82-10-7579-6581",
-      "priceRange": "₩₩",
-      "areaServed": ["잠실", "송파구", "서울"],
-      "knowsAbout": ["눈썹문신", "자연눈썹", "남자눈썹문신", "잔흔커버", "두피문신", "스칼프"],
-      "sameAs": ["https://www.instagram.com/__songshop/"],
+      "@type": "Place",
+      "@id": "https://www.songshopbysong.com/#jamsil",
+      "name": "SONGSHOP 잠실 시술 공간",
+      "description": "송민성 원장이 잠실에서 눈썹문신·자연눈썹·잔흔커버·두피문신 시술을 진행하는 장소. 예약제로 운영한다.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "백제고분로7길 24-19",
@@ -1456,6 +1458,11 @@
         "addressRegion": "서울",
         "postalCode": "05560",
         "addressCountry": "KR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.5098193,
+        "longitude": 127.0818696
       },
       "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
@@ -1469,6 +1476,7 @@
     {
       "@context": "https://schema.org",
       "@type": "BeautySalon",
+      "@id": "https://www.songshopbysong.com/#gangneung",
       "name": "SONGSHOP 송샵 (강릉 매장)",
       "description": "강릉 눈썹문신 자연눈썹 전문샵. 남자눈썹문신, 잔흔커버, 두피문신.",
       "url": "https://www.songshopbysong.com/",
@@ -1509,11 +1517,19 @@
       "name": "송민성",
       "jobTitle": "SONGSHOP 원장 / 반영구화장 아티스트",
       "url": "https://www.songshopbysong.com/",
-      "sameAs": ["https://www.instagram.com/__songshop/"],
-      "knowsAbout": ["눈썹문신", "자연눈썹", "남자눈썹문신", "잔흔커버", "두피문신"],
+      "telephone": "+82-10-7579-6581",
+      "sameAs": [
+        "https://www.instagram.com/__songshop/",
+        "https://map.naver.com/p/entry/place/2045435849"
+      ],
+      "knowsAbout": ["눈썹문신", "자연눈썹", "남자눈썹문신", "잔흔커버", "두피문신", "스칼프", "SMP"],
+      "areaServed": ["잠실", "송파구", "서울", "강릉", "강원특별자치도"],
+      "workLocation": [
+        { "@id": "https://www.songshopbysong.com/#jamsil" },
+        { "@id": "https://www.songshopbysong.com/#gangneung" }
+      ],
       "worksFor": {
-        "@type": "BeautySalon",
-        "name": "SONGSHOP 송샵"
+        "@id": "https://www.songshopbysong.com/#organization"
       },
       "award": [
         "TNA X TNL X INCA 대만 국제 반영구 대회 종합 3등",

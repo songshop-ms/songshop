@@ -541,6 +541,24 @@
         .proof-close { margin-top: 34px; padding: 24px; border-left: 2px solid var(--gold); background: rgba(255,255,255,0.045); font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.9); }
         .proof-close b { color: #fff; font-weight: 700; }
 
+        /* ── 브라우저 기본 재생 UI 차단 ──────────────────────────────
+           controls 를 쓰지 않는 영상들이다. 그런데 자동재생이 막히면 WebKit 은
+           start-playback 버튼을, 안드로이드 크롬/웹뷰는 overlay-play 버튼을
+           스스로 띄운다. 인스타·페이스북 인앱 브라우저에서 특히 잘 걸린다.
+           재생이 복구되기 전이라도 아이콘은 절대 보이면 안 되므로 전부 숨긴다 */
+        /* 한 줄에 하나씩 쓴다. 콤마로 묶으면 엔진이 모르는 선택자가 하나라도 있을 때
+           규칙 전체가 버려진다 — overlay-play-button 은 Blink 전용, start-playback-button 은
+           WebKit 전용이라, 묶어 두면 한쪽 플랫폼에서 통째로 무효가 된다 */
+        video::-webkit-media-controls { display: none !important; }
+        video::-webkit-media-controls-panel { display: none !important; }
+        video::-webkit-media-controls-play-button { display: none !important; }
+        video::-webkit-media-controls-overlay-play-button { display: none !important; }
+        video::-webkit-media-controls-start-playback-button {
+            display: none !important; -webkit-appearance: none; appearance: none;
+        }
+        video::-internal-media-controls-overlay-cast-button { display: none !important; }
+        video { pointer-events: auto; }
+
         .proof-media video { cursor: zoom-in; }
         .proof-media video:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
         .proof-zoom {
@@ -603,7 +621,7 @@
 
     <!-- Hero Section -->
     <header class="hero" data-sec="1_hero">
-        <video id="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="/hero-poster.webp">
+        <video id="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" preload="metadata" poster="/hero-poster.webp">
             <source src="/hero.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -629,7 +647,7 @@
 
             <div class="proof-duo">
                 <figure class="proof-media">
-                    <video class="proof-video" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+                    <video class="proof-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" preload="metadata"
                            poster="/brow-poster-w.jpg" tabindex="0" role="button" aria-label="여성 눈썹 쓸기 영상 확대해서 보기">
                         <source src="/brow-sweep-w.mp4" type="video/mp4">
                     </video>
@@ -637,7 +655,7 @@
                     <span class="proof-zoom"><i class="fas fa-expand"></i> 확대</span>
                 </figure>
                 <figure class="proof-media">
-                    <video class="proof-video" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+                    <video class="proof-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" preload="metadata"
                            poster="/brow-poster-m.jpg" tabindex="0" role="button" aria-label="남성 눈썹 쓸기 영상 확대해서 보기">
                         <source src="/brow-sweep-m.mp4" type="video/mp4">
                     </video>
@@ -1081,7 +1099,7 @@
 
     <!-- 증거 영상 확대 보기 -->
     <div class="vx" id="videoZoom" hidden>
-        <video class="vx-media" muted loop playsinline webkit-playsinline preload="auto"></video>
+        <video class="vx-media" muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" preload="auto"></video>
         <span class="vx-tag"></span>
         <span class="vx-hint"><i class="fas fa-xmark"></i> 아무 곳이나 눌러 닫기</span>
     </div>
@@ -1388,65 +1406,94 @@
 
 
       /* ── 영상 자동재생 ──────────────────────────────────────────────
-         autoplay 속성만으로는 부족하다. iOS 는 동시에 재생할 수 있는 video 수가
-         제한돼 있어 3개를 한꺼번에 틀면 뒤엣것부터 막히고, 저전력 모드나
-         opacity:0 상태(등장 애니메이션 대기)에서도 정책상 거부된다.
-         거부되면 포스터 위에 재생버튼이 뜨므로, 화면에 보이는 것만 재생하고
-         실패한 건 사용자 동작 때 다시 시도한다. ────────────────────────── */
+         autoplay 속성만 믿을 수 없다. 특히 인스타·페이스북 인앱 브라우저:
+           · 안드로이드 WebView 는 "재생에 사용자 동작 필요" 가 기본값이라
+             첫 터치·스크롤 전까지 play() 가 전부 거부될 수 있다
+           · iOS WKWebView 는 playsinline 이 없으면 전체화면으로 튀고,
+             저전력 모드에서는 어떤 자동재생도 막는다
+           · 동시에 재생 가능한 video 수에도 제한이 있다
+         그래서 (1) 화면 안의 것만 재생해 동시 수를 줄이고 (2) 상태를 주기적으로
+         점검하며 (3) 사용자 동작·브라우저 강제정지에서 되살린다.
+         기본 재생 아이콘은 CSS 에서 이미 숨겨 두었다. ──────────────────── */
       (function () {
         var vids = Array.prototype.slice.call(document.querySelectorAll('video[autoplay]'));
-        if (!vids.length) return;
-        var blocked = [];
+        var suspended = [];        /* 확대 보기처럼 "일부러" 멈춰둔 영상 */
+
+        function isSuspended(v) { return suspended.indexOf(v) !== -1; }
+        function suspend(v) { if (!isSuspended(v)) suspended.push(v); v.pause(); }
+        function release(v) { var i = suspended.indexOf(v); if (i !== -1) suspended.splice(i, 1); }
+
+        function inView(v) {
+          var r = v.getBoundingClientRect();
+          var h = window.innerHeight || document.documentElement.clientHeight;
+          return r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < h;
+        }
 
         function tryPlay(v) {
-          v.muted = true;                 /* 속성뿐 아니라 프로퍼티도 세워야 정책을 통과한다 */
+          if (isSuspended(v)) return;
+          v.muted = true;          /* 속성뿐 아니라 프로퍼티도 세워야 정책을 통과한다 */
           var p;
           try { p = v.play(); } catch (e) { return; }
-          if (p && p.catch) p.catch(function () {
-            if (blocked.indexOf(v) === -1) blocked.push(v);
-          });
+          if (p && p.catch) p.catch(function () {});   /* 조용히 실패 — sweep 이 다시 시도한다 */
         }
 
-        /* 리스너는 계속 살려둔다. 스크롤은 즉시 발생하므로 한 번 쓰고 떼면
-           정작 페이지 아래쪽 영상이 막혔을 때 복구할 수단이 없다.
-           막힌 게 없으면 길이 검사 한 번으로 끝나 비용은 없다. */
-        function retry() {
-          if (blocked.length) blocked.splice(0).forEach(tryPlay);
-        }
-        ['touchstart', 'click', 'scroll'].forEach(function (ev) {
-          document.addEventListener(ev, retry, { passive: true });
-        });
-
-        /* 화면 밖 영상은 멈춰 동시 재생 수를 줄인다 (배터리·데이터도 아낀다) */
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (en) {
-              if (en.isIntersecting) tryPlay(en.target);
-              else if (!en.target.paused) en.target.pause();
-            });
-          }, { threshold: 0.15 });
-          vids.forEach(function (v) { io.observe(v); });
-        } else {
-          vids.forEach(tryPlay);
-        }
-
-        /* 탭에서 다시 눈으로 돌아왔을 때 복구 */
-        document.addEventListener('visibilitychange', function () {
+        /* 재생·정지 판단을 이 함수 하나로만 한다.
+           IntersectionObserver 와 pause 이벤트가 서로 다른 기준을 쓰면
+           경계에서 껐다 켰다 하며 싸우게 된다 */
+        function sweep() {
           if (document.visibilityState !== 'visible') return;
-          vids.forEach(function (v) {
-            var r = v.getBoundingClientRect();
-            if (r.top < window.innerHeight && r.bottom > 0) tryPlay(v);
+          for (var i = 0; i < vids.length; i++) {
+            var v = vids[i];
+            if (isSuspended(v)) continue;
+            if (inView(v)) { if (v.paused) tryPlay(v); }
+            else if (!v.paused) v.pause();
+          }
+        }
+
+        function watch(v) {
+          /* 브라우저가 임의로 멈춘 경우(메모리 압박·오디오 포커스 등) 되살린다.
+             sweep 이 화면 밖이라 멈춘 것이면 inView 가 false 라 그대로 둔다 */
+          v.addEventListener('pause', function () {
+            if (isSuspended(v) || !inView(v)) return;
+            if (document.visibilityState !== 'visible') return;
+            setTimeout(function () { if (v.paused) tryPlay(v); }, 120);
           });
+          v.addEventListener('loadeddata', function () { if (inView(v)) tryPlay(v); });
+        }
+        vids.forEach(watch);
+
+        /* 임계값 통과 시점에만 발화하므로 즉시 반응용으로만 쓰고,
+           판단은 sweep 에 맡긴다 */
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(sweep, { threshold: [0, 0.15, 0.5] });
+          vids.forEach(function (v) { io.observe(v); });
+        }
+
+        /* 사용자 동작마다 재시도. 안드로이드 인앱 웹뷰는 첫 제스처 전까지
+           자동재생이 통째로 막힐 수 있어 이 경로가 유일한 복구 수단이 된다 */
+        ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll', 'keydown'].forEach(function (ev) {
+          document.addEventListener(ev, sweep, { passive: true });
         });
+        document.addEventListener('visibilitychange', sweep);
+        window.addEventListener('pageshow', sweep);   /* 뒤로가기 캐시 복귀 */
+        window.addEventListener('resize', sweep);
+
+        sweep();
+        setInterval(sweep, 1000);   /* 최후의 안전망 — 어떤 경로로 멈추든 1초 안에 복구 */
 
         /* ── 증거 영상 : 탭하면 확대, 다시 탭하면 닫힘 ──
            원본 노드를 옮기면 브라우저가 영상을 다시 읽어들이므로 건드리지 않는다.
-           오버레이에 같은 소스로 재생하고, 그동안 원본은 멈춰 동시 재생 수를 유지한다. */
+           오버레이에 같은 소스로 재생하고, 그동안 원본은 suspend 해 동시 재생 수를 유지한다. */
         var zoom = document.getElementById('videoZoom');
         if (zoom) {
           var zVid = zoom.querySelector('.vx-media');
           var zTag = zoom.querySelector('.vx-tag');
           var origin = null;
+
+          /* 오버레이 영상도 같은 관리 대상에 넣는다.
+             닫혀 있으면 display:none 이라 inView 가 false → 자동으로 정지된다 */
+          vids.push(zVid);
+          watch(zVid);
 
           function openZoom(v) {
             if (!zoom.hidden) return;
@@ -1458,8 +1505,7 @@
             if (v.poster) zVid.poster = v.poster;
             zoom.hidden = false;
             document.body.style.overflow = 'hidden';
-            v.pause();
-            zVid.muted = true;
+            suspend(v);
             tryPlay(zVid);
             track('act_proof_zoom', { which: zTag.textContent }, { to: 'ga' });  /* 진단용 → GA4 만 */
           }
@@ -1471,7 +1517,7 @@
             zVid.pause();
             zVid.removeAttribute('src');
             zVid.load();                 /* 버퍼를 비워 디코더 슬롯을 돌려준다 */
-            if (origin) { tryPlay(origin); origin = null; }
+            if (origin) { release(origin); tryPlay(origin); origin = null; }
           }
 
           document.querySelectorAll('.proof-video').forEach(function (v) {

@@ -130,6 +130,48 @@
   .hero-img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;
     border-radius:6px;margin:0 0 16px}
 
+  /* ── 예시 이미지 확대 ── */
+  .zoom{
+    display:block;width:100%;margin:0 0 10px;padding:0;border:0;
+    background:none;font:inherit;color:inherit;cursor:zoom-in;position:relative;
+    -webkit-appearance:none;appearance:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .zoom img{margin-bottom:0}
+  .zoom::after{
+    content:"확대";position:absolute;right:6px;bottom:6px;
+    font-size:.62rem;letter-spacing:.04em;color:#fff;
+    background:rgba(44,44,44,.62);padding:2px 8px;border-radius:999px;
+    pointer-events:none;
+  }
+  .zoom:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+
+  .lb{
+    position:fixed;inset:0;z-index:60;padding:20px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(24,21,18,.92);
+    opacity:0;transition:opacity .18s ease;
+  }
+  .lb[hidden]{display:none}
+  .lb.on{opacity:1}
+  .lb-inner{max-width:520px;width:100%}
+  .lb img{
+    width:100%;max-height:74vh;object-fit:contain;
+    display:block;border-radius:8px;background:#fff;
+  }
+  .lb-cap{color:#EFE8DF;text-align:center;margin-top:14px;font-size:.84rem;line-height:1.6}
+  .lb-cap b{
+    display:block;color:#fff;margin-bottom:2px;
+    font-family:'Gowun Batang',serif;font-size:1.04rem;font-weight:700;
+  }
+  .lb-x{
+    position:absolute;top:12px;right:14px;width:38px;height:38px;
+    border:0;border-radius:50%;background:rgba(255,255,255,.15);
+    color:#fff;font-size:22px;line-height:1;cursor:pointer;
+  }
+  .lb-x:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){ .lb{transition:none} }
+
   /* 함께 받으면 / 동반할인 */
   .combo{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;
     padding:15px 0;border-bottom:1px solid var(--soft)}
@@ -206,11 +248,21 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
       </div>
       <div class="pick">
         <div>
-          <img src="/basic.webp" alt="베이직 시술 예시" loading="lazy">
+          <button type="button" class="zoom"
+                  data-zoom="/basic.webp" data-name="베이직"
+                  data-desc="원래 내 눈썹처럼 자연스럽게"
+                  aria-label="베이직 시술 예시 크게 보기">
+            <img src="/basic.webp" alt="베이직 시술 예시" loading="lazy">
+          </button>
           <div class="t">베이직</div><div class="d">원래 내 눈썹처럼<br>자연스럽게</div>
         </div>
         <div>
-          <img src="/makeup.webp" alt="메이크업 시술 예시" loading="lazy">
+          <button type="button" class="zoom"
+                  data-zoom="/makeup.webp" data-name="메이크업"
+                  data-desc="꼬리에 음영으로 또렷한 인상"
+                  aria-label="메이크업 시술 예시 크게 보기">
+            <img src="/makeup.webp" alt="메이크업 시술 예시" loading="lazy">
+          </button>
           <div class="t">메이크업</div><div class="d">꼬리에 음영으로<br>또렷한 인상</div>
         </div>
       </div>
@@ -457,6 +509,14 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
   </a>
 </div>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="시술 예시 크게 보기" hidden>
+  <button type="button" class="lb-x" id="lbX" aria-label="닫기">&times;</button>
+  <div class="lb-inner">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-cap"><b id="lbName"></b><span id="lbDesc"></span></div>
+  </div>
+</div>
+
 <script>
 (function () {
   "use strict";
@@ -513,6 +573,52 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
   /* 두피문신 페이지로 이동 */
   var scalp = document.querySelector('.link-btn');
   if (scalp) scalp.addEventListener('click', function () { track('guide_scalp'); });
+
+  /* 예시 이미지 확대 */
+  var lb = document.getElementById('lb');
+  if (lb) {
+    var lbImg  = document.getElementById('lbImg');
+    var lbName = document.getElementById('lbName');
+    var lbDesc = document.getElementById('lbDesc');
+    var lbX    = document.getElementById('lbX');
+    var opener = null;
+    var hideT  = null;
+
+    function openLb(btn) {
+      /* 닫는 중에 다시 열면 예약된 hidden 처리가 창을 삼켜버린다 */
+      if (hideT) { clearTimeout(hideT); hideT = null; }
+      opener = btn;
+      lbImg.src = btn.getAttribute('data-zoom');
+      lbImg.alt = btn.getAttribute('data-name') + ' 시술 예시';
+      lbName.textContent = btn.getAttribute('data-name');
+      lbDesc.textContent = btn.getAttribute('data-desc');
+      lb.hidden = false;
+      /* hidden 해제 후 다음 프레임에 켜야 트랜지션이 산다 */
+      requestAnimationFrame(function () { lb.classList.add('on'); });
+      document.body.style.overflow = 'hidden';
+      lbX.focus();
+      track('guide_zoom', { which: btn.getAttribute('data-name') });
+    }
+
+    function closeLb() {
+      lb.classList.remove('on');
+      document.body.style.overflow = '';
+      hideT = setTimeout(function () { lb.hidden = true; hideT = null; }, 180);
+      if (opener) { opener.focus(); opener = null; }
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('.zoom'), function (b) {
+      b.addEventListener('click', function () { openLb(b); });
+    });
+
+    /* 배경이나 닫기 버튼을 눌렀을 때만 닫는다 — 사진 자체는 눌러도 유지 */
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb || e.target === lbX) closeLb();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !lb.hidden) closeLb();
+    });
+  }
 })();
 </script>
 </body>

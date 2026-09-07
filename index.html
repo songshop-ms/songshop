@@ -40,7 +40,7 @@
     <title>잠실·강릉 눈썹문신 자연눈썹 전문 | SONGSHOP 송샵</title>
     <meta name="description" content="시술 직후부터의 자연스러움. 원장이 1:1 상담 후 직접 시술합니다.">
     <meta name="keywords" content="잠실 눈썹문신, 강릉 눈썹문신, 남자눈썹문신, 송파 눈썹문신, 잠실 남자눈썹문신, 강동눈썹문신">
-    <link rel="canonical" href="https://www.songshopbysong.com/">
+    <link rel="canonical" href="/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -116,6 +116,262 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; }
         .section-padding { padding: 100px 0; position: relative; z-index: 2; }
         .text-center { text-align: center; }
+
+
+        /* ══════ 가격 3단표 ══════ */
+
+        /* 가운데 카드 강조 */
+
+        .price-foot {
+            margin-top: 30px; text-align: center; font-size: 0.88rem;
+            color: #8A8A8A; line-height: 1.8;
+        }
+        .price-foot b { color: var(--text-sub); font-weight: 600; }
+        @media (max-width: 768px) {
+        }
+
+        @media (max-width: 768px) {
+            .t-long, .b-long { display: none; }
+        }
+
+
+        /* ══════ 가격 안내 ══════ */
+
+        @media (max-width: 768px) {
+        }
+
+
+        /* ══════ 가격 안내 ══════ */
+        .price-section { background: var(--bg-color); }
+        .price-main {
+            margin-top: 40px; background: var(--white); border: 2px solid var(--primary-color);
+            border-radius: 8px; padding: 36px 30px 28px; text-align: center;
+            box-shadow: 0 14px 44px rgba(142,124,104,0.14);
+        }
+        .price-main .cap {
+            font-size: 0.72rem; letter-spacing: 0.2em; font-weight: 700;
+            color: var(--primary-color); margin-bottom: 14px;
+        }
+        .price-list { font-size: 0.92rem; color: #9A9086; }
+        .price-list s { color: #B8AFA4; }
+        .price-cond {
+            display: inline-flex; align-items: center; gap: 6px; margin: 9px 0 4px;
+            padding: 6px 14px; background: var(--kakao-yellow); border-radius: 20px;
+            font-size: 0.8rem; font-weight: 700; color: #3C1E1E;
+        }
+        .price-amt {
+            font-family: 'Gowun Batang', serif; font-size: 3rem; font-weight: 700;
+            color: var(--text-main); line-height: 1.1; margin: 4px 0 16px;
+        }
+        .price-amt .won { font-size: 1.1rem; font-weight: 400; color: var(--text-sub); }
+        .price-inc {
+            display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 7px 18px;
+            padding: 12px 22px; background: #F7F3ED; border-radius: 30px;
+            font-size: 0.87rem; color: var(--text-sub); margin-bottom: 32px;
+        }
+        .price-inc b { color: var(--text-main); font-weight: 600; }
+
+        .feel-q { font-size: 0.96rem; color: var(--text-main); font-weight: 600; margin-bottom: 15px; }
+        .feel-picker { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .feel {
+            border: 1px solid #E3D9CB; background: #FCFAF7; border-radius: 7px;
+            padding: 0 0 13px; cursor: pointer; text-align: center; position: relative;
+            overflow: hidden; transition: border-color .25s ease, background .25s ease, transform .25s ease;
+        }
+        .feel:hover { border-color: var(--primary-color); transform: translateY(-2px); }
+        .feel .fimg { overflow: hidden; background: #EFE9E1; }
+        .feel .fimg img {
+            width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block;
+            transform: scale(1);
+            transition: transform .5s ease;
+        }
+        .feel.on { border: 2px solid var(--primary-color); background: #F6F0E7; }
+        .feel.on .fimg img { transform: scale(1.05); }
+        .feel .fname {
+            font-size: 1rem; font-weight: 700; color: var(--text-main);
+            font-family: 'Gowun Batang', serif; margin: 12px 0 4px;
+            transition: color .25s ease;
+        }
+        .feel.on .fname { color: var(--primary-dark); }
+        .feel .fdesc { font-size: 0.78rem; color: #8A8A8A; line-height: 1.5; padding: 0 6px; }
+        .feel .pick {
+            position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+            background: rgba(109,94,77,0.92); color: #fff; font-size: 0.62rem;
+            font-weight: 700; padding: 4px 11px; border-radius: 20px; white-space: nowrap;
+            backdrop-filter: blur(2px);
+        }
+
+        .feel-detail {
+            margin: 20px 0 6px; padding: 15px 20px; background: #F7F3ED;
+            border-radius: 6px; font-size: 0.92rem; color: var(--text-sub);
+            opacity: 1; transition: opacity .28s ease;
+        }
+        .feel-detail.fading { opacity: 0; }
+        .feel-detail .k { color: #9A9086; margin-right: 8px; }
+        .feel-detail b { color: var(--text-main); font-weight: 700; }
+        .keep-note { font-size: 0.8rem; color: #A79D92; margin: 0 0 22px; line-height: 1.6; }
+
+        .price-cta {
+            display: block; text-align: center; padding: 17px; border-radius: 5px;
+            background: var(--kakao-yellow); color: #3C1E1E; font-size: 1rem;
+            font-weight: 700; text-decoration: none; transition: background .2s ease;
+        }
+        .price-cta:hover { background: #F5DC00; }
+
+        @media (max-width: 768px) {
+            .price-main { padding: 28px 16px 22px; margin-top: 30px; }
+            .price-amt { font-size: 2.5rem; }
+            .price-inc { padding: 11px 15px; font-size: 0.8rem; gap: 5px 12px;
+                margin-bottom: 26px; border-radius: 12px; }
+            .feel-picker { gap: 8px; }
+            .feel { padding-bottom: 11px; }
+            .feel .fname { font-size: 0.86rem; margin: 9px 0 3px; }
+            .feel .fdesc { font-size: 0.67rem; line-height: 1.42; padding: 0 3px; }
+            .feel .pick { font-size: 0.55rem; padding: 3px 7px; top: 6px; }
+            .feel-detail { font-size: 0.85rem; padding: 13px 14px; margin: 16px 0 6px; }
+            .price-cta { padding: 15px; font-size: 0.94rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .feel, .feel .fimg img, .feel-detail { transition: none !important; }
+        }
+
+        @media (max-width: 768px) {
+        }
+        @media (prefers-reduced-motion: reduce) {
+        }
+
+
+        /* 플랜 탭 (리터치 포함 / 시술만) */
+        .plan-tabs {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 7px;
+            max-width: 420px; margin: 0 auto 26px; padding: 5px;
+            background: #F2ECE3; border-radius: 9px;
+        }
+        .plan {
+            border: 0; background: transparent; border-radius: 6px; cursor: pointer;
+            padding: 12px 8px 11px; font-family: inherit; text-align: center;
+            position: relative; transition: background .22s ease, box-shadow .22s ease;
+        }
+        .plan .pn {
+            display: block; font-size: 0.86rem; font-weight: 600;
+            color: #8A8075; transition: color .22s ease;
+        }
+        .plan .pp {
+            display: block; font-family: 'Gowun Batang', serif; font-size: 1.08rem;
+            font-weight: 700; color: #A0968B; margin-top: 3px; transition: color .22s ease;
+        }
+        .plan.on { background: var(--white); box-shadow: 0 3px 10px rgba(90,75,60,0.12); }
+        .plan.on .pn { color: var(--primary-dark); }
+        .plan.on .pp { color: var(--text-main); }
+        .plan .rec {
+            position: absolute; top: -8px; right: 8px; background: var(--primary-color);
+            color: #fff; font-size: 0.58rem; font-weight: 700; padding: 3px 8px;
+            border-radius: 20px; letter-spacing: 0.04em;
+        }
+        .fade { transition: opacity .26s ease; }
+        .fade.out { opacity: 0; }
+        @media (max-width: 768px) {
+            .plan-tabs { margin-bottom: 22px; gap: 5px; padding: 4px; }
+            .plan { padding: 10px 4px 9px; }
+            .plan .pn { font-size: 0.78rem; }
+            .plan .pp { font-size: 0.98rem; }
+            .plan .rec { font-size: 0.54rem; padding: 2px 7px; top: -7px; right: 5px; }
+        }
+        @media (prefers-reduced-motion: reduce) { .plan, .fade { transition: none !important; } }
+
+
+        .rt-box {
+            margin: 22px 0 8px; padding: 18px 20px; background: #F7F3ED;
+            border-radius: 7px; text-align: left; border-left: 3px solid var(--primary-color);
+        }
+        .rt-box.warn { border-left-color: var(--gold); }
+        .rt-box { animation: rtIn .3s ease; }
+        @keyframes rtIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+        .rt-t {
+            font-size: 0.94rem; font-weight: 700; color: var(--text-main);
+            margin-bottom: 7px; font-family: 'Gowun Batang', serif;
+        }
+        .rt-d { font-size: 0.86rem; color: var(--text-sub); line-height: 1.75; margin: 0; }
+        .rt-d b { color: var(--text-main); font-weight: 600; }
+        @media (max-width: 768px) {
+            .rt-box { padding: 15px 15px; margin: 18px 0 8px; }
+            .rt-t { font-size: 0.88rem; }
+            .rt-d { font-size: 0.8rem; line-height: 1.7; }
+        }
+
+
+        /* ══════ 극사실 눈썹 (별도 등급) ══════ */
+        .price-premium {
+            margin-top: 14px; background: var(--white); border: 1px solid #E3D9CB;
+            border-radius: 8px; overflow: hidden; display: grid;
+            grid-template-columns: 270px 1fr; align-items: stretch;
+            transition: border-color .25s ease, box-shadow .25s ease;
+        }
+        .price-premium:hover { border-color: var(--gold); box-shadow: 0 10px 30px rgba(201,169,110,0.14); }
+        .pv-img { overflow: hidden; background: #EFE9E1; }
+        .pv-img img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: transform .55s ease;
+        }
+        .price-premium:hover .pv-img img { transform: scale(1.04); }
+
+        .pv-body {
+            padding: 24px 26px; display: flex; align-items: center;
+            justify-content: space-between; gap: 24px; flex-wrap: wrap;
+        }
+        .pv-l { flex: 1 1 260px; text-align: left; }
+        .pv-tier {
+            font-size: 0.66rem; letter-spacing: 0.18em; font-weight: 700;
+            color: var(--gold); margin-bottom: 7px;
+        }
+        .pv-name {
+            font-family: 'Gowun Batang', serif; font-size: 1.35rem; font-weight: 700;
+            color: var(--text-main); margin-bottom: 4px; line-height: 1.35;
+        }
+        .pv-lead { font-size: 0.9rem; color: var(--primary-dark); font-weight: 600; margin-bottom: 8px; }
+        .pv-desc { font-size: 0.86rem; color: var(--text-sub); line-height: 1.7; margin-bottom: 14px; }
+        .pv-spec {
+            display: flex; flex-wrap: wrap; gap: 6px 14px;
+            padding-top: 12px; border-top: 1px solid #F0E9DF;
+            font-size: 0.84rem; color: var(--text-sub);
+        }
+        .pv-spec b { color: var(--text-main); font-weight: 600; }
+
+        .pv-r { flex: 0 0 auto; text-align: right; min-width: 160px; }
+        .pv-was { font-size: 0.84rem; color: #A79D92; }
+        .pv-was s { color: #B8AFA4; }
+        .pv-cond {
+            display: inline-flex; align-items: center; gap: 5px; margin: 6px 0 3px;
+            padding: 4px 11px; background: var(--kakao-yellow); border-radius: 20px;
+            font-size: 0.7rem; font-weight: 700; color: #3C1E1E; white-space: nowrap;
+        }
+        .pv-amt {
+            font-family: 'Gowun Batang', serif; font-size: 2rem; font-weight: 700;
+            color: var(--text-main); line-height: 1.1; margin-bottom: 12px;
+        }
+        .pv-amt .won { font-size: 0.85rem; font-weight: 400; color: var(--text-sub); }
+        .pv-cta {
+            display: inline-block; padding: 12px 22px; border-radius: 4px;
+            background: #F4EFE8; color: var(--primary-dark); font-size: 0.88rem;
+            font-weight: 600; text-decoration: none; white-space: nowrap;
+            transition: background .2s ease;
+        }
+        .pv-cta:hover { background: #EBE3D8; }
+
+        @media (max-width: 768px) {
+            .price-premium { grid-template-columns: 1fr; }
+            .pv-img img { aspect-ratio: 3/2; height: auto; }
+            .pv-body { padding: 20px 18px; gap: 16px; }
+            .pv-l { flex: 1 1 100%; }
+            .pv-name { font-size: 1.22rem; }
+            .pv-r { width: 100%; text-align: left; display: flex;
+                align-items: flex-end; justify-content: space-between; gap: 12px; }
+            .pv-amt { margin-bottom: 0; }
+            .pv-cta { padding: 11px 18px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .price-premium, .pv-img img { transition: none !important; }
+        }
 
         /* Ambient Blob */
         #blob-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
@@ -323,35 +579,6 @@
         .step-desc { font-size: 0.9rem; opacity: 0.95; line-height: 1.5; font-weight: 300; }
 
         /* 스타일 퀴즈 */
-        .quiz-section { background: #FDFBF9; }
-        .quiz-box {
-            background: white;
-            border: 1px solid #F0EDE9;
-            border-radius: 16px;
-            padding: 40px 24px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
-            margin-top: 30px;
-        }
-        .quiz-question {
-            font-family: 'Gowun Batang', serif;
-            font-size: 1.1rem; font-weight: 700; color: #1a1a1a;
-            margin-bottom: 20px; text-align: center;
-        }
-        .quiz-options {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
-            max-width: 400px; margin: 0 auto;
-        }
-        .quiz-opt {
-            padding: 14px 10px;
-            background: #FDFBF9; border: 1px solid #E5E0DA; border-radius: 8px;
-            font-size: 0.9rem; font-weight: 500; color: #444; cursor: pointer;
-            transition: all 0.25s; font-family: 'Pretendard', sans-serif;
-        }
-        .quiz-opt:hover { background: #F5F0EB; border-color: var(--primary-color); color: #1a1a1a; transform: translateY(-2px); }
-        .quiz-opt:active { transform: translateY(0); }
-        .quiz-result {
-            text-align: center; display: none; flex-direction: column; align-items: center; gap: 15px;
-        }
         .result-icon {
             width: 60px; height: 60px; border-radius: 50%;
             background: linear-gradient(135deg, #FDF6E3, #F9EBC8);
@@ -370,19 +597,6 @@
             cursor: pointer; display: flex; align-items: center; gap: 5px; margin-top: 5px;
         }
         .result-retry:hover { color: #666; }
-
-        .quiz-summary {
-            display: flex; flex-direction: column; gap: 8px;
-            width: 100%; max-width: 300px; margin: 5px auto 0 auto;
-            background: #FDFBF9; border: 1px solid #F0EDE9;
-            border-radius: 10px; padding: 16px 18px; text-align: left;
-        }
-        .quiz-summary p {
-            display: flex; justify-content: space-between; align-items: center;
-            font-size: 0.85rem; color: #666; margin: 0;
-        }
-        .quiz-summary p span { font-weight: 500; color: #888; }
-        .quiz-summary p strong { font-weight: 700; color: #1a1a1a; font-size: 0.9rem; }
 
         /* 결과 코드 */
         .result-code {
@@ -491,11 +705,6 @@
             .rec { padding: 17px 2px 19px; }
             .rec-title { font-size: 1.05rem; }
             .rec-sub { font-size: 0.74rem; }
-
-            .quiz-box { padding: 30px 16px; }
-            .quiz-options { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .quiz-opt { padding: 12px 8px; font-size: 0.85rem; }
-            .quiz-summary p { font-size: 0.8rem; }
             .capture-guide { font-size: 0.78rem; }
         }
 
@@ -862,6 +1071,94 @@
         </div>
     </section>
 
+
+    <!-- ══════ 가격 안내 ══════ -->
+    <section class="section-padding price-section" data-sec="5b_price">
+        <div class="container reveal">
+            <div class="text-center">
+                <h2 class="section-title">시술 안내</h2>
+                <span class="title-line"></span>
+                <p class="section-desc">상담부터 시술까지 원장이 직접 진행합니다.</p>
+            </div>
+
+            <div class="price-main">
+                <div class="cap">눈썹문신</div>
+                <div class="plan-tabs">
+                    <button class="plan on" type="button" data-plan="리터치 포함" data-list="20" data-price="19" data-inc="리터치 <b>1회 포함</b>">
+                        <span class="rec">추천</span>
+                        <span class="pn">리터치 포함</span>
+                        <span class="pp">19만원</span>
+                    </button>
+                    <button class="plan" type="button" data-plan="리터치 미포함" data-list="14" data-price="13" data-inc="리터치 <b>미포함</b>">
+                        <span class="pn">리터치 미포함</span>
+                        <span class="pp">13만원</span>
+                    </button>
+                </div>
+
+                <div class="price-list fade" id="pList">정가 <s>20만원</s></div>
+                <div class="price-cond"><i class="fas fa-comment"></i> 카카오톡 채널 추가 시</div>
+                <div class="price-amt fade" id="pAmt">19<span class="won">만원</span></div>
+                <div class="price-inc">
+                    <span>유지 <b>1년 ~ 2년</b></span>
+                    <span>소요 <b>1시간 30분</b></span>
+                    <span><b>1:1 골격 맞춤 디자인</b></span>
+                    <span><b>관리용 미니 키트</b></span>
+                </div>
+
+                <div class="feel-q">원하시는 느낌을 골라주세요</div>
+                <div class="feel-picker">
+                    <div class="feel on" data-feel="베이직">
+                        <div class="fimg"><img src="/basic.webp" alt="베이직 시술 예시" loading="lazy"></div>
+                        <div class="pick">가장 많이 선택</div><div class="fname">베이직</div>
+                        <div class="fdesc">원래 내 눈썹처럼<br>자연스럽게</div>
+                    </div>
+                    <div class="feel" data-feel="메이크업">
+                        <div class="fimg"><img src="/makeup.webp" alt="메이크업 시술 예시" loading="lazy"></div>
+                        <div class="fname">메이크업</div>
+                        <div class="fdesc">꼬리에 음영으로<br>또렷한 인상</div>
+                    </div>                    </div>
+                </div>
+
+                <div class="rt-box fade warn" id="rtBox" hidden>
+                    <div class="rt-t">리터치 없이 진행하신다면</div>
+                    <p class="rt-d" id="rtDesc">유지기간을 늘리는 시술이 아닙니다. 피부와 생활 환경에 따라 색이 예상보다 빠지거나 손봐야 할 부분이 생길 수 있어, 그때 다시 봐드리는 과정입니다. 특히 <b>베이직은 색소를 적게 넣기 때문에 조금만 빠져도 흐려 보일 수</b> 있어 리터치를 권해드립니다.</p>
+                </div>
+                <p class="keep-note">유지기간은 원하시는 색감과 피부 타입에 따라 달라질 수 있습니다.</p>
+
+                <a href="https://pf.kakao.com/_xhKxnhxj/chat?text=%5B%EB%B2%A0%EC%9D%B4%EC%A7%81%20%C2%B7%20%EB%A6%AC%ED%84%B0%EC%B9%98%20%ED%8F%AC%ED%95%A8%2019%EB%A7%8C%5D%20%EC%98%88%EC%95%BD%20%EA%B0%80%EB%8A%A5%ED%95%9C%20%EB%82%A0%EC%A7%9C%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A0%A4%EC%9A%94" class="price-cta" target="_blank" id="mainCta" data-tier="베이직/리터치 포함">날짜 문의하기</a>
+            </div>
+
+            <div class="price-premium">
+                <div class="pv-img"><img src="/hyper.webp" alt="극사실 눈썹 헤어스트록 시술 예시" loading="lazy"></div>
+                <div class="pv-body">
+                    <div class="pv-l">
+                        <div class="pv-tier">HAIRSTROKE &middot; 헤어스트록</div>
+                        <div class="pv-name">극사실 눈썹</div>
+                        <div class="pv-lead">한 올씩 심는 최상위 기법</div>
+                        <div class="pv-desc">가장 오래, 가장 자연스럽게<br>잔털까지 살려 표현합니다.</div>
+                        <div class="pv-spec">
+                            <span>리터치 <b>2회</b></span>
+                            <span>유지 <b>약 3년</b></span>
+                            <span>소요 <b>3시간</b></span>
+                        </div>
+                    </div>
+                    <div class="pv-r">
+                        <div>
+                            <div class="pv-was">정가 <s>40만원</s></div>
+                            <div class="pv-cond"><i class="fas fa-comment"></i> 카카오톡 채널 추가 시</div>
+                            <div class="pv-amt">38<span class="won">만원</span></div>
+                        </div>
+                        <a href="https://pf.kakao.com/_xhKxnhxj/chat?text=%5B%EA%B7%B9%EC%82%AC%EC%8B%A4%20%EB%88%88%EC%8D%B9%2038%EB%A7%8C%5D%20%EC%98%88%EC%95%BD%20%EA%B0%80%EB%8A%A5%ED%95%9C%20%EB%82%A0%EC%A7%9C%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A0%A4%EC%9A%94" class="pv-cta" target="_blank" data-tier="극사실 눈썹">날짜 문의하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top:16px;text-align:center;font-size:0.86rem;color:#9A9086;line-height:1.7;">
+                어떤 느낌이 어울릴지 모르시면 그냥 물어보셔도 됩니다.<br>골격을 보고 맞는 쪽으로 안내해 드립니다.
+            </p>
+        </div>
+    </section>
+
     <!-- ══════ 시술자 : 경력 ══════ -->
     <section class="auth-section" data-sec="6_authority">
         <div class="container reveal">
@@ -959,83 +1256,6 @@
     </section>
 
     <!-- 스타일 퀴즈 -->
-    <section class="section-padding quiz-section" data-sec="8_quiz">
-        <div class="container reveal" style="max-width: 700px;">
-            <div class="text-center">
-                <h2 class="section-title">나에게 맞는 눈썹 스타일</h2>
-                <span class="title-line"></span>
-                <p class="section-desc">세 가지 질문에 답하면 당신에게 어울리는 분위기를 찾아드려요</p>
-            </div>
-
-            <div id="browQuiz" class="quiz-box">
-                <div class="quiz-step" id="quizStep1">
-                    <p class="quiz-question">Q1. 나의 얼굴형은?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-opt" data-step="1" data-value="둥근형">둥근형</button>
-                        <button class="quiz-opt" data-step="1" data-value="각진형">각진형</button>
-                        <button class="quiz-opt" data-step="1" data-value="계란형">계란형</button>
-                        <button class="quiz-opt" data-step="1" data-value="하트형">하트형</button>
-                    </div>
-                </div>
-
-                <div class="quiz-step" id="quizStep2" style="display:none;">
-                    <p class="quiz-question">Q2. 원하는 분위기는?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-opt" data-step="2" data-value="내추럴">내추럴</button>
-                        <button class="quiz-opt" data-step="2" data-value="시크">시크</button>
-                        <button class="quiz-opt" data-step="2" data-value="청순">청순</button>
-                        <button class="quiz-opt" data-step="2" data-value="도회적">도회적</button>
-                    </div>
-                </div>
-
-                <div class="quiz-step" id="quizStep3" style="display:none;">
-                    <p class="quiz-question">Q3. 현재 눈썹 고민은?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-opt" data-step="3" data-value="숱없음">숱이 적어요</button>
-                        <button class="quiz-opt" data-step="3" data-value="비대칭">비대칭이에요</button>
-                        <button class="quiz-opt" data-step="3" data-value="잔흔">잔흔이 있어요</button>
-                        <button class="quiz-opt" data-step="3" data-value="모양">모양이 고민이에요</button>
-                    </div>
-                </div>
-
-                <div class="quiz-result" id="quizResult">
-                    <div class="result-icon">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <h3 class="result-title" id="resultTitle">내추럴 아치형</h3>
-                    <p class="result-desc" id="resultDesc">
-                        얼굴의 장점은 살리고 부담스럽지 않은 라인으로<br>일상에서 자연스럽게 빛나는 스타일이에요.
-                    </p>
-
-                    <div class="quiz-summary" id="quizSummary">
-                        <p><span>얼굴형</span> <strong id="summaryFace">-</strong></p>
-                        <p><span>원하는 분위기</span> <strong id="summaryVibe">-</strong></p>
-                        <p><span>눈썹 고민</span> <strong id="summaryConcern">-</strong></p>
-                    </div>
-
-                    <div class="result-code">
-                        <span class="code-label">내 결과 코드</span>
-                        <span class="code-value" id="resultCode">SS-000</span>
-                    </div>
-
-                    <button class="copy-btn" id="copyResult" type="button">
-                        <i class="far fa-copy"></i> 결과 복사하기
-                    </button>
-
-                    <a href="https://pf.kakao.com/_xhKxnhxj/chat" class="result-cta" target="_blank" id="resultCta">
-                        <i class="fas fa-comment"></i> 카카오톡으로 상담 받기
-                    </a>
-
-                    <p class="capture-guide">
-                        복사한 내용을 붙여넣거나, 코드 <b id="guideCode">SS-000</b>만 보내주셔도<br>어떤 눈썹이 어울릴지 바로 확인해 드립니다.
-                    </p>
-                    <button class="result-retry" id="retryQuiz">
-                        <i class="fas fa-undo"></i> 다시 해보기
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- FAQ -->
     <section class="section-padding" style="background: white;" data-sec="9_faq">
@@ -1092,8 +1312,8 @@
         <a href="https://www.instagram.com/__songshop/" class="float-btn btn-insta" target="_blank">
             <i class="fab fa-instagram"></i> 포트폴리오
         </a>
-        <a href="https://pf.kakao.com/_xhKxnhxj/chat?text=%5B%EB%9E%9C%EB%94%A9-%ED%95%98%EB%8B%A8%EB%B0%94%5D%20%EC%83%81%EB%8B%B4%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A0%A4%EC%9A%94" class="float-btn btn-inquiry" target="_blank">
-            <i class="fas fa-comment"></i> 상담 문의
+        <a href="https://pf.kakao.com/_xhKxnhxj/chat?text=%5B%ED%95%98%EB%8B%A8%EB%B0%94%5D%20%EC%98%88%EC%95%BD%20%EA%B0%80%EB%8A%A5%ED%95%9C%20%EB%82%A0%EC%A7%9C%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A0%A4%EC%9A%94" class="float-btn btn-inquiry" target="_blank">
+            <i class="fas fa-comment"></i> 예약 날짜 문의
         </a>
     </div>
 
@@ -1216,125 +1436,9 @@
                 statNumbers.forEach(num => statsObserver.observe(num));
             }
             animateStats();
-
-            // 6. 스타일 퀴즈
-            const quizData = { 1: null, 2: null, 3: null };
-            const stepDivs = {
-                1: document.getElementById('quizStep1'),
-                2: document.getElementById('quizStep2'),
-                3: document.getElementById('quizStep3')
-            };
-            const resultDiv = document.getElementById('quizResult');
-
-            document.querySelectorAll('.quiz-opt').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const step = parseInt(this.dataset.step);
-                    quizData[step] = this.dataset.value;
-                    if (step < 3) {
-                        stepDivs[step].style.display = 'none';
-                        stepDivs[step + 1].style.display = 'block';
-                    } else {
-                        stepDivs[3].style.display = 'none';
-                        showQuizResult();
-                    }
-                });
-            });
-
-            function showQuizResult() {
-                let title = '내추럴 아치형';
-                let desc = '얼굴의 장점은 살리고 부담스럽지 않은 라인으로<br>일상에서 자연스럽게 빛나는 스타일이에요.';
-
-                if (quizData[2] === '시크') {
-                    title = '시크한 스트레이트형';
-                    desc = '각진 느낌을 부드럽게 감싸주는 일자 라인으로<br>도시적이고 세련된 인상을 완성해요.';
-                } else if (quizData[2] === '청순') {
-                    title = '청순한 소프트 아치형';
-                    desc = '둥글고 부드러운 아치로 순한 인상을 강조해요.<br>메이크업 없이도 화사한 느낌을 줍니다.';
-                } else if (quizData[2] === '도회적') {
-                    title = '도회적 표준형';
-                    desc = '또렷한 눈매를 살려주는 표준 비율의 라인으로<br>자신감 있는 인상을 만들어줘요.';
-                }
-
-                if (quizData[3] === '잔흔') {
-                    title = '잔흔 커버 내추럴형';
-                    desc = '기존 잔흔을 자연스럽게 살려 새 라인으로 재탄생시키는<br>커버 특화 디자인이에요.';
-                }
-
-                document.getElementById('resultTitle').textContent = title;
-                document.getElementById('resultDesc').innerHTML = desc;
-
-                const faceMap = { '둥근형': '둥근형', '각진형': '각진형', '계란형': '계란형', '하트형': '하트형' };
-                const vibeMap = { '내추럴': '내추럴', '시크': '시크', '청순': '청순', '도회적': '도회적' };
-                const concernMap = { '숱없음': '숱이 적어요', '비대칭': '비대칭이에요', '잔흔': '잔흔이 있어요', '모양': '모양이 고민이에요' };
-
-                document.getElementById('summaryFace').textContent = faceMap[quizData[1]] || '-';
-                document.getElementById('summaryVibe').textContent = vibeMap[quizData[2]] || '-';
-                document.getElementById('summaryConcern').textContent = concernMap[quizData[3]] || '-';
-
-                // ── 결과 코드 생성 (선택 순번 3자리) ──
-                const faceOrder = ['둥근형','각진형','계란형','하트형'];
-                const vibeOrder = ['내추럴','시크','청순','도회적'];
-                const concernOrder = ['숱없음','비대칭','잔흔','모양'];
-                const idx = (arr, v) => { const i = arr.indexOf(v); return i < 0 ? 0 : i + 1; };
-                const code = 'SS-' + idx(faceOrder, quizData[1]) + idx(vibeOrder, quizData[2]) + idx(concernOrder, quizData[3]);
-                document.getElementById('resultCode').textContent = code;
-                document.getElementById('guideCode').textContent = code;
-
-                // ── 붙여넣기용 메시지 ──
-                const summaryText = `얼굴형 ${faceMap[quizData[1]] || '미선택'} / 분위기 ${vibeMap[quizData[2]] || '미선택'} / 고민 ${concernMap[quizData[3]] || '미선택'}`;
-                window.__ssMsg = `[SONGSHOP 눈썹 테스트 ${code}]\n결과: ${title}\n${summaryText}\n\n제게 어울리는 눈썹 상담받고 싶어요!`;
-
-                document.getElementById('resultCta').href = 'https://pf.kakao.com/_xhKxnhxj/chat';
-
-                resultDiv.style.display = 'flex';
-            }
-
-            // ── 결과 복사 ──
-            const copyBtn = document.getElementById('copyResult');
-            if (copyBtn) {
-                copyBtn.addEventListener('click', function() {
-                    const msg = window.__ssMsg || '';
-                    let ok = false;
-                    // 1차: 구형 브라우저까지 확실히 먹는 방식
-                    try {
-                        const ta = document.createElement('textarea');
-                        ta.value = msg;
-                        ta.setAttribute('readonly', '');
-                        ta.style.position = 'fixed';
-                        ta.style.top = '-1000px';
-                        document.body.appendChild(ta);
-                        ta.select();
-                        ta.setSelectionRange(0, msg.length);
-                        ok = document.execCommand('copy');
-                        document.body.removeChild(ta);
-                    } catch (e) {}
-                    // 2차: 최신 API
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(msg).catch(function(){});
-                        ok = true;
-                    }
-                    copyBtn.classList.add('done');
-                    copyBtn.innerHTML = ok
-                        ? '<i class="fas fa-check"></i> 복사됐어요! 카톡에 붙여넣기'
-                        : '<i class="fas fa-comment"></i> 코드만 보내주셔도 돼요';
-                    if (typeof fbq === 'function') fbq('trackCustom', 'quiz_copy', { ok: ok });
-                    if (typeof gtag === 'function') gtag('event', 'quiz_copy', { ok: ok });
-                });
-            }
-
-            document.getElementById('retryQuiz').addEventListener('click', function() {
-                quizData[1] = quizData[2] = quizData[3] = null;
-                stepDivs[1].style.display = 'block';
-                stepDivs[2].style.display = 'none';
-                stepDivs[3].style.display = 'none';
-                resultDiv.style.display = 'none';
-                if (copyBtn) {
-                    copyBtn.classList.remove('done');
-                    copyBtn.innerHTML = '<i class="far fa-copy"></i> 결과 복사하기';
-                }
-            });
         });
     </script>
+
 
     <!-- ══════ 진단용 계측 스크립트 ══════ -->
     <script>
@@ -1550,6 +1654,8 @@
               if (reached) {
                 /* 전환 이벤트만 기존 이름 그대로 양쪽 전송 (광고 최적화 기준) */
                 if (name === CONV_SEC) track('sec' + name, {}, { once: true });
+                /* 가격표 도달은 Meta 로도 보낸다 — 광고별 이탈률을 보기 위해 */
+                if (name === '5b_price') track('price_view', {}, { once: true });
                 /* 나머지 섹션 도달은 진단용 → GA4 에만. 이름 하나에 파라미터로 구분한다 */
                 track('section_reach', { section: name }, { once: true, key: 'reach_' + name, to: 'ga' });
               }
@@ -1595,34 +1701,85 @@
         var insta = document.querySelector('.btn-insta');
         if (insta) insta.addEventListener('click', function () { track('act_instagram', { placement: 'float' }); });
 
-        /* ---------- 퀴즈 깔때기 ---------- */
-        document.querySelectorAll('.quiz-opt').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            var step = parseInt(this.dataset.step, 10);
-            if (step === 1) { track('quiz_start', {}, { once: true }); engaged('quiz'); }
-            if (step > quizStep) quizStep = step;
-            track('quiz_q' + step, { value: this.dataset.value }, { once: true });
-            if (step === 3) {
-              track('quiz_complete', {
-                face: document.getElementById('summaryFace') ? document.getElementById('summaryFace').textContent : '',
-                concern: this.dataset.value
-              }, { once: true, standard: 'Lead' });
-            }
+
+
+
+        /* ---------- 가격표 통과 여부 (가격 보고 계속 읽었는가) ---------- */
+        var priceSec = document.querySelector('[data-sec="5b_price"]');
+        if (priceSec && 'IntersectionObserver' in window) {
+          new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+              /* 가격표가 화면 위로 완전히 빠져나감 = 통과 */
+              if (!e.isIntersecting && e.boundingClientRect.top < 0) {
+                track('price_pass', {}, { once: true });
+              }
+            });
+          }, { threshold: 0 }).observe(priceSec);
+        }
+
+
+
+
+        var RT_MSG = '시술 후 손봐야 할 부분이 생겨도 추가 방문은 별도입니다. 특히 <b>베이직은 색소를 적게 넣어 조금만 빠져도 흐려 보일 수</b> 있으니, 처음 받으시는 경우라면 리터치 포함을 권해드립니다.';
+        function syncRt(plan) {
+          var box = document.getElementById('rtBox'), d = document.getElementById('rtDesc');
+          if (!box) return;
+          if (plan === '리터치 미포함') {
+            if (d) d.innerHTML = RT_MSG;
+            box.hidden = false;
+          } else {
+            box.hidden = true;
+          }
+        }
+
+        /* ---------- 플랜 전환 ---------- */
+        var curPlan = '리터치 포함', curPrice = '19', curFeel = '엠보';
+        function syncCta() {
+          var cta = document.getElementById('mainCta');
+          if (!cta) return;
+          var label = '[' + curFeel + ' · ' + curPlan + ' ' + curPrice + '만] 예약 가능한 날짜 문의드려요';
+          cta.href = 'https://pf.kakao.com/_xhKxnhxj/chat?text=' + encodeURIComponent(label);
+          cta.dataset.tier = curFeel + '/' + curPlan;
+        }
+        document.querySelectorAll('.plan').forEach(function (b) {
+          b.addEventListener('click', function () {
+            if (this.classList.contains('on')) return;
+            document.querySelectorAll('.plan').forEach(function (o) { o.classList.remove('on'); });
+            this.classList.add('on');
+            curPlan = this.dataset.plan; curPrice = this.dataset.price;
+            var list = this.dataset.list, inc = this.dataset.inc;
+            var els = ['pList', 'pAmt', 'pInc'].map(function (id) { return document.getElementById(id); });
+            els.forEach(function (e) { if (e) e.classList.add('out'); });
+            setTimeout(function () {
+              if (els[0]) els[0].innerHTML = '정가 <s>' + list + '만원</s>';
+              if (els[1]) els[1].innerHTML = curPrice + '<span class="won">만원</span>';
+              if (els[2]) els[2].innerHTML = inc;
+              els.forEach(function (e) { if (e) e.classList.remove('out'); });
+            }, 260);
+            syncCta(); syncRt(curPlan);
+            track('plan_pick', { plan: curPlan });
           });
         });
 
-        var qcta = document.getElementById('resultCta');
-        if (qcta) qcta.addEventListener('click', function () {
-          var r = document.getElementById('resultTitle');
-          track('kakao_quiz', {
-            placement: 'quiz',
-            result: r ? r.textContent : '',
-            concern: document.getElementById('summaryConcern') ? document.getElementById('summaryConcern').textContent : ''
-          }, { standard: 'Contact' });
+        /* ---------- 느낌 선택 → 사진·유지기간·카톡 문구 전환 ---------- */
+        var mainCta = document.getElementById('mainCta');
+        document.querySelectorAll('.feel').forEach(function (f) {
+          f.addEventListener('click', function () {
+            if (this.classList.contains('on')) return;
+            document.querySelectorAll('.feel').forEach(function (o) { o.classList.remove('on'); });
+            this.classList.add('on');
+            var name = this.dataset.feel, keep = this.dataset.keep;
+            curFeel = name; syncCta();
+            track('feel_pick', { feel: name });
+          });
         });
-        var retry = document.getElementById('retryQuiz');
-        if (retry) retry.addEventListener('click', function () { track('quiz_retry'); });
 
+        /* ---------- 가격표 CTA ---------- */
+        document.querySelectorAll('.price-cta, .pv-cta').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            track('kakao_price', { tier: this.dataset.tier || 'unknown' }, { standard: 'Contact' });
+          });
+        });
         /* ---------- 상담 CTA ---------- */
         var floatBtn = document.querySelector('.btn-inquiry');
         if (floatBtn) floatBtn.addEventListener('click', function () {

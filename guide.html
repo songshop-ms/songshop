@@ -138,6 +138,8 @@
     -webkit-tap-highlight-color:transparent;
   }
   .zoom img{margin-bottom:0}
+  /* 헤어스트록은 전체폭 이미지라 원래 간격(16px)을 버튼이 대신 갖는다 */
+  .zoom--hero{margin-bottom:16px}
   .zoom::after{
     content:"확대";position:absolute;right:6px;bottom:6px;
     font-size:.62rem;letter-spacing:.04em;color:#fff;
@@ -149,7 +151,7 @@
   .lb{
     position:fixed;inset:0;z-index:60;padding:20px;
     display:flex;align-items:center;justify-content:center;
-    background:rgba(24,21,18,.92);
+    background:rgba(24,21,18,.92);cursor:zoom-out;
     opacity:0;transition:opacity .18s ease;
   }
   .lb[hidden]{display:none}
@@ -281,7 +283,12 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
     </div>
 
     <div class="card">
-      <img class="hero-img" src="/hyper.webp" alt="극사실 눈썹 헤어스트록 시술 예시" loading="lazy">
+      <button type="button" class="zoom zoom--hero"
+              data-zoom="/hyper.webp" data-name="극사실 눈썹"
+              data-desc="HAIRSTROKE · 헤어스트록"
+              aria-label="극사실 눈썹 시술 예시 크게 보기">
+        <img class="hero-img" src="/hyper.webp" alt="극사실 눈썹 헤어스트록 시술 예시" loading="lazy">
+      </button>
       <div class="ptag">HAIRSTROKE · 헤어스트록</div>
       <div class="pname">극사실 눈썹</div>
       <div class="prow">
@@ -611,10 +618,8 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
       b.addEventListener('click', function () { openLb(b); });
     });
 
-    /* 배경이나 닫기 버튼을 눌렀을 때만 닫는다 — 사진 자체는 눌러도 유지 */
-    lb.addEventListener('click', function (e) {
-      if (e.target === lb || e.target === lbX) closeLb();
-    });
+    /* 어디를 눌러도 닫는다 — 사진을 한 번 더 터치하는 게 가장 자연스럽다 */
+    lb.addEventListener('click', closeLb);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && !lb.hidden) closeLb();
     });

@@ -50,16 +50,43 @@
   .pamt .w{font-size:.8rem;font-weight:400;color:var(--sub)}
   .pwas{font-size:.82rem;color:var(--mute)}
   .pwas s{color:#B8AFA4}
+  .pcond{
+    display:inline-flex;align-items:center;gap:4px;margin-top:5px;
+    padding:3px 9px;background:var(--kakao);border-radius:20px;
+    font-size:.7rem;font-weight:700;color:#3C1E1E;white-space:nowrap;
+  }
   .spec{
     display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;padding-top:13px;
     border-top:1px solid var(--soft);font-size:.86rem;color:var(--sub);
   }
   .spec b{color:var(--ink);font-weight:600}
-  .opt{
-    margin-top:12px;padding:11px 14px;background:var(--soft);border-radius:6px;
-    font-size:.86rem;color:var(--sub);display:flex;justify-content:space-between;gap:10px;
+  .opt{margin-top:14px;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .opt-sum{
+    list-style:none;cursor:pointer;padding:13px 14px;background:var(--soft);
+    font-size:.88rem;font-weight:600;color:var(--primary-dark);
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
   }
-  .opt b{color:var(--ink);font-weight:600;white-space:nowrap}
+  .opt-sum::-webkit-details-marker{display:none}
+  .opt-sum::after{content:'+';font-size:1.1rem;font-weight:400;color:var(--mute);line-height:1}
+  .opt[open] .opt-sum::after{content:'\2212'}
+  .opt-body{border-top:1px solid var(--line)}
+  .opt-row{
+    padding:13px 14px;font-size:.86rem;color:var(--sub);
+    display:flex;justify-content:space-between;gap:10px;
+  }
+  .opt-row b{color:var(--ink);font-weight:600;white-space:nowrap;font-size:1rem}
+  .opt-warn{
+    padding:13px 14px;background:var(--soft);border-top:1px solid var(--line);
+    border-left:3px solid var(--gold);font-size:.82rem;color:var(--sub);line-height:1.7;
+  }
+  .opt-warn b{color:var(--ink);font-weight:600}
+  .link-btn{
+    display:block;text-align:center;padding:13px;border:1px solid var(--line);
+    border-radius:6px;background:var(--white);color:var(--primary-dark);
+    font-size:.88rem;font-weight:600;text-decoration:none;
+  }
+  .link-btn::after{content:' \2197';color:var(--mute)}
+  .link-btn:active{background:var(--soft)}
 
   .pick{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
   .pick>div{border:1px solid var(--line);border-radius:7px;text-align:center;background:#FCFAF7;overflow:hidden}
@@ -102,6 +129,30 @@
   .pick .t,.pick .d{padding:0 8px}
   .hero-img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;
     border-radius:6px;margin:0 0 16px}
+
+  /* 함께 받으면 / 동반할인 */
+  .combo{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;
+    padding:15px 0;border-bottom:1px solid var(--soft)}
+  .combo:first-child{padding-top:0}
+  .combo:last-child{border-bottom:none;padding-bottom:0}
+  .cb-n{font-family:'Gowun Batang',serif;font-size:1.05rem;font-weight:700}
+  .cb-inc{font-size:.8rem;color:var(--mute);margin-top:3px}
+  .cb-r{text-align:right;white-space:nowrap}
+  .cb-solo{font-size:.8rem;color:var(--mute)}
+  .cb-with{font-size:.88rem;color:var(--sub);margin-top:2px}
+  .cb-with b{font-family:'Gowun Batang',serif;font-size:1.4rem;color:var(--ink);
+    font-weight:700;letter-spacing:-.02em}
+
+  .dual{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    padding:13px 0;border-bottom:1px solid var(--soft)}
+  .dual:first-child{padding-top:0}
+  .dual:last-child{border-bottom:none;padding-bottom:0}
+  .dn{font-weight:600}
+  .dp{white-space:nowrap;font-size:.86rem;color:var(--mute)}
+  .dp s{color:#C4BBB1}
+  .dp b{font-family:'Gowun Batang',serif;font-size:1.3rem;color:var(--ink);
+    font-weight:700;margin-left:4px}
+  .ask{font-size:.88rem;color:var(--sub);line-height:1.75;margin:6px 0 14px}
   .bar{
     position:fixed;left:0;right:0;bottom:0;background:var(--white);
     border-top:1px solid var(--line);padding:10px 20px calc(10px + env(safe-area-inset-bottom));
@@ -142,12 +193,15 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
 
   <!-- 1. 가격 -->
   <section>
-    <div class="sec-h"><span class="n">1</span><h2>가격</h2></div>
+    <div class="sec-h"><span class="n">1</span><h2>눈썹문신</h2></div>
 
     <div class="card hi">
       <div class="pname">눈썹문신</div>
       <div class="prow">
-        <div class="pwas">정가 <s>20만원</s></div>
+        <div>
+          <div class="pwas">정가 <s>20만원</s></div>
+          <div class="pcond">카카오톡 채널 추가 시</div>
+        </div>
         <div class="pamt">19<span class="w">만원</span></div>
       </div>
       <div class="pick">
@@ -165,7 +219,13 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
         <span>유지 <b>1~2년</b></span>
         <span>소요 <b>1시간 30분</b></span>
       </div>
-      <div class="opt"><span>리터치 없이 진행하시면</span><b>13만원</b></div>
+      <details class="opt">
+        <summary class="opt-sum">리터치 미포함으로도 가능합니다</summary>
+        <div class="opt-body">
+          <div class="opt-row"><span>리터치 없이 진행하시면</span><b>13만원</b></div>
+          <div class="opt-warn">리터치는 유지기간을 늘리는 게 아니라 AS 개념입니다. 특히 <b>베이직은 색소를 적게 넣어</b> 조금만 빠져도 흐려 보일 수 있어, 처음 받으시는 경우라면 리터치 포함을 권해드립니다.</div>
+        </div>
+      </details>
     </div>
 
     <div class="card">
@@ -173,7 +233,10 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
       <div class="ptag">HAIRSTROKE · 헤어스트록</div>
       <div class="pname">극사실 눈썹</div>
       <div class="prow">
-        <div class="pwas">정가 <s>40만원</s></div>
+        <div>
+          <div class="pwas">정가 <s>40만원</s></div>
+          <div class="pcond">카카오톡 채널 추가 시</div>
+        </div>
         <div class="pamt">38<span class="w">만원</span></div>
       </div>
       <div class="spec">
@@ -185,15 +248,98 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
 
     <div class="note" style="margin-top:12px">
       세 과정 모두 <b>1:1 얼굴 골격 맞춤 디자인</b>과 <b>관리용 미니 키트</b>가 포함됩니다.<br>
-      표시된 금액은 <b>카카오톡 채널 추가 가격</b>입니다.
+      할인가는 <b>카카오톡 채널을 추가하시면 발급되는 쿠폰</b>을 적용한 금액이며, <b>눈썹문신에만</b> 해당됩니다.
     </div>
   </section>
 
-  <!-- 2. 리터치 -->
+  <!-- 2. 함께 받으면 -->
   <section>
-    <div class="sec-h"><span class="n">2</span><h2>리터치는 AS입니다</h2></div>
+    <div class="sec-h"><span class="n">2</span><h2>함께 받으면</h2></div>
+    <div class="card">
+      <div class="combo">
+        <div>
+          <div class="cb-n">입술 문신</div>
+          <div class="cb-inc">리터치 포함</div>
+        </div>
+        <div class="cb-r">
+          <div class="cb-solo">단독 30만원</div>
+          <div class="cb-with">눈썹과 함께 <b>25</b>만원</div>
+        </div>
+      </div>
+      <div class="combo">
+        <div>
+          <div class="cb-n">속눈썹펌</div>
+          <div class="cb-inc">꼬임방지 클리닉 포함</div>
+        </div>
+        <div class="cb-r">
+          <div class="cb-solo">단독 4만원</div>
+          <div class="cb-with">눈썹과 함께 <b>2</b>만원</div>
+        </div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:10px">
+      눈썹문신과 <b>같은 날 함께 받으실 때</b> 적용되는 금액입니다.<br>입술 문신과 속눈썹펌은 카카오톡 채널 추가 할인 대상이 아닙니다.
+    </div>
+  </section>
+
+  <!-- 3. 두 분이 함께 오시면 -->
+  <section>
+    <div class="sec-h"><span class="n">3</span><h2>두 분이 함께 오시면</h2></div>
+    <div class="card">
+      <div class="dual">
+        <span class="dn">베이직 · 메이크업</span>
+        <span class="dp"><s>19만원</s> 각 <b>18</b>만원</span>
+      </div>
+      <div class="dual">
+        <span class="dn">극사실 눈썹</span>
+        <span class="dp"><s>38만원</s> 각 <b>32</b>만원</span>
+      </div>
+    </div>
+    <div class="note" style="margin-top:10px">
+      두 분이 같은 날 함께 방문하시면 <b>각각</b> 위 금액으로 시술해 드립니다.<br>
+      <b>동반 할인과 함께 받으시는 할인은 중복 적용됩니다.</b> 다만 쿠폰 할인과는 중복되지 않습니다.
+    </div>
+  </section>
+
+  <!-- 4. 두피문신 -->
+  <section>
+    <div class="sec-h"><span class="n">4</span><h2>두피문신</h2></div>
+    <div class="card">
+      <div class="prow" style="align-items:center;margin-top:0">
+        <div class="pname" style="font-size:1.08rem">헤어라인</div>
+        <div class="pamt" style="font-size:1.5rem">40<span class="w">만원</span></div>
+      </div>
+      <div class="spec">
+        <span>리터치 <b>2회 기본</b></span>
+        <span><b>6개월 내 추가 AS 무료</b></span>
+        <span>유지 <b>5년 이상</b></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="pname" style="font-size:1.05rem;margin-bottom:10px">여러 번에 걸쳐 완성합니다</div>
+      <div class="ask" style="margin-bottom:0">
+        두피는 피지가 많고 피부가 두꺼워, 미세한 점을 한 번에 다 남기려 하면
+        <b>번지는 경우</b>가 있습니다. 그래서 한 번에 끝내지 않고 여러 차례에 걸쳐 천천히 채웁니다.
+        <b>리터치는 선택이 아니라 과정의 일부</b>입니다.<br><br>
+        보통 <b>3~4회차</b>에 숱 채움이 완성되며, 빠르면 한 달 늦으면 두 달 정도 걸립니다.
+        두피문신은 <b>5년 이상 유지</b>되기 때문에 회차 간격이 2~3개월 이상 벌어져도 괜찮습니다.
+      </div>
+    </div>
+    <div class="card">
+      <div class="pname" style="font-size:1.08rem">가르마 · 정수리</div>
+      <div class="ask">범위에 따라 필요한 작업량이 크게 달라져 금액을 미리 정해두지 않았습니다.
+        사진을 보내주시면 어느 정도인지 먼저 알려드립니다.</div>
+      <div style="font-size:.8rem;color:var(--mute);margin-bottom:14px">두피문신은 카카오톡 채널 추가 할인 대상이 아닙니다.</div>
+      <a class="link-btn" href="https://songshop-ms.github.io/scalping/" target="_blank" rel="noopener">두피문신 좀 더 자세히 보기</a>
+    </div>
+  </section>
+
+  <!-- 5. 리터치 -->
+  <section>
+    <div class="sec-h"><span class="n">5</span><h2>리터치는 AS입니다</h2></div>
     <div class="note">
-      유지기간을 늘리는 시술이 아닙니다. 피부와 생활 환경에 따라 색이 예상보다 빠지거나
+      <b>눈썹문신의</b> 리터치는 유지기간을 늘리는 시술이 아닙니다. 피부와 생활 환경에 따라 색이 예상보다 빠지거나
       손봐야 할 부분이 생길 수 있어, <b>그때 다시 봐드리는 과정</b>입니다.
       첫 시술은 일부러 연하게 넣기 때문에 <b>4~8주 사이</b>에 받으시는 것이 가장 좋습니다.
     </div>
@@ -203,9 +349,9 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
     </div>
   </section>
 
-  <!-- 3. 재방문 케어 -->
+  <!-- 6. 재방문 케어 -->
   <section>
-    <div class="sec-h"><span class="n">3</span><h2>다시 오실 땐</h2></div>
+    <div class="sec-h"><span class="n">6</span><h2>다시 오실 땐</h2></div>
     <div class="card">
       <div class="prow" style="align-items:center">
         <div>
@@ -218,12 +364,15 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
         눈썹은 시간이 지나면 자연스럽게 옅어집니다. 처음의 결을 오래 간직하실 수 있도록
         선명하게 다듬어 드립니다.
       </div>
+      <div class="opt-warn" style="border-radius:6px;border-top:none;margin-top:12px">
+        <b>베이직 · 메이크업</b>을 받으신 분에 한해 적용됩니다.
+      </div>
     </div>
   </section>
 
-  <!-- 4. 진행 순서 -->
+  <!-- 7. 진행 순서 -->
   <section>
-    <div class="sec-h"><span class="n">4</span><h2>진행 순서</h2></div>
+    <div class="sec-h"><span class="n">7</span><h2>진행 순서</h2></div>
     <ol class="steps">
       <li>
         <span class="st">사진 상담 (선택)</span>
@@ -232,8 +381,9 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
       </li>
       <li>
         <span class="st">방문 · 디자인</span>
-        <span class="sd">골격과 기존 눈썹 결을 확인하고 디자인을 그립니다.
-        앉아서 · 누워서 · 눈 뜨고 · 감고 <b>네 번 확인</b>한 뒤 시작합니다.</span>
+        <span class="sd">고객님의 눈썹 상태와 인상, 이미지를 보고 디자인을 그립니다.
+        디자인은 앉은 상태와 누운 상태, 눈을 뜬 것과 감은 얼굴을 모두 종합해
+        <b>대칭과 디자인을 맞춰</b> 잡아드립니다.</span>
       </li>
       <li>
         <span class="st">시술</span>
@@ -242,14 +392,14 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
       </li>
       <li>
         <span class="st">리터치</span>
-        <span class="sd">4~8주 사이, 색이 자리 잡은 뒤에 봐드립니다.</span>
+        <span class="sd">4~8주 사이, 색이 자리 잡은 뒤 지워지거나 흐려진 부분을 한 번 더 봐드립니다. 만약 다른 디자인으로 바꾸고 싶은 경우 디자인 변경도 가능합니다.</span>
       </li>
     </ol>
   </section>
 
-  <!-- 5. 자주 묻는 것 -->
+  <!-- 8. 자주 묻는 것 -->
   <section>
-    <div class="sec-h"><span class="n">5</span><h2>자주 묻는 것</h2></div>
+    <div class="sec-h"><span class="n">8</span><h2>자주 묻는 것</h2></div>
     <div class="card">
       <div class="qa">
         <div class="q">많이 아픈가요?</div>
@@ -263,7 +413,7 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
       </div>
       <div class="qa">
         <div class="q">얼마나 유지되나요?</div>
-        <div class="a">눈썹문신은 1~2년, 극사실 눈썹은 약 3년입니다.
+        <div class="a">기존 베이직, 메이크업 눈썹은 1~2년, 극사실 눈썹은 약 3년입니다.
           원하시는 색감과 피부 타입에 따라 달라질 수 있습니다.</div>
       </div>
       <div class="qa">
@@ -279,9 +429,9 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
     </div>
   </section>
 
-  <!-- 6. 매장 -->
+  <!-- 9. 매장 -->
   <section>
-    <div class="sec-h"><span class="n">6</span><h2>매장</h2></div>
+    <div class="sec-h"><span class="n">9</span><h2>매장</h2></div>
     <div class="card">
       <div class="shop">
         <span class="nm">잠실 본점</span>
@@ -303,7 +453,7 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
 
 <div class="bar">
   <a href="https://pf.kakao.com/_xhKxnhxj/chat?text=%EC%98%88%EC%95%BD%20%EA%B0%80%EB%8A%A5%ED%95%9C%20%EB%82%A0%EC%A7%9C%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A0%A4%EC%9A%94">
-    예약 날짜 문의하기
+    카카오톡으로 날짜 문의하기
   </a>
 </div>
 
@@ -352,6 +502,17 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
   /* 카톡으로 돌아가기 */
   var cta = document.querySelector('.bar a');
   if (cta) cta.addEventListener('click', function () { track('guide_kakao'); });
+
+  /* 리터치 미포함 버튼: 별도 이벤트로 구분 — 몇 명이 이 옵션을 눌렀는지 확인용 */
+  /* 리터치 미포함 안내를 펼쳐봤는가 */
+  var opt = document.querySelector('.opt');
+  if (opt) opt.addEventListener('toggle', function () {
+    if (opt.open) track('guide_retouch_off');
+  });
+
+  /* 두피문신 페이지로 이동 */
+  var scalp = document.querySelector('.link-btn');
+  if (scalp) scalp.addEventListener('click', function () { track('guide_scalp'); });
 })();
 </script>
 </body>

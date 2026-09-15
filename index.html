@@ -241,63 +241,6 @@
         }
 
 
-        /* 플랜 탭 (리터치 포함 / 시술만) */
-        .plan-tabs {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 7px;
-            max-width: 420px; margin: 0 auto 26px; padding: 5px;
-            background: #F2ECE3; border-radius: 9px;
-        }
-        .plan {
-            border: 0; background: transparent; border-radius: 6px; cursor: pointer;
-            padding: 12px 8px 11px; font-family: inherit; text-align: center;
-            position: relative; transition: background .22s ease, box-shadow .22s ease;
-        }
-        .plan .pn {
-            display: block; font-size: 0.86rem; font-weight: 600;
-            color: #8A8075; transition: color .22s ease;
-        }
-        .plan .pp {
-            display: block; font-family: 'Gowun Batang', serif; font-size: 1.08rem;
-            font-weight: 700; color: #A0968B; margin-top: 3px; transition: color .22s ease;
-        }
-        .plan.on { background: var(--white); box-shadow: 0 3px 10px rgba(90,75,60,0.12); }
-        .plan.on .pn { color: var(--primary-dark); }
-        .plan.on .pp { color: var(--text-main); }
-        .plan .rec {
-            position: absolute; top: -8px; right: 8px; background: var(--primary-color);
-            color: #fff; font-size: 0.58rem; font-weight: 700; padding: 3px 8px;
-            border-radius: 20px; letter-spacing: 0.04em;
-        }
-        .fade { transition: opacity .26s ease; }
-        .fade.out { opacity: 0; }
-        @media (max-width: 768px) {
-            .plan-tabs { margin-bottom: 22px; gap: 5px; padding: 4px; }
-            .plan { padding: 10px 4px 9px; }
-            .plan .pn { font-size: 0.78rem; }
-            .plan .pp { font-size: 0.98rem; }
-            .plan .rec { font-size: 0.54rem; padding: 2px 7px; top: -7px; right: 5px; }
-        }
-        @media (prefers-reduced-motion: reduce) { .plan, .fade { transition: none !important; } }
-
-
-        .rt-box {
-            margin: 22px 0 8px; padding: 18px 20px; background: #F7F3ED;
-            border-radius: 7px; text-align: left; border-left: 3px solid var(--primary-color);
-        }
-        .rt-box.warn { border-left-color: var(--gold); }
-        .rt-box { animation: rtIn .3s ease; }
-        @keyframes rtIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
-        .rt-t {
-            font-size: 0.94rem; font-weight: 700; color: var(--text-main);
-            margin-bottom: 7px; font-family: 'Gowun Batang', serif;
-        }
-        .rt-d { font-size: 0.86rem; color: var(--text-sub); line-height: 1.75; margin: 0; }
-        .rt-d b { color: var(--text-main); font-weight: 600; }
-        @media (max-width: 768px) {
-            .rt-box { padding: 15px 15px; margin: 18px 0 8px; }
-            .rt-t { font-size: 0.88rem; }
-            .rt-d { font-size: 0.8rem; line-height: 1.7; }
-        }
 
 
         /* ══════ 극사실 눈썹 (별도 등급) ══════ */
@@ -1083,22 +1026,11 @@
 
             <div class="price-main">
                 <div class="cap">눈썹문신</div>
-                <div class="plan-tabs">
-                    <button class="plan on" type="button" data-plan="리터치 포함" data-list="20" data-price="19" data-inc="리터치 <b>1회 포함</b>">
-                        <span class="rec">추천</span>
-                        <span class="pn">리터치 포함</span>
-                        <span class="pp">19만원</span>
-                    </button>
-                    <button class="plan" type="button" data-plan="리터치 미포함" data-list="14" data-price="13" data-inc="리터치 <b>미포함</b>">
-                        <span class="pn">리터치 미포함</span>
-                        <span class="pp">13만원</span>
-                    </button>
-                </div>
-
-                <div class="price-list fade" id="pList">정가 <s>20만원</s></div>
+                <div class="price-list">정가 <s>20만원</s></div>
                 <div class="price-cond"><i class="fas fa-comment"></i> 카카오톡 채널 추가 시</div>
-                <div class="price-amt fade" id="pAmt">19<span class="won">만원</span></div>
+                <div class="price-amt">19<span class="won">만원</span></div>
                 <div class="price-inc">
+                    <span>리터치 <b>1회 포함</b></span>
                     <span>유지 <b>1년 ~ 2년</b></span>
                     <span>소요 <b>1시간 30분</b></span>
                     <span><b>1:1 골격 맞춤 디자인</b></span>
@@ -1119,10 +1051,6 @@
                     </div>                    </div>
                 </div>
 
-                <div class="rt-box fade warn" id="rtBox" hidden>
-                    <div class="rt-t">리터치 없이 진행하신다면</div>
-                    <p class="rt-d" id="rtDesc">유지기간을 늘리는 시술이 아닙니다. 피부와 생활 환경에 따라 색이 예상보다 빠지거나 손봐야 할 부분이 생길 수 있어, 그때 다시 봐드리는 과정입니다. 특히 <b>베이직은 색소를 적게 넣기 때문에 조금만 빠져도 흐려 보일 수</b> 있어 리터치를 권해드립니다.</p>
-                </div>
                 <p class="keep-note">유지기간은 원하시는 색감과 피부 타입에 따라 달라질 수 있습니다.</p>
 
                 <a href="https://pf.kakao.com/_xhKxnhxj/chat?text=%5B%EB%B2%A0%EC%9D%B4%EC%A7%81%20%C2%B7%20%EB%A6%AC%ED%84%B0%EC%B9%98%20%ED%8F%AC%ED%95%A8%2019%EB%A7%8C%5D%20%EC%98%88%EC%95%BD%20%EA%B0%80%EB%8A%A5%ED%95%9C%20%EB%82%A0%EC%A7%9C%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A0%A4%EC%9A%94" class="price-cta" target="_blank" id="mainCta" data-tier="베이직/리터치 포함">날짜 문의하기</a>
@@ -1720,20 +1648,8 @@
 
 
 
-        var RT_MSG = '시술 후 손봐야 할 부분이 생겨도 추가 방문은 별도입니다. 특히 <b>베이직은 색소를 적게 넣어 조금만 빠져도 흐려 보일 수</b> 있으니, 처음 받으시는 경우라면 리터치 포함을 권해드립니다.';
-        function syncRt(plan) {
-          var box = document.getElementById('rtBox'), d = document.getElementById('rtDesc');
-          if (!box) return;
-          if (plan === '리터치 미포함') {
-            if (d) d.innerHTML = RT_MSG;
-            box.hidden = false;
-          } else {
-            box.hidden = true;
-          }
-        }
-
-        /* ---------- 플랜 전환 ---------- */
-        var curPlan = '리터치 포함', curPrice = '19', curFeel = '엠보';
+        /* ---------- 카톡 문구 (리터치 포함 단일 플랜) ---------- */
+        var curPlan = '리터치 포함', curPrice = '19', curFeel = '베이직';
         function syncCta() {
           var cta = document.getElementById('mainCta');
           if (!cta) return;
@@ -1741,25 +1657,6 @@
           cta.href = 'https://pf.kakao.com/_xhKxnhxj/chat?text=' + encodeURIComponent(label);
           cta.dataset.tier = curFeel + '/' + curPlan;
         }
-        document.querySelectorAll('.plan').forEach(function (b) {
-          b.addEventListener('click', function () {
-            if (this.classList.contains('on')) return;
-            document.querySelectorAll('.plan').forEach(function (o) { o.classList.remove('on'); });
-            this.classList.add('on');
-            curPlan = this.dataset.plan; curPrice = this.dataset.price;
-            var list = this.dataset.list, inc = this.dataset.inc;
-            var els = ['pList', 'pAmt', 'pInc'].map(function (id) { return document.getElementById(id); });
-            els.forEach(function (e) { if (e) e.classList.add('out'); });
-            setTimeout(function () {
-              if (els[0]) els[0].innerHTML = '정가 <s>' + list + '만원</s>';
-              if (els[1]) els[1].innerHTML = curPrice + '<span class="won">만원</span>';
-              if (els[2]) els[2].innerHTML = inc;
-              els.forEach(function (e) { if (e) e.classList.remove('out'); });
-            }, 260);
-            syncCta(); syncRt(curPlan);
-            track('plan_pick', { plan: curPlan });
-          });
-        });
 
         /* ---------- 느낌 선택 → 사진·유지기간·카톡 문구 전환 ---------- */
         var mainCta = document.getElementById('mainCta');

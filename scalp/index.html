@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BY SONG SCALP | Artistry</title>
+    <link rel="canonical" href="https://www.songshopbysong.com/scalp/">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&family=Montserrat:wght@100;200;300&family=Noto+Sans+KR:wght@100;300;400&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#0a0a0a',
+                        'muted-gold': '#B5A48B',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        montserrat: ['"Montserrat"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #E8DCC0 0%, #B5A48B 50%, #8A785D 100%)',
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        /* 커스텀 스타일 */
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #B5A48B; }
+
+        /* 3D Carousel 관련 */
+        .perspective-2000 { perspective: 2000px; }
+        .perspective-1000 { perspective: 1000px; }
+        .preserve-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+
+        /* 로딩 스피너 애니메이션 */
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .animate-spin-slow { animation: spin 0.8s linear infinite; }
+        
+        /* 스크롤 아이콘 애니메이션 */
+        @keyframes scroll-anim { 0% { top: 6px; opacity: 1; } 100% { top: 16px; opacity: 0; } }
+        .animate-scroll { animation: scroll-anim 1.5s infinite; }
+
+        /* 유틸리티 */
+        .break-keep { word-break: keep-all; }
+        .touch-pan-y { touch-action: pan-y; }
+        
+        body.loading-locked { overflow: hidden; height: 100vh; }
+        body.modal-open { overflow: hidden; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-fadeIn { animation: fadeIn 0.4s ease-out forwards; }
+    </style>
+    <!-- [Meta Pixel Code] 송샵 눈썹 랜딩(songshopbysong.com)과 같은 픽셀 -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1885392752224522');
+    fbq('track', 'PageView');
+    </script>
+
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- [End Meta Pixel Code] -->
+</head>
+
+<body class="loading-locked">
+
+    <div id="loader" class="fixed inset-0 bg-black/60 backdrop-blur-[2px] z-[99999] flex justify-center items-center transition-all duration-500 ease-out">
+        <div class="w-[50px] h-[50px] border-2 border-white/10 border-t-muted-gold rounded-full animate-spin-slow"></div>
+    </div>
+
+    <header class="fixed top-0 w-full py-6 z-[1000] mix-blend-exclusion pointer-events-none">
+        <div class="flex justify-center">
+            <div class="font-montserrat text-xs font-light tracking-[5px] text-white/80 uppercase">
+                BY SONG SCALP
+            </div>
+        </div>
+    </header>
+
+    <section class="relative h-screen w-full overflow-hidden bg-black">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-[1] pointer-events-none">
+            <h1 class="font-serif font-light italic text-[clamp(1.5rem,3vw,2.5rem)] leading-none text-white opacity-15 tracking-[5px]">
+                Rewrite Your Worth
+            </h1>
+        </div>
+
+        <div id="drag-area" class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-10 cursor-grab active:cursor-grabbing touch-pan-y md:perspective-2000 perspective-1000">
+            <div id="carousel" class="relative md:w-[360px] w-[160px] aspect-[4/5] preserve-3d transition-transform duration-75 linear">
+            </div>
+        </div>
+
+        <div class="absolute bottom-[8%] w-full text-center z-20 pointer-events-none hidden md:block">
+            <p class="font-montserrat text-[0.6rem] tracking-[6px] text-white/30 uppercase">
+                The Premium Scalp Artistry
+            </p>
+        </div>
+
+    </section>
+
+    <section class="relative w-full min-h-screen flex items-end md:items-center bg-cover bg-[center_top] bg-scroll md:bg-fixed"
+             style="background-image: url('media/i13.webp')">
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent md:hidden z-[1]"></div>
+        <div class="hidden md:block absolute inset-0 bg-gradient-to-l from-black via-black/80 to-transparent z-[1]"></div>
+
+        <div class="relative z-10 container mx-auto px-5 py-20 md:py-0 w-full flex flex-col md:flex-row md:justify-end md:items-center h-full">
+            <div class="max-w-full md:max-w-[600px]" data-aos="fade-up" data-aos-duration="800">
+                <span class="text-[0.8rem] md:text-[0.85rem] tracking-[4px] text-muted-gold mb-4 md:mb-6 block font-light drop-shadow-md">
+                    MASTER DIRECTOR
+                </span>
+                
+                <div class="border-l-[3px] border-muted-gold pl-5 md:pl-6 mb-8 md:mb-10">
+                    <h3 class="font-serif italic text-[clamp(1.5rem,4vw,3.5rem)] font-light leading-tight text-white drop-shadow-lg break-keep">
+                        "무작정 까맣기만한<br/>두피문신을 원하신다면,<br />
+                        <span class="text-white/90 mt-2 block md:inline md:mt-0 text-[0.8em]">뒤로가기를 누르셔도 좋습니다."</span>
+                    </h3>
+                </div>
+
+                <p class="text-[0.95rem] md:text-[1.05rem] font-light text-white/90 leading-[1.8] mb-[40px] break-keep drop-shadow-md">
+                    타고난 원모결을 따라 디자인하는 가장 자연스러운 두피문신<br /> 
+                    맞춤 상담과 독자적인 기법으로 완성해드립니다.
+                </p>
+                
+                <ul class="list-none border-t border-white/20 pt-[25px] inline-block w-full">
+                    <li class="text-white/80 text-[0.85rem] md:text-[0.95rem] mb-2.5 font-light flex items-start break-keep drop-shadow-sm"><span class="text-muted-gold mr-2.5 mt-1.5 md:mt-1">•</span>BY SONG SCALP 두피문신 전문 브랜드 운영 대표원장</li>
+                    <li class="text-white/80 text-[0.85rem] md:text-[0.95rem] mb-2.5 font-light flex items-start break-keep drop-shadow-sm"><span class="text-muted-gold mr-2.5 mt-1.5 md:mt-1">•</span>전) Toronto, Chronic Ink 두피문신 담당 아티스트</li>
+                    <li class="text-white/80 text-[0.85rem] md:text-[0.95rem] mb-2.5 font-light flex items-start break-keep drop-shadow-sm"><span class="text-muted-gold mr-2.5 mt-1.5 md:mt-1">•</span>전) LA, Beauty Friends 두피문신 담당 아티스트</li>
+                    <li class="text-white/80 text-[0.85rem] md:text-[0.95rem] mb-2.5 font-light flex items-start break-keep drop-shadow-sm"><span class="text-muted-gold mr-2.5 mt-1.5 md:mt-1">•</span>제 17회 국제 바디아트 콘테스트 SMP 부문 심사위원</li>
+                    <li class="text-white/80 text-[0.85rem] md:text-[0.95rem] mb-2.5 font-light flex items-start break-keep drop-shadow-sm"><span class="text-muted-gold mr-2.5 mt-1.5 md:mt-1">•</span>종합 미용 면허 보유 / 변색 최소화 기법 자체 개발</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-[120px] bg-main">
+        <div class="container mx-auto px-5">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="font-serif text-[2.5rem] text-muted-gold mb-2.5 italic">PORTFOLIO</h2>
+                <p class="text-[#666] text-[0.9rem] font-light">확인하고 싶은 시술 사례를 선택하세요.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[#222] border border-[#222] max-w-[1200px] mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <div class="relative aspect-[4/5] overflow-hidden cursor-pointer bg-black group" onclick="openModal('hairline')">
+                    <img src="media/i3.webp" loading="lazy" decoding="async" alt="Hairline" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center items-center z-[2] pointer-events-none">
+                        <span class="text-[1.4rem] font-normal mb-2.5 tracking-[2px] text-white drop-shadow-md">HAIRLINE</span>
+                        <div class="w-[30px] h-[1px] bg-muted-gold mb-[15px] shadow-[0_0_10px_rgba(0,0,0,0.5)]"></div>
+                        <span class="text-[0.85rem] text-[#eee] font-light mb-[25px] drop-shadow-md">M자 / 측두부 / 이마 / 구렛나룻</span>
+                        <div class="px-4 py-2 rounded-full border border-white/40 text-[0.75rem] text-white font-light backdrop-blur-[2px] transition-colors group-hover:bg-white/10">View Detail</div>
+                    </div>
+                </div>
+                <div class="relative aspect-[4/5] overflow-hidden cursor-pointer bg-black group" onclick="openModal('density')">
+                    <img src="media/i9.webp" loading="lazy" decoding="async" alt="Density" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center items-center z-[2] pointer-events-none">
+                        <span class="text-[1.4rem] font-normal mb-2.5 tracking-[2px] text-white drop-shadow-md">DENSITY</span>
+                        <div class="w-[30px] h-[1px] bg-muted-gold mb-[15px] shadow-[0_0_10px_rgba(0,0,0,0.5)]"></div>
+                        <span class="text-[0.85rem] text-[#eee] font-light mb-[25px] drop-shadow-md">정수리 / 가르마 / 후두부</span>
+                        <div class="px-4 py-2 rounded-full border border-white/40 text-[0.75rem] text-white font-light backdrop-blur-[2px] transition-colors group-hover:bg-white/10">View Detail</div>
+                    </div>
+                </div>
+                <div class="relative aspect-[4/5] overflow-hidden cursor-pointer bg-black group" onclick="openModal('scar')">
+                    <img src="media/i14.webp" loading="lazy" decoding="async" alt="Scar" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center items-center z-[2] pointer-events-none">
+                        <span class="text-[1.4rem] font-normal mb-2.5 tracking-[2px] text-white drop-shadow-md">SCAR COVER</span>
+                        <div class="w-[30px] h-[1px] bg-muted-gold mb-[15px] shadow-[0_0_10px_rgba(0,0,0,0.5)]"></div>
+                        <span class="text-[0.85rem] text-[#eee] font-light mb-[25px] drop-shadow-md">흉터 커버 / 삭발 디자인</span>
+                        <div class="px-4 py-2 rounded-full border border-white/40 text-[0.75rem] text-white font-light backdrop-blur-[2px] transition-colors group-hover:bg-white/10">View Detail</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+        <div class="container mx-auto px-5">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-serif text-[2.5rem] text-muted-gold mb-4 italic">WHAT'S DIFFERENT?</h2>
+                <p class="text-[#888] text-[0.95rem] font-light max-w-2xl mx-auto break-keep leading-7">
+                    푸르게 변색되는 잘못된 두피문신과<br />
+                    <span class="text-white">변색 없이 유지되는 올바른 두피문신</span><br />
+                    어떤게 다른 걸까요?
+                </p>
+            </div>
+
+            <div class="max-w-[1000px] mx-auto border border-[#222] rounded-lg overflow-hidden shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex relative h-[250px] md:h-[400px]">
+                    <div class="w-1/2 relative bg-black overflow-hidden group">
+                        <div class="absolute top-4 left-0 w-full text-center z-10 pointer-events-none">
+                            <span class="bg-black/60 backdrop-blur-[2px] px-4 py-1.5 text-[0.7rem] md:text-[0.8rem] text-[#aaa] tracking-[2px] border border-white/10 rounded-full font-montserrat uppercase font-light">wrong case</span>
+                        </div>
+                        <img src="media/i2.webp" loading="lazy" alt="Wrong Case" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="w-1/2 relative bg-black overflow-hidden group border-l border-[#222]">
+                        <div class="absolute top-4 left-0 w-full text-center z-10 pointer-events-none">
+                            <span class="bg-muted-gold/70 backdrop-blur-[3px] px-4 py-1.5 text-[0.7rem] md:text-[0.8rem] text-black font-normal tracking-[2px] rounded-full shadow-lg shadow-muted-gold/10 font-montserrat uppercase border border-muted-gold/30">by song scalp</span>
+                        </div>
+                        <img src="media/i5.webp" loading="lazy" alt="By Song SMP" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-muted-gold/10 to-transparent pointer-events-none"></div>
+                    </div>
+                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+                        <div class="w-8 h-8 md:w-10 md:h-10 bg-[#111] border border-[#333] rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+                            <span class="text-[0.6rem] md:text-[0.7rem] text-muted-gold font-bold italic">VS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 border-t border-[#222]">
+                    <div class="hidden md:flex bg-[#111] border-r border-[#222] p-5 md:p-10 md:pb-2 items-end justify-center">
+                        <h3 class="text-xl md:text-2xl text-[#666] font-montserrat font-light tracking-[3px] uppercase">wrong case</h3>
+                    </div>
+                    <div class="hidden md:flex bg-[#161616] p-5 md:p-10 md:pb-2 items-end justify-center relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-[150px] h-[150px] bg-muted-gold/5 blur-[60px] pointer-events-none"></div>
+                        <h3 class="text-xl md:text-2xl text-muted-gold font-montserrat font-light tracking-[3px] uppercase relative z-10">by song scalp</h3>
+                    </div>
+
+                    <div class="bg-[#111] border-r border-[#222] p-5 md:px-10 md:py-8 flex flex-col justify-center">
+                        <span class="text-[0.7rem] text-[#555] font-medium uppercase tracking-widest mb-2">테크닉</span>
+                        <p class="text-[#777] font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep">두피 상태를 고려하지 않고 기계적으로 찍어내는 획일적 시술</p>
+                    </div>
+                    <div class="bg-[#161616] p-5 md:px-10 md:py-8 flex flex-col justify-center relative">
+                        <span class="text-[0.7rem] text-muted-gold/70 font-medium uppercase tracking-widest mb-2">테크닉</span>
+                        <p class="text-white/90 font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep relative z-10">5년 경력의 노하우로 두피 부위와 컨디션에 맞춰 압(Press) 조절</p>
+                    </div>
+                    <div class="bg-[#111] border-r border-[#222] p-5 md:px-10 md:py-8 flex flex-col justify-center">
+                        <span class="text-[0.7rem] text-[#555] font-medium uppercase tracking-widest mb-2">색소 주입</span>
+                        <p class="text-[#777] font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep">필요 이상으로 진하고 깊게 주입하여 시간이 지나면 푸르게 변색됨</p>
+                    </div>
+                    <div class="bg-[#161616] p-5 md:px-10 md:py-8 flex flex-col justify-center relative">
+                        <span class="text-[0.7rem] text-muted-gold/70 font-medium uppercase tracking-widest mb-2">색소 주입</span>
+                        <p class="text-white/90 font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep relative z-10">자체 개발 기법으로 딱 필요한 만큼의 최소한의 색소만 주입 (변색 방지)</p>
+                    </div>
+                    <div class="bg-[#111] border-r border-[#222] p-5 md:px-10 md:py-8 flex flex-col justify-center">
+                        <span class="text-[0.7rem] text-[#555] font-medium uppercase tracking-widest mb-2">통증</span>
+                        <p class="text-[#777] font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep">깊은 시술 깊이로 인해 마취를 해도 통증이 느껴짐</p>
+                    </div>
+                    <div class="bg-[#161616] p-5 md:px-10 md:py-8 flex flex-col justify-center relative">
+                        <span class="text-[0.7rem] text-muted-gold/70 font-medium uppercase tracking-widest mb-2">통증</span>
+                        <p class="text-white/90 font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep relative z-10">마취 없이도 편안하게 받을 수 있는 무통증 시술</p>
+                    </div>
+                    <div class="bg-[#111] border-r border-[#222] p-5 md:px-10 md:py-8 flex flex-col justify-center">
+                        <span class="text-[0.7rem] text-[#555] font-medium uppercase tracking-widest mb-2">디자인</span>
+                        <p class="text-[#777] font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep">헤어 라인을 꽉 채우거나 과하게 디자인하여 인위적임</p>
+                    </div>
+                    <div class="bg-[#161616] p-5 md:px-10 md:py-8 flex flex-col justify-center relative">
+                        <span class="text-[0.7rem] text-muted-gold/70 font-medium uppercase tracking-widest mb-2">디자인</span>
+                        <p class="text-white/90 font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep relative z-10">머리털이 나는 범위 내에서 <strong class="text-white font-medium">'음영의 역할'</strong>을 하는 본질에 집중</p>
+                    </div>
+                    <div class="bg-[#111] border-r border-[#222] p-5 md:px-10 md:py-8 flex flex-col justify-center">
+                        <span class="text-[0.7rem] text-[#555] font-medium uppercase tracking-widest mb-2">결과물</span>
+                        <p class="text-[#777] font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep">밝은 곳에서 보면 점이 퍼져 보이고 문신한 티가 많이 남</p>
+                    </div>
+                    <div class="bg-[#161616] p-5 md:px-10 md:py-8 flex flex-col justify-center relative">
+                        <span class="text-[0.7rem] text-muted-gold/70 font-medium uppercase tracking-widest mb-2">결과물</span>
+                        <p class="text-white/90 font-light text-[0.75rem] md:text-[0.9rem] leading-relaxed break-keep relative z-10">태양 볕 아래서도 당당할 수 있는 맑고 선명한 자연스러움 유지</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="portfolio-modal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999] hidden justify-center items-center opacity-0 transition-opacity duration-300 p-5 overflow-y-auto">
+        
+        <div class="relative w-full max-w-[900px] bg-[#111] border border-[#222] shadow-[0_0_50px_rgba(0,0,0,0.8)] rounded-lg overflow-hidden flex flex-col md:flex-row animate-fadeIn my-auto" onclick="event.stopPropagation()">
+            
+            <button class="close-btn absolute top-4 right-4 z-50 text-white/50 hover:text-white transition-colors text-3xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10">&times;</button>
+
+            <div class="relative w-full aspect-[4/5] md:w-[50%] md:h-auto bg-black group shrink-0">
+                <div id="modal-loader" class="absolute inset-0 flex items-center justify-center z-0">
+                    <div class="w-8 h-8 border-2 border-white/10 border-t-muted-gold rounded-full animate-spin-slow"></div>
+                </div>
+
+                <button class="prev-btn absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors w-10 h-10 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/50 z-40 backdrop-blur-[2px]">
+                    <i class="fas fa-chevron-left text-lg"></i>
+                </button>
+                <button class="next-btn absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors w-10 h-10 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/50 z-40 backdrop-blur-[2px]">
+                    <i class="fas fa-chevron-right text-lg"></i>
+                </button>
+
+                <img id="modal-img" src="" alt="Portfolio Image" class="w-full h-full object-cover relative z-10 opacity-0 transition-opacity duration-300">
+            </div>
+            
+            <div class="w-full md:w-[50%] p-8 md:p-12 flex flex-col justify-center items-start text-left bg-[#111] relative">
+                <span class="absolute top-6 left-8 text-[0.7rem] text-muted-gold/50 tracking-[3px] font-montserrat uppercase">Portfolio Detail</span>
+
+                <h3 id="modal-title" class="text-[1.5rem] md:text-[2rem] font-serif italic text-white mb-6 leading-tight mt-4"></h3>
+                
+                <div class="w-[40px] h-[1px] bg-muted-gold mb-6 opacity-50"></div>
+                
+                <p id="modal-desc" class="font-light text-[#ccc] text-[0.95rem] md:text-[1rem] leading-7 break-keep mb-8"></p>
+                
+                <div class="mt-auto w-full flex justify-between items-center border-t border-white/10 pt-6">
+                    <p id="modal-counter" class="text-[0.8rem] text-[#666] font-montserrat tracking-widest"></p>
+                    <div class="flex gap-2">
+                        <button class="prev-btn-mini text-[#555] hover:text-white transition-colors px-2 py-1"><i class="fas fa-arrow-left"></i></button>
+                        <button class="next-btn-mini text-[#555] hover:text-white transition-colors px-2 py-1"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-[100px] bg-[#050505] border-t border-[#111]">
+        <div class="container mx-auto px-5">
+            <div class="text-center mb-10">
+                <h2 class="font-serif text-[2.5rem] text-muted-gold italic">Q&A</h2>
+            </div>
+            <div class="max-w-[800px] mx-auto" id="faq-list">
+            </div>
+            <div class="text-center mt-[60px] text-[#444] text-[0.8rem]">
+                <p>BY SONG SCALP | Copyright 2025. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-[30px] left-1/2 -translate-x-1/2 flex gap-3 z-[999] w-max max-w-[95%]">
+        <a href="https://www.instagram.com/scalp_by_song" target="_blank" class="flex-shrink-0 flex items-center gap-2 px-[30px] py-[12px] rounded-full font-medium cursor-pointer shadow-[0_10px_20px_rgba(0,0,0,0.5)] text-[0.85rem] backdrop-blur-md transition-transform duration-300 hover:-translate-y-[3px] bg-white/90 text-black whitespace-nowrap">
+            <i class="fab fa-instagram text-lg"></i> 포트폴리오
+        </a>
+        <a href="http://pf.kakao.com/_xhKxnhxj/chat" target="_blank" class="flex-shrink-0 flex items-center gap-2 px-[30px] py-[12px] rounded-full font-medium cursor-pointer shadow-[0_10px_20px_rgba(0,0,0,0.5)] text-[0.85rem] backdrop-blur-md transition-transform duration-300 hover:-translate-y-[3px] bg-[#FEE500]/90 text-[#3b1e1e] whitespace-nowrap">
+            <i class="fas fa-comment text-lg"></i> 상담하기
+        </a>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+                document.body.classList.remove('loading-locked');
+            }, 500);
+        });
+
+        const HERO_VIDEOS = [
+            "media/h1",
+            "media/h2",
+            "media/h3",
+            "media/h4",
+            "media/h5",
+            "media/h6",
+            "media/h7",
+            "media/h8"
+        ];
+
+        const PORTFOLIO_DATA = {
+            hairline: [
+                { title: 'M자 헤어라인 교정', desc: '자연스러운 그라데이션 기법으로 M자 라인을 보완합니다.', img: 'media/i11.webp' },
+                { title: '측두부 헤어라인 숱채움', desc: '측면 헤어라인의 밀도를 높여 얼굴형을 또렷하게 만듭니다.', img: 'media/i1.webp' },
+                { title: '이마 헤어라인 교정', desc: '넓은 이마를 커버하고 이상적인 비율의 헤어라인을 디자인합니다.', img: 'media/i12.webp' },
+                { title: '구렛나룻 숱채움', desc: '구렛나룻 라인을 정교하게 채워 남성적인 매력을 더합니다.', img: 'media/i7.webp' }
+            ],
+            density: [
+                { title: '여성 가르마 숱채움', desc: '휑해진 가르마 라인을 촘촘하게 채워 볼륨감을 살립니다.', img: 'media/i6.webp' },
+                { title: '남성 가르마 숱채움', desc: '가르마 주변의 밀도를 높여 더욱 풍성한 스타일을 완성합니다.', img: 'media/i18.webp' },
+                { title: '여성 정수리 밀도보강', desc: '비어 보이는 정수리 밀도를 자연스럽게 보강합니다.', img: 'media/i16.webp' },
+                { title: '남성 정수리 밀도보강', desc: '탈모가 진행된 정수리 부위를 커버하여 젊은 인상을 되찾아드립니다.', img: 'media/i15.webp' },
+                { title: '여성 후두부 숱채움', desc: '후두부의 부족한 숱을 채워 전체적인 헤어 밸런스를 맞춥니다.', img: 'media/i4.webp' },
+                { title: '남성 후두부 숱채움', desc: '후두부 밀도 보강으로 뒷모습까지 자신감 있게 완성합니다.', img: 'media/i10.webp' }
+            ],
+            scar: [
+                { title: '흉터 커버', desc: '수술 흉터나 상처를 주변 모발과 조화롭게 커버합니다.', img: 'media/i8.webp' },
+                { title: '삭발디자인 작업', desc: '두상에 맞춘 전체 삭발 디자인으로 스타일리쉬함을 완성합니다.', img: 'media/i17.webp' }
+            ]
+        };
+
+        const FAQ_DATA = [
+            { question: "시술 통증은 어느 정도인가요?", answer: "대부분의 고객님께서 주무실 정도로 통증이 미미합니다. 마취 크림 없이도 시술이 가능할 만큼 편안합니다." },
+            { question: "시술 시간과 횟수는 어떻게 되나요?", answer: "평균적으로 1회 2시간 내외이며, 부위와 밀도에 따라 3~5회 정도 진행됩니다." },
+            { question: "유지 기간은 얼마나 되나요?", answer: "개인차가 있지만 평균 5년 이상 지속되며, 색빠짐 이후에도 푸르게 변색되지 않고 자연스럽게 옅어집니다." },
+            { question: "일상생활은 바로 가능한가요?", answer: "네, 시술 직후 바로 일상생활이 가능합니다. 샴푸는 시술 24시간 이후부터 가볍게 가능합니다." }
+        ];
+
+        // Carousel Logic
+        const carousel = document.getElementById('carousel');
+        const dragArea = document.getElementById('drag-area');
+        
+        const count = HERO_VIDEOS.length;
+        const angle = 360 / count;
+        
+        let radius = window.innerWidth < 768 ? 220 : 600;
+
+        let rotation = 0;
+
+        /* 재생 자체가 불가능하거나 불필요한 조건: 포스터만 보여준다 */
+        const conn = navigator.connection || {};
+        const posterOnly =
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+            conn.saveData === true;
+
+        const isSmall = () => window.innerWidth < 768;
+        const cards = [];
+        const pending = new Set();   /* 자동재생이 막혀 대기 중인 영상 */
+
+        function tryPlay(v) {
+            const p = v.play();
+            if (p && typeof p.catch === 'function') {
+                /* 버튼을 띄우지 않는다. 조용히 대기시켰다가 첫 동작에서 재시도 */
+                p.catch(() => pending.add(v));
+            }
+        }
+
+        function loadCard(c) {
+            if (c.loaded || !c.video) return;
+            c.loaded = true;
+            c.video.src = c.base + (isSmall() ? '-sm.mp4' : '.mp4');
+            c.video.load();
+            tryPlay(c.video);
+        }
+
+        /* 정면 ±70° 안에 들어온 카드만 실제로 내려받는다 */
+        function updateVisibility() {
+            for (let i = 0; i < cards.length; i++) {
+                let a = (rotation + i * angle) % 360;
+                if (a > 180) a -= 360;
+                if (a < -180) a += 360;
+                const near = Math.abs(a) < 70;
+                const c = cards[i];
+                if (near) loadCard(c);
+                /* 화면 밖 영상은 세운다. 폰은 동시에 돌릴 수 있는 디코더가
+                   몇 개뿐이라, 8개를 다 틀어두면 터치가 밀린다. */
+                if (c.video && c.loaded) {
+                    if (near) { if (c.video.paused) tryPlay(c.video); }
+                    else if (!c.video.paused) c.video.pause();
+                }
+            }
+        }
+
+        function renderCarousel() {
+            carousel.innerHTML = '';
+            cards.length = 0;
+            HERO_VIDEOS.forEach((base, i) => {
+                const card = document.createElement('div');
+                card.className = "absolute w-full h-full left-0 top-0 rounded-md overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.9)] bg-black backface-hidden transition-opacity duration-500 group";
+                card.style.transform = `rotateY(${i * angle}deg) translateZ(${radius}px)`;
+
+                /* 포스터를 카드 배경으로 먼저 깐다.
+                   영상이 못 뜨는 어떤 상황에서도 카드가 검게 남지 않는다. */
+                card.style.backgroundImage = `url('${base}.webp')`;
+                card.style.backgroundSize = 'cover';
+                card.style.backgroundPosition = 'center';
+
+                let video = null;
+                if (!posterOnly) {
+                    video = document.createElement('video');
+                    video.muted = true;
+                    video.defaultMuted = true;
+                    video.loop = true;
+                    video.autoplay = true;
+                    video.playsInline = true;
+                    video.setAttribute('muted', '');
+                    video.setAttribute('playsinline', '');
+                    video.setAttribute('webkit-playsinline', '');
+                    /* controls 를 절대 주지 않는다 → 재생 버튼이 노출될 일이 없다 */
+                    video.preload = 'none';
+                    video.poster = base + '.webp';
+                    video.className = "w-full h-full object-cover brightness-[0.8] transition-all duration-500 group-hover:brightness-100";
+                    /* 디코딩 실패 등 어떤 이유로든 못 틀면 포스터만 남긴다 */
+                    video.addEventListener('error', () => { video.style.display = 'none'; });
+                    card.appendChild(video);
+                }
+
+                carousel.appendChild(card);
+                cards.push({ el: card, video, base, loaded: false });
+            });
+            updateVisibility();
+        }
+
+        /* 자동재생이 막혔던 영상을 첫 사용자 동작에서 조용히 되살린다 */
+        ['touchstart', 'pointerdown', 'keydown', 'scroll'].forEach(ev =>
+            window.addEventListener(ev, () => {
+                pending.forEach(v => {
+                    v.play().then(() => pending.delete(v)).catch(() => {});
+                });
+            }, { passive: true })
+        );
+        renderCarousel();
+        
+        // [중요] 스크롤 시 재로딩 방지 로직
+        let lastWidth = window.innerWidth;
+        window.addEventListener('resize', () => {
+            const currentWidth = window.innerWidth;
+            
+            // 가로 폭이 변하지 않았다면(단순 상하 스크롤로 인한 주소창 숨김 등) 리렌더링 하지 않음
+            if (currentWidth === lastWidth) return;
+            
+            lastWidth = currentWidth;
+            radius = currentWidth < 768 ? 220 : 600;
+            renderCarousel();
+        });
+
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let lastRotation = 0;
+        let autoPaused = false;
+        let lastT = 0;
+        /* 기존 setInterval(0.2도/30ms) 과 같은 속도(약 6.7도/초)를
+           프레임에 맞춰 돌린다. 기기 주사율과 무관하게 일정하다. */
+        function tick(t) {
+            if (!autoPaused && !isDragging) {
+                if (lastT) {
+                    rotation -= Math.min(t - lastT, 50) * 0.00667;
+                    updateCarousel();
+                }
+            }
+            lastT = t;
+            requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+
+        let visTick = 0;
+        function updateCarousel() {
+            carousel.style.transform = `rotateY(${rotation}deg)`;
+            if (++visTick % 10 === 0) updateVisibility();
+        }
+
+        function stopAuto() { autoPaused = true; }
+        function startAuto() { autoPaused = false; lastT = 0; }
+
+        let axis = null;   /* 'x' = 캐러셀 돌리기, 'y' = 페이지 스크롤 */
+        function handleStart(x, y) {
+            isDragging = true;
+            axis = null;
+            startX = x;
+            startY = y;
+            lastRotation = rotation;
+            stopAuto();
+        }
+
+        function handleMove(x, y, isTouch, e) {
+            if (!isDragging) return;
+            
+            if (isTouch) {
+                const xDiff = Math.abs(x - startX);
+                const yDiff = Math.abs(y - startY);
+                /* 방향을 한 번만 정한다. 제스처 도중에 판정이 뒤집히면
+                   페이지가 스크롤되다 말고 캐러셀이 튀는 느낌이 난다. */
+                if (axis === null) {
+                    if (xDiff < 8 && yDiff < 8) return;   /* 아직 판단 보류 */
+                    axis = xDiff > yDiff ? 'x' : 'y';
+                }
+                if (axis === 'y') return;
+                if (e && e.cancelable) e.preventDefault();
+            }
+
+            const speed = window.innerWidth < 768 ? 0.28 : 0.2;
+            const delta = x - startX;
+            rotation = lastRotation + delta * speed;
+            updateCarousel();
+        }
+
+        dragArea.addEventListener('mousedown', e => handleStart(e.pageX, e.pageY));
+        window.addEventListener('mousemove', e => handleMove(e.pageX, e.pageY, false));
+        window.addEventListener('mouseup', () => { if(isDragging) { isDragging = false; startAuto(); }});
+
+        dragArea.addEventListener('touchstart', e => handleStart(e.touches[0].pageX, e.touches[0].pageY), {passive: false});
+        dragArea.addEventListener('touchmove', e => handleMove(e.touches[0].pageX, e.touches[0].pageY, true, e), {passive: false});
+        window.addEventListener('touchend', () => { if(isDragging) { isDragging = false; startAuto(); }});
+
+        // Modal Logic
+        const modal = document.getElementById('portfolio-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalCounter = document.getElementById('modal-counter');
+        const modalLoader = document.getElementById('modal-loader');
+        let currentCategory = [];
+        let slideIndex = 0;
+
+        window.openModal = function(category) {
+            currentCategory = PORTFOLIO_DATA[category];
+            slideIndex = 0;
+            updateModalContent();
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+            document.body.classList.remove('modal-open');
+        }
+
+        function updateModalContent() {
+            const item = currentCategory[slideIndex];
+            
+            modalImg.style.opacity = '0';
+            modalLoader.style.display = 'flex';
+            
+            modalImg.src = item.img;
+            
+            modalImg.onload = function() {
+                modalLoader.style.display = 'none';
+                modalImg.style.opacity = '1';
+            };
+
+            modalTitle.innerText = item.title;
+            modalDesc.innerText = item.desc;
+            modalCounter.innerText = `${slideIndex + 1} / ${currentCategory.length}`;
+        }
+
+        document.querySelector('.close-btn').addEventListener('click', closeModal);
+        document.querySelector('.prev-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            slideIndex = (slideIndex - 1 + currentCategory.length) % currentCategory.length;
+            updateModalContent();
+        });
+        document.querySelector('.next-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            slideIndex = (slideIndex + 1) % currentCategory.length;
+            updateModalContent();
+        });
+        
+        // 미니 버튼 이벤트 추가
+        const prevBtnMini = document.querySelector('.prev-btn-mini');
+        const nextBtnMini = document.querySelector('.next-btn-mini');
+        if(prevBtnMini) {
+            prevBtnMini.addEventListener('click', (e) => {
+                e.stopPropagation();
+                slideIndex = (slideIndex - 1 + currentCategory.length) % currentCategory.length;
+                updateModalContent();
+            });
+        }
+        if(nextBtnMini) {
+            nextBtnMini.addEventListener('click', (e) => {
+                e.stopPropagation();
+                slideIndex = (slideIndex + 1) % currentCategory.length;
+                updateModalContent();
+            });
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // FAQ Logic
+        const faqContainer = document.getElementById('faq-list');
+        // FAQ 데이터가 존재할 때만 실행
+        if (typeof FAQ_DATA !== 'undefined') {
+            FAQ_DATA.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "border-b border-[#222] py-[25px] cursor-pointer group";
+                div.innerHTML = `
+                    <div class="flex justify-between items-center text-[1rem] text-[#ccc] font-light transition-colors group-hover:text-muted-gold">
+                        <span>Q. ${item.question}</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </div>
+                    <div class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 answer-box">
+                        <p class="text-[#777] text-[0.9rem] pt-[15px]">A. ${item.answer}</p>
+                    </div>
+                `;
+                
+                div.addEventListener('click', function() {
+                    const answerBox = this.querySelector('.answer-box');
+                    const icon = this.querySelector('.fa-chevron-down');
+                    
+                    if (answerBox.style.maxHeight) {
+                        answerBox.style.maxHeight = null;
+                        answerBox.style.opacity = '0';
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        // 다른 열린 탭 닫기 (선택사항)
+                        document.querySelectorAll('.answer-box').forEach(box => {
+                            box.style.maxHeight = null;
+                            box.style.opacity = '0';
+                        });
+                        document.querySelectorAll('.fa-chevron-down').forEach(ico => {
+                           ico.style.transform = 'rotate(0deg)'; 
+                        });
+
+                        answerBox.style.maxHeight = '200px';
+                        answerBox.style.opacity = '1';
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+                faqContainer.appendChild(div);
+            });
+        }
+    </script>
+    <script>
+    /* ---------- Meta 픽셀 이벤트 (눈썹 랜딩 track()과 같은 방식) ----------
+       커스텀 이름(진단용)은 항상, 표준 이벤트(광고 최적화용)는 opts.standard가 있을 때 함께 보낸다.
+       ★ 집행 중인 두피 광고의 전환 기준 = 'sec3_portfolio'(PORTFOLIO 섹션 도달, 맞춤 전환 '두피포트폴리오도달_v2' = URL에 'scalp' 포함).
+         이름이나 섹션을 바꾸면 캠페인 최적화가 끊기므로 함께 고정한다. */
+    (function () {
+      var LOC = (function () {
+        try {
+          var q = new URLSearchParams(location.search).get('loc');
+          if (q) sessionStorage.setItem('ss_loc', q);
+          return sessionStorage.getItem('ss_loc') || 'unknown';
+        } catch (e) { return 'unknown'; }
+      })();
+      var sent = {};
+      function track(name, params, opts) {
+        params = params || {};
+        params.loc = LOC;
+        params.lp = 'scalp';
+        opts = opts || {};
+        if (opts.once) {
+          var key = opts.key || name;
+          if (sent[key]) return;
+          sent[key] = 1;
+        }
+        try {
+          if (typeof fbq === 'function') {
+            if (opts.standard) fbq('track', opts.standard, params);
+            fbq('trackCustom', name, params);
+          }
+        } catch (e) {}
+      }
+
+      /* 도착 품질: 탭이 보이는 상태로 3초 */
+      var vis = 0;
+      var visTimer = setInterval(function () {
+        if (document.visibilityState !== 'visible') return;
+        if (++vis >= 3) { clearInterval(visTimer); track('engaged_3s', {}, { once: true }); }
+      }, 1000);
+
+      /* 섹션 도달: 제목(h2)으로 섹션을 찾는다. 눈썹 랜딩과 같은 기준 —
+         절반 이상 보이거나, 화면보다 긴 섹션은 화면의 절반 이상을 차지하면 한 번 */
+      var SECS = [['sec3_portfolio', 'PORTFOLIO'], ['sec4_different', "WHAT'S DIFFERENT?"], ['sec5_qa', 'Q&A']];
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            var vh = window.innerHeight || document.documentElement.clientHeight;
+            var reached = en.intersectionRatio >= 0.5 ||
+                          (en.isIntersecting && en.intersectionRect.height >= vh * 0.5);
+            if (reached) { track(en.target.dataset.sec, {}, { once: true }); io.unobserve(en.target); }
+          });
+        }, { threshold: [0, 0.05, 0.1, 0.25, 0.4, 0.5, 0.75, 1] });
+        var h2s = Array.prototype.slice.call(document.querySelectorAll('h2'));
+        SECS.forEach(function (sc) {
+          var h = h2s.filter(function (x) { return x.textContent.trim() === sc[1]; })[0];
+          var sec = h && h.closest('section');
+          if (sec) { sec.dataset.sec = sc[0]; io.observe(sec); }
+        });
+      }
+
+      /* 포트폴리오 확대 보기 */
+      var om = window.openModal;
+      if (typeof om === 'function') {
+        window.openModal = function (category) {
+          track('act_portfolio', { category: category });
+          return om.apply(this, arguments);
+        };
+      }
+
+      /* 카톡 상담 = Contact(진짜 문의), 인스타 = 진단용 */
+      Array.prototype.forEach.call(document.querySelectorAll('a[href*="pf.kakao.com"]'), function (a) {
+        a.addEventListener('click', function () { track('kakao_float', {}, { standard: 'Contact' }); });
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('a[href*="instagram.com/scalp_by_song"]'), function (a) {
+        a.addEventListener('click', function () { track('act_instagram', { placement: 'float' }); });
+      });
+    })();
+    </script>
+</body>
+</html>

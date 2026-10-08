@@ -764,9 +764,12 @@
     <script>
     /* ---------- Meta 픽셀 이벤트 (눈썹 랜딩 track()과 같은 방식) ----------
        커스텀 이름(진단용)은 항상, 표준 이벤트(광고 최적화용)는 opts.standard가 있을 때 함께 보낸다.
-       ★ 집행 중인 두피 광고의 전환 기준 = 'sec3_portfolio'(PORTFOLIO 섹션 도달, 맞춤 전환 '두피포트폴리오도달_v2' = URL에 'scalp' 포함).
-         이름이나 섹션을 바꾸면 캠페인 최적화가 끊기므로 함께 고정한다.
-         10/8 순서 변경(WHAT'S DIFFERENT → PORTFOLIO → 소개 → Q&A): 이벤트 이름의 번호는 옛 순서지만 그대로 둔다. */
+       ★ 집행 중인 두피 광고의 전환 기준 = 'sec3_portfolio'(맞춤 전환 '두피포트폴리오도달_v2' = URL에 'scalp' 포함).
+         이름을 바꾸면 캠페인 최적화가 끊기므로 고정한다.
+         10/8 순서 변경(WHAT'S DIFFERENT → PORTFOLIO → 소개 → Q&A)으로 포트폴리오가 화면 반~3분의 2만큼 내려갔다.
+         전환이 예전과 같은 깊이에서 잡히도록, sec3_portfolio는 섹션 대신 '화면 1.5개만큼 내림'에서 보낸다
+         (예전 순서에서 포트폴리오가 절반 보이던 지점: 폰 1218px = 812×1.5, PC 1350px = 900×1.5).
+         실제 포트폴리오 도달은 진단용 'portfolio_view'로 따로 남긴다. */
     (function () {
       var LOC = (function () {
         try {
@@ -803,7 +806,7 @@
 
       /* 섹션 도달: 제목(h2)으로 섹션을 찾는다. 눈썹 랜딩과 같은 기준 —
          절반 이상 보이거나, 화면보다 긴 섹션은 화면의 절반 이상을 차지하면 한 번 */
-      var SECS = [['sec3_portfolio', 'PORTFOLIO'], ['sec4_different', "WHAT'S DIFFERENT?"], ['sec5_qa', 'Q&A']];
+      var SECS = [['portfolio_view', 'PORTFOLIO'], ['sec4_different', "WHAT'S DIFFERENT?"], ['sec5_qa', 'Q&A']];
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (en) {
@@ -820,6 +823,17 @@
           if (sec) { sec.dataset.sec = sc[0]; io.observe(sec); }
         });
       }
+
+      /* 전환(sec3_portfolio): 화면 1.5개만큼 내려오면 한 번 — 예전 포트폴리오 도달과 같은 깊이 */
+      function convDepth() {
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        if ((window.scrollY || window.pageYOffset || 0) >= vh * 1.5) {
+          window.removeEventListener('scroll', convDepth);
+          track('sec3_portfolio', {}, { once: true });
+        }
+      }
+      window.addEventListener('scroll', convDepth, { passive: true });
+      convDepth();
 
       /* 포트폴리오 확대 보기 */
       var om = window.openModal;

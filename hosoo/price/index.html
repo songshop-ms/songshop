@@ -21,6 +21,9 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1885392752224522');
 fbq('track','PageView');
+/* 가격표 열람 수: 들어온 곳(src)별로 집계. 카톡 메뉴 링크는 ?src=kakao_menu */
+var HOSOO_SRC = (new URLSearchParams(location.search).get('src') || 'direct').slice(0, 30);
+fbq('trackCustom', 'hosoo_price_view', { lp: 'hosoo_price', src: HOSOO_SRC });
 </script>
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -173,7 +176,7 @@ footer{margin-top:56px;font-size:.74rem;color:var(--faint);letter-spacing:.03em;
 <script>
 document.querySelectorAll('.cta').forEach(function (btn) {
   btn.addEventListener('click', function () {
-    var p = { lp: 'hosoo_price', tier: this.dataset.tier };
+    var p = { lp: 'hosoo_price', tier: this.dataset.tier, src: window.HOSOO_SRC || 'direct' };
     if (window.fbq) { fbq('track', 'Contact', p); fbq('trackCustom', 'kakao_price', p); }
   });
 });

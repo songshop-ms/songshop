@@ -59,6 +59,11 @@ h1 span{display:block;color:var(--sub);font-weight:600;font-size:1.05rem;letter-
 .media video{display:block;width:100%;height:100%;object-fit:cover;}
 .media-cap{margin-top:8px;font-size:.78rem;color:var(--faint);}
 
+.feat{list-style:none;margin-top:22px;}
+.feat li{padding:14px 0;border-top:1px solid var(--line);font-size:.9rem;color:var(--sub);line-height:1.65;}
+.feat li:last-child{border-bottom:1px solid var(--line);}
+.feat b{display:block;color:var(--paper);font-size:.98rem;font-weight:700;margin-bottom:2px;}
+
 .amt{margin-top:22px;font-size:3.1rem;font-weight:800;letter-spacing:-.04em;line-height:1;}
 .amt small{font-size:1.05rem;font-weight:600;letter-spacing:0;margin-left:4px;color:var(--sub);}
 .amt-note{margin-top:8px;font-size:.86rem;color:var(--sub);}
@@ -128,12 +133,26 @@ footer{margin-top:56px;font-size:.74rem;color:var(--faint);letter-spacing:.03em;
   <section class="tier">
     <div class="k">HAIRSTROKE</div>
     <h2>극사실 눈썹</h2>
-    <p class="desc">한 올씩 심어 잔털까지 살리는 기법</p>
+    <p class="desc">내 눈썹에 맞춰 한 올씩 그려 넣는 방식</p>
+
+    <div class="media">
+      <video autoplay muted loop playsinline preload="metadata" poster="/hosoo/price/hairstroke.jpg">
+        <source src="/hosoo/price/hairstroke.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="media-cap">실제 시술 직후 · 보정 없음</p>
+
+    <ul class="feat">
+      <li><b>내 눈썹에 맞춘 커스텀</b>원래 눈썹의 모양과 숱을 보고 한 올씩 설계합니다.</li>
+      <li><b>모 두께와 결 흐름까지</b>털의 굵기와 방향을 자유롭게 표현해 진짜 눈썹처럼 보입니다.</li>
+      <li><b>가장 오래 유지</b>약 3년 유지되고, 리터치를 2번 해 드립니다.</li>
+    </ul>
 
     <div class="amt">38<small>만원</small></div>
     <p class="amt-note">리터치 2회 포함 가격입니다.</p>
 
     <dl class="spec">
+      <div><dt>디자인</dt><dd>1:1 커스텀</dd></div>
       <div><dt>리터치</dt><dd>2회 포함</dd></div>
       <div><dt>유지</dt><dd>약 3년</dd></div>
       <div><dt>소요</dt><dd>약 3시간</dd></div>

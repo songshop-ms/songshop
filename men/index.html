@@ -22,6 +22,7 @@
 <script>
   window.SS_CONFIG = {
     PIXEL_ID: '1885392752224522',  /* 기존 여성 LP와 동일 픽셀 (전환 물량 통합) */
+    HOSOO_PIXEL_ID: '9573440016087060',  /* 호수 광고 계정(hosoo) 픽셀 — 같은 이벤트가 두 픽셀에 함께 기록됨 */
     GA4_ID:   'G-0ZKV0GH8JN',     /* 기존 GA4 유지. 새로 파려면 여기만 교체 */
     DEBUG:    false               /* true 로 두면 콘솔에 이벤트가 찍힘 */
   };
@@ -40,6 +41,8 @@
   t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
   (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', id);
+  var hid = (window.SS_CONFIG.HOSOO_PIXEL_ID || '').trim();
+  if (hid) fbq('init', hid);
   fbq('track', 'PageView');
 })();
 </script>

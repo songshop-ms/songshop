@@ -37,16 +37,17 @@ h2 em{font-style:italic}
 .glass{background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#fff;border:0}
 
 /* hero (ref: getcasa.com) */
-.hero{position:relative;height:100svh;min-height:600px;padding:0;background:#111;color:#fff;overflow:hidden}
-.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.05) 30%,rgba(0,0,0,.25) 55%,rgba(0,0,0,.72))}
+.hero{position:relative;padding:0;background:var(--ink);color:#fff;overflow:hidden}
+.hero .vb{position:relative;height:54svh;min-height:340px;max-height:640px;overflow:hidden}
+.hero .vb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero .vb::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 78%,var(--ink))}
 .nav{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top));left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
 .nav .r{display:flex;gap:8px}
 .nav a{display:flex;align-items:center;height:40px;padding:0 16px;border-radius:var(--r);font-size:13px;color:#fff;text-decoration:none;font-weight:500}
 .nav a.solid{background:#fff;color:var(--ink);font-weight:600}
-.hero .in{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 var(--pad) calc(84px + env(safe-area-inset-bottom));text-align:center;max-width:560px;margin:0 auto}
-.hero h1{font-size:38px;line-height:1.06;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero .in{position:relative;z-index:2;padding:6px var(--pad) calc(84px + env(safe-area-inset-bottom));text-align:center;max-width:560px;margin:0 auto}
+.hero h1{font-size:34px;line-height:1.06}
 .hero h1 em{font-style:italic}
 .hero .sub{font-size:15px;margin-top:12px;color:rgba(255,255,255,.88)}
 .bar{display:flex;align-items:center;gap:12px;margin-top:22px;height:60px;padding:0 18px;border-radius:var(--r);text-decoration:none;font-size:15px;text-align:left}
@@ -136,7 +137,7 @@ footer{padding:26px 0 110px;font-size:12px;color:var(--ink2);text-align:center}
 
 <!-- 1. HERO -->
 <section class="hero" data-sec="1_hero">
-  <video src="/global/vid/hero.mp4" poster="/global/img/poster-hero.webp" autoplay muted loop playsinline preload="auto"></video>
+  <div class="vb"><video src="/global/vid/hero.mp4" poster="/global/img/poster-hero.webp" autoplay muted loop playsinline preload="auto"></video></div>
   <div class="nav"><span class="logo">SONGSHOP&reg;</span><div class="r"><a class="glass" href="#faq">FAQ</a><a class="solid js-contact" data-pos="nav" href="#">Book now</a></div></div>
   <div class="in">
     <h1 class="serif"><span class="l1">The best way to experience K-beauty in Gangneung?</span><em class="l2">Nano brows.</em></h1>

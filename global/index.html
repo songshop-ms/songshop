@@ -12,7 +12,7 @@ fbq('init','1885392752224522');fbq('track','PageView');
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0ZKV0GH8JN');</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#F4F0E8">
+<meta name="theme-color" content="#1F1D1A">
 <title>Nano Brows in Gangneung, Korea | SONGSHOP</title>
 <meta name="description" content="Nano brows (hair-stroke brows) in Gangneung, Korea. Gentle on skin, lasts about 3 years. Send us a brow photo for a free recommendation.">
 <link rel="canonical" href="https://www.songshopbysong.com/global/">
@@ -22,288 +22,248 @@ fbq('init','1885392752224522');fbq('track','PageView');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#F4F0E8;--paper2:#ECE6DA;--ink:#1F1D1A;--ink2:#5B564E;--line:rgba(31,29,26,.12)}
-*{box-sizing:border-box;margin:0;padding:0}
+:root{--paper:#F4F0E8;--paper2:#ECE6DA;--ink:#1F1D1A;--ink2:#5B564E;--line:rgba(31,29,26,.14);--pad:18px;--r:14px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-img{display:block;width:100%;height:auto}
-.wrap{max-width:560px;margin:0 auto;padding:0 20px}
-.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.01em}
+body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;width:100%;height:auto}
+.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.015em}
+.wrap{max-width:560px;margin:0 auto;padding:0 var(--pad)}
 section{padding:72px 0}
-.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);margin-bottom:14px}
-h1{font-size:40px;line-height:1.05}
-h2{font-size:34px;line-height:1.12;margin-bottom:18px}
-h1 em,h2 em{font-style:italic}
-p+p{margin-top:14px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);margin-bottom:14px}
+h2{font-size:38px;line-height:1.06;margin-bottom:16px}
+h2 em{font-style:italic}
 .muted{color:var(--ink2)}
-.btn{display:block;width:100%;text-align:center;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;padding:17px 20px;border-radius:4px;font-size:16px}
-.btn.alt{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
-.btns{display:grid;gap:10px;margin-top:26px}
-.note{font-size:13px;color:var(--ink2);margin-top:10px;text-align:center}
+.glass{background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#fff;border:0}
 
-/* hero */
-.hero{padding:0}
-.hero .ph{position:relative;aspect-ratio:6/5;overflow:hidden;background:var(--paper2)}
-.hero .ph img{position:absolute;inset:0;height:100%;object-fit:cover;object-position:center 8%;transition:opacity .9s}
-.hero .ph .b{opacity:1}.hero .ph .a{opacity:0}
-.hero .ph.on .b{opacity:0}.hero .ph.on .a{opacity:1}
-.hero .tag{position:absolute;left:14px;bottom:12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper);text-shadow:0 1px 6px rgba(0,0,0,.4)}
-.hero .copy{padding:26px 20px 64px;max-width:560px;margin:0 auto}
-.hero .sub{margin-top:16px;font-size:17px;color:var(--ink2)}
-.its{margin-top:22px;padding:14px 16px;background:var(--paper2);font-size:14px}
-.its b{font-weight:600}
+/* hero (ref: getcasa.com) */
+.hero{position:relative;height:100svh;min-height:600px;padding:0;background:#111;color:#fff;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.05) 30%,rgba(0,0,0,.25) 55%,rgba(0,0,0,.72))}
+.nav{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top));left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+.nav .r{display:flex;gap:8px}
+.nav a{display:flex;align-items:center;height:40px;padding:0 16px;border-radius:var(--r);font-size:13px;color:#fff;text-decoration:none;font-weight:500}
+.nav a.solid{background:#fff;color:var(--ink);font-weight:600}
+.hero .in{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 var(--pad) calc(84px + env(safe-area-inset-bottom));text-align:center;max-width:560px;margin:0 auto}
+.hero h1{font-size:38px;line-height:1.06;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero h1 em{font-style:italic}
+.hero .sub{font-size:15px;margin-top:12px;color:rgba(255,255,255,.88)}
+.bar{display:flex;align-items:center;gap:12px;margin-top:22px;height:60px;padding:0 18px;border-radius:var(--r);text-decoration:none;font-size:15px;text-align:left}
+.bar svg{width:24px;height:24px;fill:#fff;flex:0 0 auto}
+.bar span{flex:1}
+.bar b{font-weight:500;font-size:20px}
+.hero .fine{font-size:12px;color:rgba(255,255,255,.7);margin-top:12px}
 
-/* worries */
-.worries{background:var(--paper2)}
-.q{padding:16px 0;border-top:1px solid var(--line);font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-style:italic}
-.q:last-of-type{border-bottom:1px solid var(--line)}
+/* ticker */
+.tick{overflow:hidden;background:var(--ink);color:var(--paper);padding:16px 0;white-space:nowrap}
+.tick div{display:inline-block;animation:tk 28s linear infinite;font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-style:italic}
+.tick span{margin:0 22px}
+.tick span::before{content:'\2022';margin-right:44px;font-style:normal;opacity:.5}
+@keyframes tk{to{transform:translateX(-50%)}}
 
-/* pillars */
-.pillar{padding:26px 0;border-top:1px solid var(--line)}
-.pillar .n{font-size:12px;color:var(--ink2);letter-spacing:.14em}
-.pillar h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:500;margin:4px 0 8px}
+/* slider */
+.slider{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--pad);scroll-padding-left:var(--pad);margin-top:22px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.slider::-webkit-scrollbar{display:none}
+.slide{flex:0 0 86%;max-width:380px;scroll-snap-align:start}
+.slide img{aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);background:var(--paper2)}
+.slide p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-top:8px}
+.sl-meta{display:flex;justify-content:space-between;max-width:560px;margin:16px auto 0;padding:0 var(--pad);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+.sl-meta b{color:var(--ink);font-weight:600}
 
-/* portfolio */
-.pf{display:grid;gap:22px;margin-top:26px}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.pair figure{position:relative}
-.pair figcaption{position:absolute;left:8px;top:6px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:rgba(244,240,232,.85);padding:1px 6px}
-.pair-t{font-size:13px;color:var(--ink2);margin-top:6px}
+/* how it works cards */
+.cards{display:grid;gap:12px;margin-top:24px}
+.card{background:var(--paper2);border-radius:var(--r);padding:22px 20px}
+.card .n{font-size:12px;letter-spacing:.14em;color:var(--ink2)}
+.card h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:500;line-height:1.1;margin:6px 0 8px}
+.card p{font-size:15px;color:var(--ink2)}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.cmp img{aspect-ratio:3/2;object-fit:cover;border-radius:var(--r)}
+.cmp h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:500;margin:10px 0 2px}
+.cmp .n h3{font-style:italic}
+.cmp p{font-size:13px;color:var(--ink2);line-height:1.45}
+.spec .r{display:grid;grid-template-columns:.8fr 1fr 1fr;gap:8px;padding:12px 0;border-top:1px solid var(--line);font-size:13px;align-items:baseline}
+.spec{margin-top:20px}.spec .r:last-child{border-bottom:1px solid var(--line)}
+.spec .r span:first-child{color:var(--ink2);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.spec .r b{font-weight:600}
+
+/* dark technique */
+.dark{background:var(--ink);color:var(--paper)}
+.dark .muted,.dark .eyebrow{color:rgba(244,240,232,.66)}
+.vcov{position:relative;margin-top:26px;overflow:hidden;border-radius:var(--r)}
+.vcov video{aspect-ratio:4/5;object-fit:cover}
+.vcov::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 75% 55% at 100% 100%,var(--ink) 35%,rgba(31,29,26,0) 100%),linear-gradient(to bottom,rgba(31,29,26,0) 82%,var(--ink))}
+.vid{margin-top:22px;border-radius:var(--r);object-fit:cover}
+.vid.sq{aspect-ratio:1/1}.vid.f{aspect-ratio:4/5}
+.cap{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-top:8px}
 
 /* artist */
-.artist img{aspect-ratio:1/1;object-fit:cover;object-position:center 18%;filter:grayscale(.3)}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin:26px 0}
-.stats div{background:var(--paper);padding:18px 4px}
-.stats b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;font-weight:500;line-height:1}
-.stats span{font-size:13px;color:var(--ink2)}
-.cred{padding:12px 0;border-top:1px solid var(--line);font-size:15px}
-.cred small{display:block;color:var(--ink2);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
-
-/* steps / price */
-.steps{counter-reset:s}
-.step{padding:16px 0 16px 44px;position:relative;border-top:1px solid var(--line)}
-.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:16px;font-family:'Cormorant Garamond',Georgia,serif;font-size:24px}
-.price{display:grid;gap:12px;margin-top:22px}
-.tier{background:var(--paper2);padding:22px 20px}
-.tier .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.tier h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:500}
-.tier .won{font-weight:600}
-.tier p{font-size:14px;color:var(--ink2);margin-top:6px}
-.tier img{margin-top:14px;aspect-ratio:3/2;object-fit:cover}
-
-/* faq */
-details{border-top:1px solid var(--line);padding:16px 0}
-details:last-of-type{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:16px}
-summary::after{content:'+';color:var(--ink2)}
-details[open] summary::after{content:'–'}
-details p{margin-top:10px;color:var(--ink2);font-size:15px}
-
-.final{background:var(--ink);color:var(--paper);text-align:center}
-.final .muted{color:rgba(244,240,232,.7)}
-.final .btn{background:var(--paper);color:var(--ink)}
-.final .btn.alt{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1px var(--paper)}
-footer{padding:28px 0 110px;font-size:12px;color:var(--ink2);text-align:center}
-
-/* sticky bar */
-.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(244,240,232,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);z-index:9;transform:translateY(110%);transition:transform .3s}
-.bar.show{transform:none}
-.bar .btn{max-width:528px;margin:0 auto;padding:14px}
-
-.vid{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--paper2)}
-.hero .vwrap{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--paper2)}
-.hero .vwrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cmp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:24px}
-.cmp>div{background:var(--paper);padding:18px 14px}
-.cmp h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:500;margin-bottom:8px}
-.cmp p{font-size:14px;color:var(--ink2)}
-.cmp .win{background:var(--paper2)}
-.cmp .win p{color:var(--ink)}
-.vpair{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:22px}
-.vpair .vid{aspect-ratio:9/16}
-.cap{font-size:13px;color:var(--ink2);margin-top:8px}
-.todo{font-size:12px;color:#8a3b2a}
-.artist .vid{max-width:320px;margin:22px auto 0}
-.tier{margin-top:22px}
-
-.hero .stage{position:relative}
-.hero .stage>img{aspect-ratio:1/1;object-fit:cover;object-position:center 30%}
-.hero .zoom{position:absolute;right:16px;bottom:-34px;width:34%;aspect-ratio:1/1;border-radius:50%;object-fit:cover;box-shadow:0 6px 20px rgba(31,29,26,.25)}
-.hero .copy{padding-top:52px}
-.chips{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:20px;font-size:13px;color:var(--ink2)}
-.chips b{color:var(--ink);font-weight:600}
-.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
-.cmp2 img{aspect-ratio:1/1;object-fit:cover}
-.cmp2 h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:500;margin:10px 0 2px}
-.cmp2 .on h3{font-style:italic}
-.cmp2 p{font-size:13px;color:var(--ink2)}
-.spec{margin-top:18px}
-.spec .r{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:11px 0;border-top:1px solid var(--line);font-size:13px;align-items:baseline}
-.spec .r:last-child{border-bottom:1px solid var(--line)}
-.spec .r span:first-child{color:var(--ink2);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-.spec .r b{font-weight:600}
-.vcover{position:relative;margin-top:24px;overflow:hidden}
-.vcover .vid{margin:0}
-.vcover::after{content:'';position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(to bottom,rgba(236,230,218,0),var(--paper2))}
-.vcover.k::after{height:50%;background:linear-gradient(to bottom,rgba(244,240,232,0),var(--paper) 70%)}
-.vid.s{aspect-ratio:4/5}
-.vcover .vid{aspect-ratio:4/5}
-.pair2{display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.pair2+.lab{display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-top:6px}
-.pf{gap:26px}
-.proof{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);margin:26px 0 0}
-.proof div{background:var(--paper2);padding:16px 4px;text-align:center}
-.proof b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:32px;font-weight:500;line-height:1}
+.proof{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
+.proof div{background:var(--paper);border-radius:var(--r);padding:20px 4px;text-align:center}
+.proof b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:42px;font-weight:500;line-height:1}
 .proof span{font-size:12px;color:var(--ink2)}
-.artist .ph2{aspect-ratio:4/3;object-fit:cover;object-position:center 20%;margin-top:22px}
-
+.cred{padding:12px 0;border-top:1px solid var(--line);font-size:15px}
+.cred small{display:block;color:var(--ink2);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.ph2{aspect-ratio:4/3;object-fit:cover;object-position:center 20%;margin-top:20px;border-radius:var(--r)}
+details{border-top:1px solid var(--line);padding:18px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:16px;min-height:28px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';color:var(--ink2)}
+details[open] summary::after{content:'\2013'}
+details p{margin-top:10px;color:var(--ink2);font-size:15px}
+.todo{font-size:12px;color:#8a3b2a}
+.final{background:var(--ink);color:var(--paper);text-align:center;padding:84px 0}
+.final h2{font-size:42px}
+.final .muted{color:rgba(244,240,232,.7)}
+.final .bar{margin-top:26px;background:var(--paper);color:var(--ink);justify-content:center}
+.final .bar svg{fill:#1F1D1A}
+footer{padding:26px 0 110px;font-size:12px;color:var(--ink2);text-align:center}
+.wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;z-index:20;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+.wa svg{width:30px;height:30px;fill:#fff}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tick div{animation:none}}
+.sl-meta{align-items:center}.sl-meta b{font-size:15px}.sl-meta .sw{font-size:15px;font-weight:600;letter-spacing:.14em;color:var(--ink);animation:nudge 1.4s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(8px)}}@media (prefers-reduced-motion:reduce){.sl-meta .sw{animation:none}}
+.inset{position:absolute;z-index:3;right:12px;top:12px;width:38%;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.4)}.inset video{aspect-ratio:4/5;object-fit:cover}.inset span{position:absolute;left:8px;top:6px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.l1{display:block;text-wrap:balance;overflow-wrap:break-word}
+.l2{display:block;font-style:italic;font-size:1.55em;line-height:1;margin-top:.22em;white-space:nowrap}
+@media (max-width:360px){.hv h1,.hero h1{font-size:29px}}
+@media (min-width:600px){.hv h1,.hero h1{font-size:44px}}
 </style>
 </head>
 <body>
 
-<!-- 1. HERO: two guests (ref: directorbrow first screen) -->
+<!-- 1. HERO -->
 <section class="hero" data-sec="1_hero">
-  <div class="stage">
-    <img src="img/hero-guest-portrait.webp" alt="Smiling guest with natural, softly defined brows">
-    <img class="zoom" src="img/hero-guest-brow.webp" alt="Close-up of a guest's hair-stroke brow">
-  </div>
-  <div class="copy">
-    <p class="eyebrow">SONGSHOP &middot; Gangneung, Korea</p>
-    <h1 class="serif">The best way to experience K-beauty in Gangneung? <em>Nano brows.</em></h1>
-    <p class="sub">Brows that look like your own hair &mdash; gentle on your skin, and made to last about 3 years. Send us a photo and we&rsquo;ll tell you what would suit your face.</p>
-    <div class="btns"><a class="btn js-contact" data-pos="hero" href="#">Send us a brow photo</a></div>
-    <p class="note">Free design recommendation &middot; Chat with us on WhatsApp</p>
-    <div class="chips"><span><b>7</b> years</span><span><b>3,000+</b> procedures</span><span>Worked in <b>Toronto</b></span></div>
+  <video src="/global/vid/hero.mp4" poster="/global/img/poster-hero.webp" autoplay muted loop playsinline preload="auto"></video>
+  <div class="nav"><span class="logo">SONGSHOP&reg;</span><div class="r"><a class="glass" href="#faq">FAQ</a><a class="solid js-contact" data-pos="nav" href="#">Book now</a></div></div>
+  <div class="in">
+    <h1 class="serif"><span class="l1">The best way to experience K-beauty in Gangneung?</span><em class="l2">Nano brows.</em></h1>
+    <p class="sub">Brows that look like your own hair. Gentle on your skin, made to last about 3 years.</p>
+    <a class="bar glass js-contact" data-pos="hero" href="#"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>Send a photo to get started</span><b>&rarr;</b></a>
+    <p class="fine">Free brow consult &middot; Chat with us on WhatsApp</p>
   </div>
 </section>
 
-<!-- 2. NANO vs MICROBLADING -->
-<section style="background:var(--paper2)" data-sec="2_nano">
+<div class="tick" aria-hidden="true"><div><span>Soft hair strokes</span><span>Fits your bone structure</span><span>Gentle on your skin</span><span>Lasts about 3 years</span><span>Almost painless</span><span>Soft hair strokes</span><span>Fits your bone structure</span><span>Gentle on your skin</span><span>Lasts about 3 years</span><span>Almost painless</span></div></div>
+
+<!-- 2. SLIDER -->
+<section data-sec="2_slider" style="padding-bottom:56px">
+  <div class="wrap"><p class="eyebrow">Real faces &middot; Real results</p><h2 class="serif" style="margin-bottom:0">Right after the procedure</h2></div>
+  <div class="slider" id="slider">
+    <figure class="slide"><img src="/global/img/ba1.webp" alt="Brows: after (top) and before (bottom)"><p>Top after &middot; bottom before</p></figure>
+    <figure class="slide"><img src="/global/img/ba2.webp" alt="Brows: after (top) and before (bottom)" loading="lazy"><p>Top after &middot; bottom before</p></figure>
+    <figure class="slide"><img src="/global/img/ba3.webp" alt="Brows: after (top) and before (bottom)" loading="lazy"><p>Top after &middot; bottom before</p></figure>
+    <figure class="slide"><img src="/global/img/ba4.webp" alt="Brows: after (top) and before (bottom)" loading="lazy"><p>Top after &middot; bottom before</p></figure>
+    <figure class="slide"><img src="/global/img/ba5.webp" alt="Brows: after (top) and before (bottom)" loading="lazy"><p>Top after &middot; bottom before</p></figure>
+  </div>
+  <div class="sl-meta"><span><b id="cnt">01</b> / 05</span><span class="sw">Swipe &rarr;</span></div>
+</section>
+
+<!-- 3. HOW IT WORKS -->
+<section style="background:var(--paper2);padding-top:64px" data-sec="3_how">
   <div class="wrap">
-    <p class="eyebrow">Nano brows vs microblading</p>
+    <p class="eyebrow">How nano brows work</p>
+    <h2 class="serif">Dimension that <em>follows your bone structure</em></h2>
+    <p class="muted">Nano brows build real depth into your brow, shaped around the bones of your face, so they look natural from every angle.</p>
+    <div class="cards">
+      <div class="card" style="background:var(--paper)"><span class="n">01</span><h3>Fits your face</h3><p>Designed around your bone structure, not a template.</p></div>
+      <div class="card" style="background:var(--paper)"><span class="n">02</span><h3>Puncture, not cuts</h3><p>Much less damage to your skin than microblading.</p></div>
+      <div class="card" style="background:var(--paper)"><span class="n">03</span><h3>Lasts about 3 years</h3><p>Soft hair strokes that settle in naturally.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- UP CLOSE -->
+<section data-sec="3b_closeup" style="padding-bottom:56px">
+  <div class="wrap">
+    <p class="eyebrow">Up close</p>
+    <h2 class="serif">Every hair, <em>drawn to fit her face</em></h2>
+    <img src="/global/img/guest-brow.webp" alt="Close-up of a guest's hair-stroke brow" loading="lazy" style="margin-top:20px;border-radius:14px;">
+    <img src="/global/img/guest-portrait.webp" alt="Smiling guest with natural, softly defined brows" loading="lazy" style="width:72%;margin:-48px 0 0 auto;position:relative;border-radius:14px;">
+  </div>
+</section>
+
+<!-- 4. COMPARE -->
+<section data-sec="4_compare">
+  <div class="wrap">
+    <p class="eyebrow">Two ways to draw a brow</p>
     <h2 class="serif">Microblading cuts the skin. <em>Nano brows don&rsquo;t.</em></h2>
-    <p class="muted">Microblading (the &ldquo;emboss&rdquo; style) draws strokes by cutting into the skin. Nano brows use a puncture method, so there&rsquo;s much less damage to your skin &mdash; and the result lasts longer.</p>
-    <div class="cmp2">
-      <div><img src="img/compare-basic.webp" alt="Microblading-style brow example" loading="lazy"><h3>Microblading</h3><p>Strokes made by cutting the skin</p></div>
-      <div class="on"><img src="img/compare-nano.webp" alt="Nano brow hair-stroke close-up" loading="lazy"><h3>Nano brows</h3><p>Strokes made by puncture &mdash; less skin damage</p></div>
+    <div class="cmp">
+      <div><img src="/global/img/compare-basic.webp" alt="Microblading-style brow example" loading="lazy"><h3>Microblading</h3><p>Embroidery style. Strokes made by cutting the skin.</p></div>
+      <div class="n"><img src="/global/img/compare-nano.webp" alt="Nano brow hair-stroke close-up" loading="lazy"><h3>Nano brows</h3><p>Strokes made by puncture, with less skin damage.</p></div>
     </div>
     <div class="spec">
       <div class="r"><span>Lasts</span><span>1&ndash;2 years</span><b>About 3 years</b></div>
-      <div class="r"><span>Retouch</span><span>1 included</span><b>2 included</b></div>
       <div class="r"><span>Time</span><span>1.5 hours</span><b>Up to 3 hours</b></div>
     </div>
-    <div class="vcover"><video class="vid" src="vid/hero.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
-    <p class="cap">Fine strokes, drawn one at a time.</p>
-    <div class="btns"><a class="btn js-contact" data-pos="nano" href="#">Which one suits me? Send a photo</a></div>
   </div>
 </section>
 
-<!-- 3. BEFORE / AFTER -->
-<section data-sec="3_portfolio">
+<!-- 5. DRAWING -->
+<section class="dark" data-sec="5_drawing">
   <div class="wrap">
-    <p class="eyebrow">Real faces &middot; Real results &middot; No filters</p>
-    <h2 class="serif">Before &amp; right after</h2>
-    <p class="muted">Every &ldquo;after&rdquo; was taken right after the procedure.</p>
-    <div class="pf">
-      <div><div class="pair2"><img src="img/nano1-before.webp" alt="Brows before" loading="lazy"><img src="img/nano1-after.webp" alt="Brows right after" loading="lazy"></div><div class="lab"><span>Before</span><span>After</span></div></div>
-      <div><div class="pair2"><img src="img/nano2-before.webp" alt="Brows before" loading="lazy"><img src="img/nano2-after.webp" alt="Brows right after" loading="lazy"></div><div class="lab"><span>Before</span><span>After</span></div></div>
-      <div><div class="pair2"><img src="img/nano3-before.webp" alt="Brows before" loading="lazy"><img src="img/nano3-after.webp" alt="Brows right after" loading="lazy"></div><div class="lab"><span>Before</span><span>After</span></div></div>
-      <div><div class="pair2"><img src="img/nano4-before.webp" alt="Brows before" loading="lazy"><img src="img/nano4-after.webp" alt="Brows right after" loading="lazy"></div><div class="lab"><span>Before</span><span>After</span></div></div>
-      <div><div class="pair2"><img src="img/nano5-before.webp" alt="Brows before" loading="lazy"><img src="img/nano5-after.webp" alt="Brows right after" loading="lazy"></div><div class="lab"><span>Before</span><span>After</span></div></div>
-    </div>
-    <div class="btns"><a class="btn js-contact" data-pos="portfolio" href="#">I want brows like this</a></div>
-    <p class="note">Send a photo &middot; free recommendation</p>
+    <p class="eyebrow">By hand, stroke by stroke</p>
+    <h2 class="serif">Drawn one hair <em>at a time</em></h2>
+    <div class="vcov"><video src="/global/vid/nano.mp4" autoplay muted loop playsinline preload="metadata"></video><div class="inset"><video src="/global/vid/detail.mp4" autoplay muted loop playsinline preload="metadata"></video><span>Detail</span></div></div>
   </div>
 </section>
 
-<!-- 4. INTERNATIONAL GUESTS -->
-<section style="background:var(--paper2)" data-sec="4_guests">
+<!-- 6. CONSULT + DESIGN -->
+<section data-sec="6_consult">
   <div class="wrap">
-    <p class="eyebrow">International guests</p>
-    <h2 class="serif">Hear it from guests who visited</h2>
-    <p class="muted">We&rsquo;ve worked with clients in Toronto, LA, Indonesia and Japan, including many mixed-heritage clients &mdash; your features and skin tone are familiar territory.</p>
-    <div class="vpair">
-      <video class="vid" src="vid/guest1.mp4" poster="img/poster-guest1.webp" controls playsinline preload="none"></video>
-      <video class="vid" src="vid/guest2.mp4" poster="img/poster-guest2.webp" controls playsinline preload="none"></video>
-    </div>
-    <p class="cap">Tap play for sound.</p>
+    <p class="eyebrow">Before we start</p>
+    <h2 class="serif">We talk first. <em>Then we design.</em></h2>
+    <p class="muted">Tell us what you like. We look at your face together, then draw the shape until you love it.</p>
+    <video class="vid sq" src="/global/vid/consult.mp4" poster="/global/img/poster-consult.webp" autoplay muted loop playsinline preload="metadata"></video>
+    <p class="cap">01 &middot; Consultation</p>
+    <video class="vid f" src="/global/vid/design.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <p class="cap">02 &middot; Designing your brow</p>
   </div>
 </section>
 
-<!-- 5. CONSULTATION -->
-<section data-sec="5_consult">
-  <div class="wrap">
-    <p class="eyebrow">Consultation</p>
-    <h2 class="serif">We start by talking, <em>not tattooing</em></h2>
-    <p class="muted">Tell us what you like and we&rsquo;ll look at your face together. Nothing starts until you&rsquo;re happy with the shape.</p>
-    <video class="vid" style="margin-top:22px" src="vid/consult.mp4" poster="img/poster-consult.webp" autoplay muted loop playsinline preload="metadata"></video>
-  </div>
-</section>
-
-<!-- 6. ARTIST -->
-<section class="artist" style="background:var(--paper2)" data-sec="6_artist">
+<!-- 7. ARTIST -->
+<section style="background:var(--paper2)" data-sec="7_artist">
   <div class="wrap">
     <p class="eyebrow">Your artist</p>
     <h2 class="serif">Song Min Seong, <em>head artist</em></h2>
-    <p class="muted">Every procedure is done by the head artist himself. He has worked with international clients in Toronto, LA, Indonesia and Japan.</p>
-    <img class="ph2" src="../mix.webp" alt="Song Min Seong at an international permanent makeup competition" loading="lazy">
-    <div class="proof">
-      <div><b>7</b><span>years</span></div>
-      <div><b>3,000+</b><span>procedures</span></div>
-      <div><b>3</b><span>countries&rsquo; stages</span></div>
-    </div>
-    <p class="cred" style="margin-top:22px"><small>2023 &middot; Toronto, Canada</small>Chronic Ink &middot; Artist of February</p>
+    <p class="muted">Every procedure is done by the head artist himself. He has worked with international clients in Toronto, LA, Indonesia and Japan, including many mixed-heritage clients.</p>
+    <img class="ph2" src="/mix.webp" alt="Song Min Seong at an international permanent makeup competition" loading="lazy">
+    <div class="proof"><div><b>7</b><span>years</span></div><div><b>3,000+</b><span>procedures</span></div></div>
+    <p class="cred"><small>2023 &middot; Toronto, Canada</small>Chronic Ink &middot; Artist of February</p>
     <p class="cred"><small>Award</small>3rd overall, TNA &times; TNL &times; INCA (Taiwan)</p>
     <p class="cred"><small>Award</small>2nd, Eyebrows, JIBC (Japan)</p>
     <p class="cred"><small>Judge</small>International Body Art Contest</p>
   </div>
 </section>
 
-<!-- 7. PRICE + PROCESS -->
-<section data-sec="7_price">
-  <div class="wrap">
-    <p class="eyebrow">The process</p>
-    <h2 class="serif">Your visit, step by step</h2>
-    <p class="muted">Hair-stroke nano brows take up to 3 hours. We use numbing cream, so it&rsquo;s almost painless.</p>
-    <div class="vcover k"><video class="vid" src="vid/process.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
-    <div class="steps" style="margin-top:22px">
-      <p class="step"><b>Send a photo.</b> A clear, front-facing photo of your brows. We reply with a recommended style, open times and pricing.</p>
-      <p class="step"><b>Design together.</b> We draw the shape on your face and adjust until you love it.</p>
-      <p class="step"><b>Numbing, then strokes.</b> Numbing cream first, then hair strokes drawn one by one.</p>
-    </div>
-    <div class="btns"><a class="btn js-contact" data-pos="price" href="#">Check open times</a></div>
-    <p class="note">The exact address is sent after you book.</p>
-  </div>
-</section>
-
 <!-- 8. FAQ -->
-<section style="background:var(--paper2)" data-sec="8_faq">
+<section id="faq" data-sec="8_faq">
   <div class="wrap">
     <p class="eyebrow">Before you book</p>
     <h2 class="serif">Questions</h2>
     <details><summary>Will it hurt?</summary><p>Almost not. We use numbing cream, so most guests feel very little.</p></details>
-    <details><summary>What&rsquo;s the difference from microblading?</summary><p>Microblading cuts the skin to make strokes. Nano brows use a puncture method, so there&rsquo;s less damage to your skin.</p></details>
+    <details><summary>How is it different from microblading?</summary><p>Microblading cuts the skin to make strokes. Nano brows use a puncture method, so there&rsquo;s less damage to your skin.</p></details>
     <details><summary>How long does it last?</summary><p>About 3 years.</p></details>
     <details><summary>How long does it take?</summary><p>Hair-stroke brows take up to 3 hours.</p></details>
-    <details><summary>Do you work with international guests?</summary><p>Yes &mdash; we&rsquo;ve worked with clients in Toronto, LA, Indonesia and Japan, including many mixed-heritage clients.</p></details>
+    <details><summary>Do you work with international guests?</summary><p>Yes &mdash; clients in Toronto, LA, Indonesia and Japan, including many mixed-heritage clients.</p></details>
     <details><summary>Can I wash my face afterwards?</summary><p><span class="todo">[&#54869;&#51064;: washing instructions pending confirmation from the artist]</span></p></details>
   </div>
 </section>
 
-<!-- 9. FINAL CTA -->
+<!-- 9. FINAL -->
 <section class="final" data-sec="9_final">
   <div class="wrap">
-    <h2 class="serif">Start with a photo</h2>
-    <p class="muted">Send us your brows and we&rsquo;ll tell you what would suit your face &mdash; and which times are open.</p>
-    <div class="btns">
-      <a class="btn js-contact" data-pos="final" href="#">Send us a brow photo</a>
-    </div>
+    <h2 class="serif">Start your custom design today</h2>
+    <p class="muted">Send a photo of your brows. We&rsquo;ll reply with the style that fits your face and our open times.</p>
+    <a class="bar js-contact" data-pos="final" href="#"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>Message us on WhatsApp</span><b>&rarr;</b></a>
   </div>
 </section>
 
-<footer>SONGSHOP &middot; Gangneung &amp; Jamsil, Korea &middot; <a href="/" style="color:inherit">&#54620;&#44397;&#50612;</a></footer>
+<footer>SONGSHOP &middot; Gangneung &amp; Jamsil, Korea &middot; <a href="/" style="color:inherit">&#54620;&#44397;&#50612;</a><br>Exact address sent after booking.</footer>
 
-<div class="bar" id="bar"><a class="btn js-contact" data-pos="bar" href="#">Send us a brow photo</a></div>
+<a class="wa js-contact" data-pos="float" href="#" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 
 <script>
 /* 연락 경로: 송샵 WhatsApp Business (QR에서 읽은 링크). 영어 인스타 핸들이 생기면 IG_HANDLE에 넣으면 인스타 DM이 우선. */
@@ -334,9 +294,10 @@ var io = new IntersectionObserver(function(es){
 }, { threshold: .35 });
 document.querySelectorAll('[data-sec]').forEach(function(s){ io.observe(s); });
 
-/* sticky bar after hero */
-var bar = document.getElementById('bar');
-addEventListener('scroll', function(){ bar.classList.toggle('show', scrollY > innerHeight * .9); }, { passive: true });
+
+/* before/after slider counter */
+var sl=document.getElementById('slider'), cnt=document.getElementById('cnt');
+if(sl&&cnt){ sl.addEventListener('scroll',function(){ var w=sl.firstElementChild.offsetWidth+12; var i=Math.round(sl.scrollLeft/w)+1; cnt.textContent=('0'+Math.min(i,5)).slice(-2); },{passive:true}); }
 </script>
 </body>
 </html>

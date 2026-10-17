@@ -275,11 +275,14 @@ var CONTACT = IG_HANDLE ? 'https://ig.me/m/' + IG_HANDLE : WHATSAPP;
 var LOC = (function(){ try { return new URLSearchParams(location.search).get('utm_content') || 'organic'; } catch(e){ return 'unknown'; } })();
 var sent = {};
 function track(name, params, opts){
-  params = params || {}; params.loc = LOC; params.lp = 'global'; opts = opts || {};
+  params = params || {}; params.loc = LOC; params.lp = 'global'; params.lang = (navigator.language || 'unknown').toLowerCase(); opts = opts || {};
   if (opts.once){ if (sent[name]) return; sent[name] = 1; }
   try { if (typeof fbq === 'function'){ if (opts.standard) fbq('track', opts.standard, params); fbq('trackCustom', name, params); } } catch(e){}
   try { if (typeof gtag === 'function') gtag('event', name, params); } catch(e){}
 }
+
+/* 방문자 언어 확인용(클릭 전): 페이지마다 한 번 */
+track('visit', {}, { once: true });
 
 document.querySelectorAll('.js-contact').forEach(function(a){
   a.href = CONTACT; a.target = '_blank'; a.rel = 'noopener';

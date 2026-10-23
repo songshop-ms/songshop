@@ -174,7 +174,14 @@
     position:relative;line-height:0;background:var(--soft);
     border:1px solid var(--line);border-radius:7px;overflow:hidden;
   }
-  .mv-m video{display:block;width:100%;height:auto}
+  .mv-m video{display:block;width:100%;height:auto;pointer-events:none}
+  /* 저전력 모드 등에서 뜨는 재생 버튼·컨트롤 숨김 */
+  .mv-m video::-webkit-media-controls{display:none !important}
+  .mv-m video::-webkit-media-controls-start-playback-button{
+    display:none !important;-webkit-appearance:none;
+  }
+  .mv-m video::-webkit-media-controls-panel,
+  .mv-m video::-webkit-media-controls-overlay-play-button{display:none !important}
   .mv-tag{
     position:absolute;left:8px;bottom:8px;padding:4px 9px;border-radius:20px;
     background:rgba(44,44,44,.72);color:#fff;font-size:.7rem;font-weight:600;line-height:1.45;
@@ -326,13 +333,13 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
       <div class="mv">
         <div class="mv-m">
           <video src="/lash-mono.mp4" poster="/lash-mono-poster.jpg"
-                 autoplay loop muted playsinline preload="metadata"
+                 autoplay loop muted playsinline preload="auto" disablepictureinpicture
                  aria-label="속눈썹펌 시술 후 - 무쌍"></video>
           <span class="mv-tag">무쌍</span>
         </div>
         <div class="mv-m">
           <video src="/lash-double.mp4" poster="/lash-double-poster.jpg"
-                 autoplay loop muted playsinline preload="metadata"
+                 autoplay loop muted playsinline preload="auto" disablepictureinpicture
                  aria-label="속눈썹펌 시술 후 - 유쌍"></video>
           <span class="mv-tag">유쌍</span>
         </div>
@@ -572,6 +579,18 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
   /* 카톡으로 돌아가기 */
   var cta = document.querySelector('.bar a');
   if (cta) cta.addEventListener('click', function () { track('guide_kakao'); });
+
+  /* 영상 자동재생이 막히면(저전력 모드 등) 첫 조작 때 다시 재생 */
+  var mvs = document.querySelectorAll('.mv-m video');
+  if (mvs.length) {
+    var kick = function () {
+      mvs.forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+    };
+    kick();
+    ['touchstart', 'click', 'scroll'].forEach(function (e) {
+      document.addEventListener(e, kick, { once: true, passive: true });
+    });
+  }
 
   /* 두피문신 페이지로 이동 */
   var scalp = document.querySelector('.link-btn');

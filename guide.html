@@ -167,6 +167,19 @@
   .cb-with{font-size:.88rem;color:var(--sub);margin-top:2px}
   .cb-with b{font-family:'Gowun Batang',serif;font-size:1.4rem;color:var(--ink);
     font-weight:700;letter-spacing:-.02em}
+  /* 시술 결과 영상 — 바로 위 항목에 붙여 한 묶음으로 */
+  .combo.cb-mv{border-bottom:none;padding-bottom:11px}
+  .mv{display:grid;gap:8px}
+  .mv-m{
+    position:relative;line-height:0;background:var(--soft);
+    border:1px solid var(--line);border-radius:7px;overflow:hidden;
+  }
+  .mv-m video{display:block;width:100%;height:auto}
+  .mv-tag{
+    position:absolute;left:8px;bottom:8px;padding:4px 9px;border-radius:20px;
+    background:rgba(44,44,44,.72);color:#fff;font-size:.7rem;font-weight:600;line-height:1.45;
+  }
+  .mv-d{margin:2px 0 0;font-size:.85rem;color:var(--sub);line-height:1.7;text-align:center}
 
   .dual{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
     padding:13px 0;border-bottom:1px solid var(--soft)}
@@ -300,7 +313,7 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
           <div class="cb-with">눈썹과 함께 <b>25</b>만원</div>
         </div>
       </div>
-      <div class="combo">
+      <div class="combo cb-mv">
         <div>
           <div class="cb-n">속눈썹펌</div>
           <div class="cb-inc">꼬임방지 클리닉 포함</div>
@@ -309,6 +322,21 @@ src="https://www.facebook.com/tr?id=1885392752224522&ev=PageView&noscript=1" /><
           <div class="cb-solo">단독 4만원</div>
           <div class="cb-with">눈썹과 함께 <b>2</b>만원</div>
         </div>
+      </div>
+      <div class="mv">
+        <div class="mv-m">
+          <video src="/lash-mono.mp4" poster="/lash-mono-poster.jpg"
+                 autoplay loop muted playsinline preload="metadata"
+                 aria-label="속눈썹펌 시술 후 - 무쌍"></video>
+          <span class="mv-tag">무쌍</span>
+        </div>
+        <div class="mv-m">
+          <video src="/lash-double.mp4" poster="/lash-double-poster.jpg"
+                 autoplay loop muted playsinline preload="metadata"
+                 aria-label="속눈썹펌 시술 후 - 유쌍"></video>
+          <span class="mv-tag">유쌍</span>
+        </div>
+        <p class="mv-d">꼬임방지 클리닉 포함으로 시간이 지나도 속눈썹이 꼬이는 현상이 없습니다.</p>
       </div>
     </div>
     <div class="note" style="margin-top:10px">
